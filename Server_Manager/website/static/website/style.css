@@ -1,0 +1,202 @@
+/* Color Guides */
+/*
+    Header (Wildcat Purple): #492365
+    Primary (Pantone 2587): #8446AC
+    Secondary (University Grey): #4B4945
+    Tertiary (Pantone 2665): #7F56C5
+*/
+
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700&display=swap');
+/* Custom CSS is here */
+main {
+    padding: 1.5rem 2.5rem;
+}
+.login-form,
+.login-form * {
+    box-sizing: border-box;
+    font-family: 'Source Sans Pro';
+}
+.login-form {
+    max-width: 350px;
+    margin: 0 auto;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
+}
+.login-form__content {
+    padding: 30px;
+    background: #eeeeee;
+}
+.login-form__header {
+    margin-bottom: 15px;
+    text-align: center;
+    color: #333333;
+}
+
+.login-form__input {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 2px solid #dddddd;
+    background: #ffffff;
+    outline: none;
+    transition: border-color 0.5s;
+}
+
+.login-form__button {
+    padding: 10px;
+    color: #ffffff;
+    font-weight: bold;
+    background: #8446AC;
+    width: 100%;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.login-form__button:active {
+    background: #008067;
+}
+
+.jumbotron {
+    padding: 1.5rem 2rem;
+    background-color: #492365;
+    border-radius: 0;
+    margin-bottom: 0;
+}
+
+.navbar {
+    color: white;
+    background-color: #4B4945;
+    padding-left: 1.5rem;
+    /*padding-right: 1.5rem;*/
+    /*margin-bottom: 1.5rem;*/
+}
+
+.nav-row {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.nav-link {
+    color: white;
+}
+
+.nav-link:hover {
+    color: #CCC;
+}
+
+.select {
+    background-color: #8446AC;
+    color: white;
+}
+
+.select:focus {
+    background-color: #8446AC;
+    color: white;
+}
+
+.select option:hover {
+    background-color: #7F56C5;
+    color: white;
+}
+
+.project-cards {
+    width: 75%;
+    margin: 0 auto;
+}
+
+.project-cards > [class^="col"] {
+    margin: 1em 0;
+}
+
+.card {
+    color: white;
+    background-color: #4B4945;
+}
+
+
+/* End of custom CSS */
+
+a.navbar-brand {
+    white-space: normal;
+    color: white;
+    text-align: center;
+    word-break: break-all;
+}
+
+/* Provide sufficient contrast against white background */
+a {
+    color: #0366d6;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #8446AC;
+    border-color: #663685;
+}
+
+.btn-secondary {
+    color: #fff;
+    background-color: #4B4945;
+    border-color: #1861ac;
+}
+
+.btn-primary:hover {
+    background-color: #492365;
+    border-color: #492365;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  font-size: 14px;
+}
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.border-top {
+  border-top: 1px solid #e5e5e5;
+}
+.border-bottom {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow {
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+button.accept-policy {
+  font-size: 1rem;
+  line-height: inherit;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  white-space: nowrap;
+  line-height: 60px; /* Vertically center the text there */
+}
