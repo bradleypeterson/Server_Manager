@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'container',
     'project',
     'projectusers',
+    'website',
 ]
 
 MIDDLEWARE = [
