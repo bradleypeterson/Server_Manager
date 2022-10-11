@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/static/website/style.css">
+    <title>Edit Course</title>
+</head>
+<body>
+<header>
+        <div class="jumbotron">
+            <a href="https://weber.edu/cs"><img src="/static/website/weber_east.png"></a>
+        </div>
+</header>
+
+<form method="POST" class="course-form" action="/update/{{course.id}}">
+        {% csrf_token %}
+<br>
+    <div class="course-form__content">
+        <h3 class="course-header">Update Details</h3>
+        <label class="course-name">Course Name:</label>
+            <input class="course-form__input"  type="text" name="courseName" id="id_courseName" required maxlength="100" value="{{ course.courseName }}" />
+        <button type="submit" class="course-form__button">Update</button>
+    </div>
+</form>
+
+</body>
+</html>

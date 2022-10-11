@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/static/website/style.css">
+    <title>Course Creation</title>
+</head>
+<body>
+<header>
+        <div class="jumbotron">
+            <a href="https://weber.edu/cs"><img src="/static/website/weber_east.png"></a>
+        </div>
+</header>
+
+<form method="POST" class="course-form" action="/createCourse">
+        {% csrf_token %}
+<br>
+    <div class="course-form__content">
+        <h3 class="course-header">Enter Details</h3>
+        <div class="course-form__header">Course Title:</div>
+        {{ form.courseName }}
+        <br>
+        <button type="submit" class="course-form__button">Submit</button>
+    </div>
+</form>
+
+<p>
+    <a href="{% url 'profHome' %}">Go Back</a>
+</p>
+
+</body>
+</html>

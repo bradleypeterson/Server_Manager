@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'project',
     'projectusers',
     'website',
+    'courses',
 ]
 
 MIDDLEWARE = [
