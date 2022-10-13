@@ -22,6 +22,7 @@ from courses.views import editProf
 from courses.views import createCourse
 from courses.views import destroy
 from courses.views import update
+from users import views as user_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -32,4 +33,5 @@ urlpatterns = [
     path('edit/<int:id>', editProf, name="editProf"),
     path('delete/<int:id>', destroy, name="deleteProf"),
     path('update/<int:id>', update, name="updateProf"),
+    path('register/', user_views.register, name="register"),
 ]
