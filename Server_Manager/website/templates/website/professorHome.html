@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/static/website/style.css">
+    <title>Professor Home Page</title>
+</head>
+<body>
+<header>
+        <div class="jumbotron">
+            <a href="https://weber.edu/cs"><img src="/static/website/weber_east.png"></a>
+        </div>
+</header>
+<h1 class="course-header">Welcome John Doe!</h1>
+<p class="course-form__content">
+    You are able to manage your courses below:
+</p>
+<h2 class="course-header">
+    Course List
+</h2>
+
+    <div class="row">
+    {% for course in courses %}
+
+        <div class="column">
+            <div class="course-display">
+                <p>
+                    <a href="{% url 'detail' course.id %}">
+                    <img src="/static/website/course.png">
+                    </a>
+                    {{ course.courseName }}
+                    <br>
+                    <a href="{% url 'updateProf' course.id %}">Edit</span></a> |
+                    <a href="{% url 'deleteProf' course.id %}">Delete</a>
+                </p>
+            </div>
+        </div>
+
+    {% endfor %}
+    </div>
+<p>
+    <br>
+    <br>
+
+    <a href="{% url 'createProf' %}" class="course-display__button">New Course</a>
+    <a href="{% url 'createProf' %}"> <img src="/static/website/plus_icon.png"></a>
+</p>
+</body>
+</html>
