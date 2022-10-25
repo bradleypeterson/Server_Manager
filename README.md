@@ -1,2 +1,2 @@
 # Server_Manager
-A project that enables students at Weber State to store and run their Computer Science projects on a publicly accessible server.
+A project that enables professors and students at Weber State to track and manage Computer Science projects. This is done by web application.
