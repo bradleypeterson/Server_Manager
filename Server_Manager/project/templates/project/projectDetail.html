@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/static/website/style.css">
+    <title>Course {{course.courseName}}</title>
+</head>
+<body>
+<header>
+        <div class="jumbotron">
+            <a href="https://weber.edu/cs"><img src="/static/website/weber_east.png"></a>
+        </div>
+</header>
+<a href="{% url 'studentHome' %}">Back</a>
+<h1 class="course-header">{{project.projecttitle}}</h1>
+<div>{{ project.projectdescription }}</div>
+</body>
+</html>

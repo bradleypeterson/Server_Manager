@@ -16,12 +16,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from website.views import login
-from website.views import profHome
+from website.views import profHome, studentHome
 from courses.views import detail
 from courses.views import editProf
 from courses.views import createCourse
 from courses.views import destroy
 from courses.views import update
+from project.views import *
+
 from users import views as user_views
 
 urlpatterns = [
@@ -34,4 +36,11 @@ urlpatterns = [
     path('delete/<int:id>', destroy, name="deleteProf"),
     path('update/<int:id>', update, name="updateProf"),
     path('register/', user_views.register, name="register"),
+
+    path('studentHome/', studentHome, name="studentHome"),
+    path('projects/<int:id>', projectDetail, name="projectDetail"),
+    path('createproject', createProject, name='createProject'),
+    path('deleteproject/<int:id>', deleteProject, name="deleteProject"),
+    path('updateproject/<int:id>', updateProject, name="updateProject"),
+
 ]

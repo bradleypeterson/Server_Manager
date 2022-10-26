@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 from courses.models import Course
+from project.models import Project
 
 def login(request):
     return render(request, "website/login.html")
@@ -10,4 +11,5 @@ def profHome(request):
     {"courses": Course.objects.all()})
 
 
-from courses.models import Course
+def studentHome(request):
+    return render(request, "website/studentHome.html", {"projects": Project.objects.all()})
