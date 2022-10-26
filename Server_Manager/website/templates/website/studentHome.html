@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/static/website/style.css">
+    <title>Student Home Page</title>
+</head>
+<body>
+<header>
+        <div class="jumbotron">
+            <a href="https://weber.edu/cs"><img src="/static/website/weber_east.png"></a>
+        </div>
+</header>
+<h1 class="course-header">Welcome Student!</h1>
+<p class="course-form__content">
+    You are able to manage your projects below:
+</p>
+<h2 class="course-header">
+    Project List
+</h2>
+
+    <div class="row">
+    {% for project in projects %}
+
+        <div class="column">
+            <div class="course-display">
+                <p><a href="{% url 'updateProject' project.id %}">{{ project.projecttitle }}</a>
+                    <a href="{% url 'projectDetail' project.id %}">
+                    <img src="/static/website/project.png">
+                    </a>
+
+                    <br>
+                    <a href="{% url 'updateProject' project.id %}">Edit</a> |
+                    <a href="{% url 'deleteProject' project.id %}">Delete</a>
+                </p>
+            </div>
+        </div>
+
+    {% endfor %}
+    </div>
+<p>
+    <br>
+    <br>
+
+    <a href="{% url 'createProject' %}" class="course-display__button">New project</a>
+</p>
+</body>
+</html>

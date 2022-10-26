@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/static/website/style.css">
+    <title>Edit Project</title>
+</head>
+<body>
+<header>
+        <div class="jumbotron">
+            <a href="https://weber.edu/cs"><img src="/static/website/weber_east.png"></a>
+        </div>
+</header>
+
+<form method="POST">
+        {% csrf_token %}
+<table>
+        {% for field in form %}
+    <tr><td>{{field.label}} {{field}}</td></tr>
+    {% endfor %}
+</table>
+    <button type="submit">Save Changes</button>
+<a href="{% url 'studentHome' %}">Go Back</a>
+</form>
+
+</body>
+</html>
