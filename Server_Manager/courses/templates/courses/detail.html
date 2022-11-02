@@ -12,15 +12,19 @@
         </div>
 </header>
 <h2 class="course-header">Course</h2>
-<h3 class="course-header">{{course.courseName}}</h3>
+<p>{{course.courseName}}</p>
 <h2 class="course-header">Description</h2>
-<h3 class="course-header">{{course.courseDescription}}</h3>
+<p>{{course.courseDescription}}</p>
 <h2 class="course-header">Number of Students</h2>
-<h3 class="course-header">{{course.courseStudentCount}}</h3>
+<p>{{course.courseStudentCount}}</p>
 <h2 class="course-header">Groups</h2>
-<h3 class="course-header">{{course.courseGroups}}</h3>
+<p>{{course.courseGroups}}</p>
+<br>
+<br>
+<a href="" class="course-display__button">New Group</a>
+    <a href=""> <img src="/static/website/plus_icon.png"></a>
 <p>
-    <a href="{% url 'profHome' %}">Go Back</a>
+    <a href="{% url 'profHome' %}" class="course-display__button">Go Back</a>
 </p>
 </body>
 </html>
