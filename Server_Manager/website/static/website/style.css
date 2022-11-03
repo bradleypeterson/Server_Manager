@@ -124,6 +124,19 @@ main {
 }
 /********LOGIN***********/
 
+.info {
+    box-sizing: border-box;
+    width: 250px;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
+    background: #eeeeee;
+    float: left;
+    margin-top: 85px;
+    margin-left: 70px;
+    margin-right: 0px;
+}
+
 .login-form,
 .login-form * {
     box-sizing: border-box;
