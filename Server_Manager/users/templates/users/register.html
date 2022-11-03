@@ -1,5 +1,28 @@
-<form method="POST">
-    {% csrf_token %}
-    {{form}}
-    <button type="submit">Register</button>
-</form>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Server Manager</title>
+        <link rel="stylesheet" href="/static/website/style.css">
+    </head>
+    <body>
+        <header>
+                <div class="jumbotron">
+                    <a href="https://weber.edu/cs"><img src="/static/website/weber_east.png"></a>
+                </div>
+        </header>
+        <h1 style="margin-left: 25px;">Create Account</h1>
+        <div class="form">
+            <form class="register-form" style="margin-left: 25px;" method="POST">
+                {% csrf_token %}
+                {{form}}
+                <div>
+                    <button type="submit" style="padding: 5px; margin-left: 25px; margin-top: 20px; background-color: black; color: white;"
+                            onclick="alert('Account Created')" >Register</button>
+                </div>
+
+            </form>
+        </div>
+
+    </body>
+</html>

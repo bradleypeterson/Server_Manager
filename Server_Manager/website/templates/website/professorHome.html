@@ -31,7 +31,7 @@
                     {{ course.courseName }}
                     <br>
                     <a href="{% url 'updateProf' course.id %}">Edit</span></a> |
-                    <a href="{% url 'deleteProf' course.id %}">Delete</a>
+                    <a href="{% url 'deleteProf' course.id %}" onclick="alert('Course Successfully Deleted')">Delete</a>
                 </p>
             </div>
         </div>
