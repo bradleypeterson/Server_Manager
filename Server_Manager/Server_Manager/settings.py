@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'projectusers',
     'website',
     'courses',
+    'group',
 ]
 
 MIDDLEWARE = [
