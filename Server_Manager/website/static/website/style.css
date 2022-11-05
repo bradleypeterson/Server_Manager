@@ -64,6 +64,7 @@ main {
 .course-form__content {
     padding: 30px;
     background: #eeeeee;
+    margin: 0 auto;
 }
 
 .course-form__input {
