@@ -1,20 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="/static/website/style.css">
-    <title>Course {{course.courseName}}</title>
-</head>
-<body>
-<header>
-        <div class="jumbotron">
-            <a href="https://weber.edu/cs"><img src="/static/website/weber_east.png"></a>
-        </div>
-</header>
+{% extends 'base.html' %}
+{% block body %}
 <h1 class="course-header">Course</h1>
 <h2 class="course-header">{{course.courseName}}</h2>
 <p>
     <a href="{% url 'profHome' %}">Go Back</a>
 </p>
-</body>
-</html>
+ {% endblock %}

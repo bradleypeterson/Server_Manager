@@ -170,6 +170,12 @@ main {
     border-radius: 5px;
     cursor: pointer;
 }
+
+.login-form__register{
+    text-align: center;
+
+}
+
 .login-form__button:active {
     background: #008067;
 }
