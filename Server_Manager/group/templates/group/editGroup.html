@@ -1,0 +1,22 @@
+
+{% extends 'base.html' %}
+{% block body %}
+<form method="POST" class="group-form" action="/updateGroup/{{group.id}}">
+        {% csrf_token %}
+<br>
+    <div class="course-form__content">
+        <h3 class="course-header">Update Details</h3>
+        <label class="course-name">Group Name:</label>
+            <input class="course-form__input"  type="text" name="groupName" id="id_groupName" required maxlength="100" value="{{ group.groupName }}" />
+        <br>
+        <label class="course-Description">Group Description:</label>
+            <input class="course-form__input"  type="text" name="groupDescription" id="id_groupDesc" required maxlength="100" value="{{ group.groupDescription }}" />
+        <br>
+        <label class="course-studentCount">Group Credentials:</label>
+            <input class="course-form__input"  type="text" name="groupCredentials" id="id_groupCred" required maxlength="100" value="{{ group.groupCredentials }}" />
+
+        <br>
+        <button type="submit" class="group-form__button" onclick="alert('Group Successfully Updated')">Update</button>
+    </div>
+</form>
+{% endblock %}
