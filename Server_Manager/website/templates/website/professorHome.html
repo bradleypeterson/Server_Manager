@@ -27,10 +27,12 @@
 
     {% endfor %}
     </div>
+
 <p>
     <br>
     <br>
-
+    <a href="{% url 'createGroup' %}" class="course-display__button">New Group</a>
+    <a href="{% url 'createGroup' %}"> <img src="/static/website/plus_icon.png"></a>
     <a href="{% url 'createProf' %}" class="course-display__button">New Course</a>
     <a href="{% url 'createProf' %}"> <img src="/static/website/plus_icon.png"></a>
 </p>

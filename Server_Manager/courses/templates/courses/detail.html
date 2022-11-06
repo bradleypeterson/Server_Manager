@@ -18,11 +18,31 @@
 <h2 class="course-header">Number of Students</h2>
 <p>{{course.courseStudentCount}}</p>
 <h2 class="course-header">Groups</h2>
-<p>{{course.courseGroups}}</p>
+
+<div class="row">
+    {% for group in group %}
+        <div class="column">
+            <div class="course-display">
+                <p>
+                    <!-- <a href="{% url 'groupDetail' group.id %}"> -->
+                    <img src="/static/website/course.png">
+                    </a>
+                    {{ group.groupName }}
+                    <br>
+                    <!--
+                    <a href="{% url 'updateProf' course.id %}">Edit</span></a> |
+                    <a href="{% url 'deleteProf' course.id %}" onclick="alert('Course Successfully Deleted')">Delete</a>
+                    -->
+                </p>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+
 <br>
 <br>
-<a href="" class="course-display__button">New Group</a>
-    <a href=""> <img src="/static/website/plus_icon.png"></a>
+<a href="{% url 'createGroup' %}" class="course-display__button">New Group</a>
+    <a href="{% url 'createGroup' %}"> <img src="/static/website/plus_icon.png"></a>
 <p>
     <a href="{% url 'profHome' %}" class="course-display__button">Go Back</a>
 </p>
