@@ -1,5 +1,37 @@
-<form method="POST">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Server Manager</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+</head>
+{% extends "base.html" %}
+{% block content %}
+<body>
+
+
+<form class="login-form" action="./" method="POST">
     {% csrf_token %}
-    {{form}}
-    <button type="submit">Register</button>
+            <div class="login-form__content">
+                <div class="login-form__header">Register your account</div>
+                <div class="row justify-content-center">
+                    Username: {{ form.username }}
+                </div>
+                <div class="row justify-content-center">
+                    Password: {{ form.password1 }}
+                </div>
+                <div class="row justify-content-center">
+                    Confirm Password: {{ form.password2 }}
+                </div>
+                <button class="login-form__button" type="submit">Register</button>
+            </div>
 </form>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+
+        </div>
+    </footer>
+</body>
+{% endblock %}
+</html>
