@@ -1,27 +1,34 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="/static/website/style.css">
-    <title>Edit Project</title>
-</head>
-<body>
-<header>
-        <div class="jumbotron">
-            <a href="https://weber.edu/cs"><img src="/static/website/weber_east.png"></a>
-        </div>
-</header>
-
+{% extends 'base.html' %}
+{% block body %}
 <form method="POST">
         {% csrf_token %}
-<table>
+<p>
+    <a href="{% url 'studentHome' %}">Go Back</a>
+</p>
+<div class="project-form">
+
+<h1 style="text-align: center">Edit Project</h1>
         {% for field in form %}
-    <tr><td>{{field.label}} {{field}}</td></tr>
+    <div>
+
+        <h4 class="project-field-label">{{ field.label }}</h4>
+        {% if field.label == 'Updateddate' %}
+            <input type="date" class="project-field-input" value="{% now "Y-m-d" %}" {{ field }}
+            {% elif field.label == 'Addeddate'%}
+            <input type="date" class="project-field-input" {{ field }}
+            {% elif field.label == 'Projectdescription'%}
+            <textarea class="project-field-input" {{ field }}
+            {% else %}
+        <input class="project-field-input" {{ field }}
+        {% endif %}
+    </div>
     {% endfor %}
-</table>
-    <button type="submit">Save Changes</button>
-<a href="{% url 'studentHome' %}">Go Back</a>
+    <button class="project-submit" type="submit">Save Project</button>
+</div>
+
 </form>
 
-</body>
-</html>
+<p>
+    <a href="{% url 'studentHome' %}">Go Back</a>
+</p>
+{% endblock %}
