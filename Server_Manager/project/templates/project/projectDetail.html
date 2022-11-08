@@ -2,8 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="/static/website/style.css">
+
     <title>Course {{course.courseName}}</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/static/website/style.css">
 </head>
 <body>
 <header>
@@ -11,8 +14,43 @@
             <a href="https://weber.edu/cs"><img src="/static/website/weber_east.png"></a>
         </div>
 </header>
-<a href="{% url 'studentHome' %}">Back</a>
-<h1 class="course-header">{{project.projecttitle}}</h1>
-<div>{{ project.projectdescription }}</div>
+
+<div class="project-form">
+    <div class="row">
+
+            <div class="col-2" style="padding-top: 1.5rem">
+                <div class="card text-center">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><a href="{% url 'studentHome' %}">Back to Projects</a></li>
+                        <li class="list-group-item"><a href="{% url 'updateProject' project.id %}">Edit Project</a></li>
+                            <li class="list-group-item"><a href="{% url 'deleteProject' project.id %}">Delete Project</a></li>
+                    </ul>
+                </div>
+            </div>
+        <div class="col-10">
+            <div class="d-flex justify-content-between">
+                <div>
+                    <h1>{{ project.projecttitle }}</h1>
+                    <h2 style="margin-bottom: 1rem">Project Details</h2>
+                </div>
+                <div>
+                    <p><b>Added On:</b> {{ project.addeddate }} <b>Last Update:</b> {{ project.updateddate }}</p>
+                    <div class="text-right">
+                        <span style="padding-right: 1em">Docker Container: {{ project.dockerid }}</span>
+                    </div>
+                </div>
+            </div>
+
+            <p>{{ project.projectdescription }}</p>
+            <p>
+                <b>Project Language:</b> {{ project.projectlanguage }}<br>
+                <b>Project Database:</b> {{ project.projectdatabase }}<br>
+                <b>Project Backend: </b> {{ project.projectbackend }}<br>
+            </p>
+        </div>
+    </div>
+</div>
+
+
 </body>
 </html>
