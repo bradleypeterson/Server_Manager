@@ -11,13 +11,22 @@
             <a href="https://weber.edu/cs"><img src="/static/website/weber_east.png"></a>
         </div>
 </header>
-<h2 class="course-header">Group</h2>
-<p>{{group.groupName}}</p>
-<h2 class="course-header">Description</h2>
-<p>{{group.groupDescription}}</p>
-<h2 class="course-header">Credentials</h2>
-<p>{{group.groupCredentials}}</p>
 
+<div class="model-display">
+    <p>
+        Group Detail
+    </p>
+    <div class="model-display__content">
+        <h2 class="course-header">Group</h2>
+        <p>{{group.groupName}}</p>
+        <h2 class="course-header">Description</h2>
+        <p>{{group.groupDescription}}</p>
+        <h2 class="course-header">Credentials</h2>
+        <p>{{group.groupCredentials}}</p>
+        <br>
+        <a href="" class="course-display__button">Generate Credentials</a>
+    </div>
+</div>
 <br>
 <br>
 <p>

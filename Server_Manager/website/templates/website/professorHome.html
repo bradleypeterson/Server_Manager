@@ -1,38 +1,44 @@
 {% extends 'base.html' %}
 {% block body %}
-<h1 class="course-header">Welcome John Doe!</h1>
-<p class="course-form__content">
+
+<br>
+
+<div class="model-display">
+
+    <p>
     You are able to manage your courses below:
-</p>
-<h2 class="course-header">
-    Course List
-</h2>
+    </p>
+    <div class="model-display__content">
+        <h2 class="course-header">
+            Course List
+        </h2>
+            <div class="row">
+            {% for course in courses %}
 
-    <div class="row">
-    {% for course in courses %}
+                <div class="column">
+                    <div class="course-display">
+                        <p>
+                            <a href="{% url 'detail' course.id %}">
+                            <img src="/static/website/course.png">
+                            </a>
+                            <br>
+                            {{ course.courseName }}
+                            <br>
+                            <a href="{% url 'updateProf' course.id %}">Edit </span></a> |
+                            <a href="{% url 'deleteProf' course.id %}" onclick="alert('Course Successfully Deleted')">Delete</a>
+                        </p>
+                    </div>
+                </div>
 
-        <div class="column">
-            <div class="course-display">
-                <p>
-                    <a href="{% url 'detail' course.id %}">
-                    <img src="/static/website/course.png">
-                    </a>
-                    <br>
-                    {{ course.courseName }}
-                    <br>
-                    <a href="{% url 'updateProf' course.id %}">Edit</span></a> |
-                    <a href="{% url 'deleteProf' course.id %}" onclick="alert('Course Successfully Deleted')">Delete</a>
-                </p>
+            {% endfor %}
             </div>
-        </div>
 
-    {% endfor %}
+        <p>
+            <br>
+            <br>
+            <a href="{% url 'createProf' %}" class="course-display__button">New Course</a>
+            <a href="{% url 'createProf' %}"> <img src="/static/website/plus_icon.png"></a>
+        </p>
     </div>
-
-<p>
-    <br>
-    <br>
-    <a href="{% url 'createProf' %}" class="course-display__button">New Course</a>
-    <a href="{% url 'createProf' %}"> <img src="/static/website/plus_icon.png"></a>
-</p>
+</div>
 {% endblock %}

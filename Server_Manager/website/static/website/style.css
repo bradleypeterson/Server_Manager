@@ -27,7 +27,7 @@ main {
     border-radius: 5px;
     overflow: hidden;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    background: #eeeeee;
+    background: #fffffe;
     text-align: center;
 }
 /* Float four columns side by side */
@@ -135,7 +135,7 @@ main {
     margin: 0 auto;
     border-radius: 5px;
     overflow: hidden;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 0 5px;
 }
 
 .model-display__content {

@@ -12,6 +12,9 @@
         </div>
 </header>
 <div class="model-display">
+    <p>
+        Course Detail and Group Management
+    </p>
     <div class="model-display__content">
         <h2 class="course-header">Course</h2>
         <p>{{course.courseName}}</p>
@@ -19,8 +22,13 @@
         <p>{{course.courseDescription}}</p>
         <h2 class="course-header">Number of Students</h2>
         <p>{{course.courseStudentCount}}</p>
+    </div>
+</div>
+<br>
+<!-- GROUP DISPLAY -->
+<div class="model-display">
+    <div class="model-display__content">
         <h2 class="course-header">Groups</h2>
-
         <div class="row">
             {% for group in group %}
                 <div class="column">
@@ -41,12 +49,12 @@
                 </div>
             {% endfor %}
         </div>
+        <br>
+        <a href="{% url 'createGroup' %}" class="course-display__button">New Group</a>
+        <a href="{% url 'createGroup' %}"> <img src="/static/website/plus_icon.png"></a>
     </div>
+
 </div>
-<br>
-<br>
-<a href="{% url 'createGroup' %}" class="course-display__button">New Group</a>
-    <a href="{% url 'createGroup' %}"> <img src="/static/website/plus_icon.png"></a>
 <p>
     <a href="{% url 'profHome' %}" class="course-display__button">Go Back</a>
 </p>
