@@ -1,16 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="/static/website/style.css">
-    <title>Course Creation</title>
-</head>
-<body>
-<header>
-        <div class="jumbotron">
-            <a href="https://weber.edu/cs"><img src="/static/website/weber_east.png"></a>
-        </div>
-</header>
+{% extends 'base.html' %}
+{% block body %}
 
 <form method="POST">
     {% csrf_token %}
@@ -21,5 +10,4 @@
     </div>
 
 </form>
-</body>
-</html>
+{% endblock %}
