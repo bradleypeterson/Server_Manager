@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>Server Manager</title>
+        <title>Create Account</title>
         <link rel="stylesheet" href="/static/website/style.css">
     </head>
     <body>
@@ -17,12 +17,10 @@
                 {% csrf_token %}
                 {{form}}
                 <div>
-                    <button type="submit" style="padding: 5px; margin-left: 25px; margin-top: 20px; background-color: black; color: white;"
+                    <button type="submit" class="course-form__button"
                             onclick="alert('Account Created')" >Register</button>
                 </div>
-
             </form>
         </div>
-
     </body>
 </html>

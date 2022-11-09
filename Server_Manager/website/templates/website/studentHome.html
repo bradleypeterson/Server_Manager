@@ -24,11 +24,11 @@
 
         <div class="column">
             <div class="course-display">
-                <p><a href="{% url 'updateProject' project.id %}">{{ project.projecttitle }}</a>
+                <p>
                     <a href="{% url 'projectDetail' project.id %}">
                     <img src="/static/website/project.png">
                     </a>
-
+                    <a href="{% url 'updateProject' project.id %}">{{ project.projecttitle }}</a>
                     <br>
                     <a href="{% url 'updateProject' project.id %}">Edit</a> |
                     <a href="{% url 'deleteProject' project.id %}">Delete</a>

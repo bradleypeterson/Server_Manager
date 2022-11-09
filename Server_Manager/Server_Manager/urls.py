@@ -41,6 +41,6 @@ urlpatterns = [
     path('projects/<int:id>', projectDetail, name="projectDetail"),
     path('createproject', createProject, name='createProject'),
     path('deleteproject/<int:id>', deleteProject, name="deleteProject"),
-    path('updateproject/<int:id>', updateProject, name="updateProject"),
+    path('updateproject/<int:id>', updateProject, name="updateProject")
 
 ]
