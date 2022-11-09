@@ -3,7 +3,6 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from .forms import LoginForm, RegistrationForm
 from django.contrib.auth import authenticate, login
-import sweetify
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 
@@ -40,7 +39,7 @@ def login_user(request):
             messages.success(request, 'Login Successful')
             return redirect('profHome')
         else:
-            messages.error(request, 'Login Successful')
+            messages.error(request, 'Login Failed - Try Again')
 
 
     else:
