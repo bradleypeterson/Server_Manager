@@ -8,13 +8,19 @@
 {% extends "base.html" %}
 {% block content %}
 <body>
+<br>
 <form class="login-form" action="./" method="POST">
     {% csrf_token %}
             <div class="login-form__content">
                 <div class="login-form__header">Login to your account</div>
                 <div class="row justify-content-center">
-                    {{ form }}
+                    {{ form.username }}
                 </div>
+                <br>
+                <div class="row justify-content-center">
+                    {{ form.password }}
+                </div>
+                <br>
                 <button class="login-form__button" type="submit">Login</button>
             </div>
 </form>

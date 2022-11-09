@@ -1,16 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="/static/website/style.css">
-    <title>Professor Home Page</title>
-</head>
+{% extends "base.html" %}
+{% block content %}
 <body>
-<header>
-        <div class="jumbotron">
-            <a href="https://weber.edu/cs"><img src="/static/website/weber_east.png"></a>
-        </div>
-</header>
 <h1 class="course-header">Welcome John Doe!</h1>
 <p class="course-form__content">
     You are able to manage your courses below:
@@ -46,4 +36,4 @@
     <a href="{% url 'createProf' %}"> <img src="/static/website/plus_icon.png"></a>
 </p>
 </body>
-</html>
+{% endblock %}

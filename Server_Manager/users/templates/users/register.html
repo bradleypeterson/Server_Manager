@@ -9,20 +9,23 @@
 {% block content %}
 <body>
 
-
+<br>
 <form class="login-form" action="./" method="POST">
     {% csrf_token %}
             <div class="login-form__content">
                 <div class="login-form__header">Register your account</div>
                 <div class="row justify-content-center">
-                    Username: {{ form.username }}
+                    {{ form.username }}
                 </div>
+                <br>
                 <div class="row justify-content-center">
-                    Password: {{ form.password1 }}
+                    {{ form.password1 }}
                 </div>
+                <br>
                 <div class="row justify-content-center">
-                    Confirm Password: {{ form.password2 }}
+                    {{ form.password2 }}
                 </div>
+                <br>
                 <button class="login-form__button" type="submit">Register</button>
             </div>
 </form>

@@ -30,7 +30,7 @@ from users import views as user_views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('createCourse', createCourse, name="createProf"),
-    path('', auth_views.LoginView.as_view(template_name='website/login.html'), name="login"),
+    path('', user_views.login_user, name="login"),
     path('professorHome', profHome, name="profHome"),
     path('courses/<int:id>', detail, name="detail"),
     path('edit/<int:id>', editProf, name="editProf"),
