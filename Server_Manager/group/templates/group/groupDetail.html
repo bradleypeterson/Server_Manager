@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/static/website/style.css">
+    <title>Group {{group.groupName}}</title>
+</head>
+<body>
+<header>
+        <div class="jumbotron">
+            <a href="https://weber.edu/cs"><img src="/static/website/weber_east.png"></a>
+        </div>
+</header>
+<h2 class="course-header">Group</h2>
+<p>{{group.groupName}}</p>
+<h2 class="course-header">Description</h2>
+<p>{{group.groupDescription}}</p>
+<h2 class="course-header">Credentials</h2>
+<p>{{group.groupCredentials}}</p>
+
+<br>
+<br>
+<p>
+    <a href="{% url 'profHome' %}" class="course-display__button">Go Back</a>
+</p>
+</body>
+</html>

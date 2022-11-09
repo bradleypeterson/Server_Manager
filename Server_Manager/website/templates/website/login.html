@@ -1,22 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Login</title>
-    <link rel="stylesheet" href="/static/website/style.css">
-</head>
-<body>
-<header>
-        <div class="jumbotron">
-            <a href="https://weber.edu/cs"><img src="/static/website/weber_east.png"></a>
-        </div>
-</header>
+{% extends 'base.html' %}
+{% block body %}
 <form class="login-form" action="./" method="POST">
             <div class="login-form__content">
                 <div class="login-form__header">Login to your account</div>
                 <input class="login-form__input" type="text" name="dc_username" placeholder="Username">
                 <input class="login-form__input" type="password" name="dc_username" placeholder="Password">
                 <button class="login-form__button" type="submit">Login</button>
+                <a href="register"><p class="login-form__register">Register Here</p></a>
             </div>
 </form>
 
@@ -25,5 +15,4 @@
 
         </div>
     </footer>
-</body>
-</html>
+{% endblock %}

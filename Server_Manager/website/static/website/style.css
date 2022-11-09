@@ -64,6 +64,7 @@ main {
 .course-form__content {
     padding: 30px;
     background: #eeeeee;
+    margin: 0 auto;
 }
 
 .course-form__input {
@@ -183,6 +184,12 @@ main {
     border-radius: 5px;
     cursor: pointer;
 }
+
+.login-form__register{
+    text-align: center;
+
+}
+
 .login-form__button:active {
     background: #008067;
 }

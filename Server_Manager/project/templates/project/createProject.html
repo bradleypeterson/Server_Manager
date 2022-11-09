@@ -1,17 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="/static/website/style.css">
-    <title>Project Creation</title>
-</head>
-<body>
-<header>
-        <div class="jumbotron">
-            <a href="https://weber.edu/cs"><img src="/static/website/weber_east.png"></a>
-        </div>
-</header>
-
+{% extends 'base.html' %}
+{% block body %}
 <form method="POST">
         {% csrf_token %}
 <table>
@@ -19,12 +7,10 @@
     <tr><td>{{field.label}} {{field}}</td></tr>
     {% endfor %}
 </table>
-    <button type="submit" class="course-form__button">Save Project</button>
+    <button type="submit">Save Project</button>
 </form>
 
 <p>
     <a href="{% url 'studentHome' %}">Go Back</a>
 </p>
-
-</body>
-</html>
+{% endblock %}
