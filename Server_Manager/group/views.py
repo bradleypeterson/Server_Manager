@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Group
+from users.models import User
 from .forms import GroupForm, UserForm
 from random import *
 import string
@@ -47,14 +48,23 @@ def updateGroup(request, id):
     return redirect('profHome')
     return render(request, 'group/editGroup.html', {'group': group})
 
-def generateCredentials(request):
+def generateUser(request):
 
-    char = string.ascii_letters + string.punctuation + string.digits
-    password = " ".join(choice(char) for x in range(randint(5, 16)))
     form = UserForm(request.POST or None)
 
     if form.is_valid():
         form.save()
-        return redirect('profHome')
+        return redirect('createPass')
 
-    return render(request, 'group/credentials.html', {'form': form, 'password': password})
+    return render(request, 'group/credentials.html', {'form': form})
+
+def createPass(request):
+# generates random password successfully and
+    char = string.ascii_letters + string.punctuation + string.digits
+    password = " ".join(choice(char) for x in range(randint(5, 16)))
+
+    context = {
+        'pass': password
+    }
+    return render(request, 'group/displayPassword.html', context)
+

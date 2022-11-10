@@ -44,7 +44,8 @@ urlpatterns = [
     path('updateGroup/<int:id>', updateGroup, name="updateGroup"),
     path('deleteGroup/<int:id>', destroyGroup, name="deleteGroup"),
     path('editGroup/<int:id>', editGroup, name="editGroup"),
-    path('createCredentials', generateCredentials, name="genCredentials"),
+    path('generateUser', generateUser, name="generateUser"),
+    path('createPass', createPass, name="createPass"),
 
     path('studentHome/', studentHome, name="studentHome"),
     path('projects/<int:id>', projectDetail, name="projectDetail"),
