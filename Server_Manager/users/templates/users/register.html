@@ -1,8 +1,40 @@
-{% extends 'base.html' %}
-{% block body %}
-<form method="POST">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Server Manager</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+</head>
+{% extends "base.html" %}
+{% block content %}
+<body>
+
+<br>
+<form class="login-form" action="./" method="POST">
     {% csrf_token %}
-    {{form}}
-    <button type="submit">Register</button>
+            <div class="login-form__content">
+                <div class="login-form__header">Register your account</div>
+                <div class="row justify-content-center">
+                    {{ form.username }}
+                </div>
+                <br>
+                <div class="row justify-content-center">
+                    {{ form.password1 }}
+                </div>
+                <br>
+                <div class="row justify-content-center">
+                    {{ form.password2 }}
+                </div>
+                <br>
+                <button class="login-form__button" type="submit">Register</button>
+            </div>
 </form>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+
+        </div>
+    </footer>
+</body>
 {% endblock %}
+</html>
