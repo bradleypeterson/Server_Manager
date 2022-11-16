@@ -1,10 +1,10 @@
-from Server_Manager.auth_backend import PasswordlessAuthBackend
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from .forms import LoginForm, RegistrationForm
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
+from users.models import AppUser
 
 # Create your views here.
 def register(request):
@@ -13,7 +13,9 @@ def register(request):
 
         if form.is_valid():
             messages.success(request, 'User Registered')
-            form.save()
+            user = form.save()
+            user.refresh_from_db()
+            user.AppUser.isfaculty = True
             return redirect('/')
         else:
             for field in form:

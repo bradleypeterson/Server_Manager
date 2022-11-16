@@ -125,3 +125,5 @@ LOGOUT_REDIRECT_URL = 'login'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 SWEETIFY_SWEETALERT_LIBRARY = 'sweetalert2'
+
+AUTH_USER_MODEL = 'users.AppUser'
