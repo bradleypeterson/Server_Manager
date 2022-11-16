@@ -50,8 +50,8 @@
             {% endfor %}
         </div>
         <br>
-        <a href="{% url 'createGroup' %}" class="course-display__button">New Group</a>
-        <a href="{% url 'createGroup' %}"> <img src="/static/website/plus_icon.png"></a>
+        <a href="{% url 'createGroup' courseId %}" class="course-display__button">New Group</a>
+        <a href="{% url 'createGroup' courseId %}"> <img src="/static/website/plus_icon.png"></a>
     </div>
 
 </div>

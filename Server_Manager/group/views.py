@@ -1,21 +1,25 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from .models import Course
 from .models import Group
 from .forms import GroupForm
 
 
 # Create your views here.
-def createGroup(request):
+def createGroup(request, id):
+    course = Course.objects.get(pk=id)
     if request.method == "POST":
         form = GroupForm(request.POST)
         if form.is_valid():
             try:
-                form.save()
+                instance = form.save(commit=False)
+                instance.course = course;
+                instance.save()
                 return redirect('profHome')
             except:
                 pass
     else:
         form = GroupForm()
-        return render(request, 'group/createGroup.html', {'form': form})
+        return render(request, 'group/createGroup.html', {'form': form, 'course': course})
 
 
 def groupDetail(request, id):
