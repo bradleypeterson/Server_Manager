@@ -19,7 +19,8 @@
                     </a>
                     {{ course.courseName }}
                     <br>
-                    <a href="{% url 'updateProf' course.id %}">Edit</span></a> |
+
+                    <a href="{% url 'updateProf' course.id %}" onclick="alert('Course Successfully Updated')">Edit</span></a> |
                     <a href="{% url 'deleteProf' course.id %}" onclick="alert('Course Successfully Deleted')">Delete</a>
                 </p>
             </div>
@@ -27,10 +28,10 @@
 
     {% endfor %}
     </div>
+
 <p>
     <br>
     <br>
-
     <a href="{% url 'createProf' %}" class="course-display__button">New Course</a>
     <a href="{% url 'createProf' %}"> <img src="/static/website/plus_icon.png"></a>
 </p>

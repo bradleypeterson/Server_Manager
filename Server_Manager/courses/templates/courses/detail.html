@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="/static/website/style.css">
-    <title>Course {{course.courseName}}</title>
+    <title>Course Groups</title>
 </head>
 <body>
 <header>
@@ -11,18 +11,36 @@
             <a href="https://weber.edu/cs"><img src="/static/website/weber_east.png"></a>
         </div>
 </header>
-<h2 class="course-header">Course</h2>
-<p>{{course.courseName}}</p>
-<h2 class="course-header">Description</h2>
-<p>{{course.courseDescription}}</p>
-<h2 class="course-header">Number of Students</h2>
-<p>{{course.courseStudentCount}}</p>
-<h2 class="course-header">Groups</h2>
-<p>{{course.courseGroups}}</p>
-<br>
-<br>
-<a href="" class="course-display__button">New Group</a>
-    <a href=""> <img src="/static/website/plus_icon.png"></a>
+<h1 class="course-header">Course</h1>
+<h2 class="course-header">{{course.courseName}}</h2>
+<p class="course-form__content">
+    You are able to manage your class groups below:
+</p>
+<h2 class="course-header">
+    Group List
+</h2>
+
+<div class="row">
+    {% for project in projects %}
+
+        <div class="column">
+            <div class="course-display">
+                <p>
+                    <a href="{% url 'projectDetail' project.id %}">
+                    <img src="/static/website/project.png">
+                    </a>
+                    <a href="{% url 'updateProject' project.id %}">{{ project.projecttitle }}</a>
+                    <br>
+                    <a href="{% url 'updateProject' project.id %}">Edit</a> |
+                    <a href="{% url 'deleteProject' project.id %}">Delete</a>
+                </p>
+            </div>
+        </div>
+
+    {% endfor %}
+    </div>
+
+
 <p>
     <a href="{% url 'profHome' %}" class="course-display__button">Go Back</a>
 </p>

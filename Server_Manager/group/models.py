@@ -1,5 +1,7 @@
 from django.db import models
 
+from courses.models import Course
+
 
 # Create your models here.
 class Group(models.Model):

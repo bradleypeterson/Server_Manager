@@ -1,17 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="/static/website/style.css">
-    <title>Edit Course</title>
-</head>
-<body>
-<header>
-        <div class="jumbotron">
-            <a href="https://weber.edu/cs"><img src="/static/website/weber_east.png"></a>
-        </div>
-</header>
 
+{% extends 'base.html' %}
+{% block body %}
 <form method="POST" class="course-form" action="/update/{{course.id}}">
         {% csrf_token %}
 <br>
@@ -32,6 +21,4 @@
         <button type="submit" class="course-form__button" onclick="alert('Course Successfully Updated')">Update</button>
     </div>
 </form>
-
-</body>
-</html>
+{% endblock %}
