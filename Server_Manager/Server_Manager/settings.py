@@ -35,7 +35,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'users',
+    'user',
     'container',
     'project',
     'projectusers',
@@ -126,4 +126,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 SWEETIFY_SWEETALERT_LIBRARY = 'sweetalert2'
 
-AUTH_USER_MODEL = 'users.AppUser'
+AUTH_USER_MODEL = 'user.AppUser'

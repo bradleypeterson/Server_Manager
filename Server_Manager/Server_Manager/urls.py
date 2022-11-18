@@ -25,7 +25,7 @@ from courses.views import destroy
 from courses.views import update
 from project.views import *
 
-from users import views as user_views
+from user import views as user_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -37,7 +37,7 @@ urlpatterns = [
     path('delete/<int:id>', destroy, name="deleteProf"),
     path('update/<int:id>', update, name="updateProf"),
     path('register/', user_views.register, name="register"),
-    path('users/logout/', auth_views.LogoutView.as_view(template_name='users/logout.html'), name='logout'),
+    path('user/logout/', auth_views.LogoutView.as_view(template_name='users/logout.html'), name='logout'),
 
     path('studentHome/', studentHome, name="studentHome"),
     path('projects/<int:id>', projectDetail, name="projectDetail"),
