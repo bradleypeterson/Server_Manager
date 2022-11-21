@@ -29,7 +29,7 @@ from users import views as user_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('createCourse/', createCourse, name="createProf"),
+    path('createCourse', createCourse, name="createProf"),
     path('', login),
     path('professorHome/', profHome, name="profHome"),
     path('courses/<int:id>', detail, name="detail"),
