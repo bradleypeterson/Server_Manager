@@ -30,7 +30,7 @@ from users import views as user_views
 app_name = 'servermanager'
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('createCourse/', createCourse, name="createProf"),
+    path('createCourse', createCourse, name="createProf"),
     path('', login),
     path('professorHome/', profHome, name="profHome"),
     path('courses/<int:id>', detail, name="detail"),
@@ -46,6 +46,8 @@ urlpatterns = [
     path('editGroup/<int:id>', editGroup, name="editGroup"),
     path('generateUser', generateUser, name="generateUser"),
     path('createPass', createPass, name="createPass"),
+
+    path('createCredentials/<int:id>', generateUser, name="generateUser"),
 
     path('studentHome/', studentHome, name="studentHome"),
     path('projects/<int:id>', projectDetail, name="projectDetail"),

@@ -1,8 +1,8 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Course
-from .models import Group
+from .models import Group, TestUser
 from users.models import User
-from .forms import GroupForm, UserForm
+from .forms import GroupForm, TestUserForm
 from random import *
 import string
 import random
@@ -29,7 +29,10 @@ def createGroup(request, id):
 
 def groupDetail(request, id):
     group = get_object_or_404(Group, pk=id)
-    return render(request, "group/groupDetail.html", {"group": group})
+    groupId = id
+    list_credentials = TestUser.objects.filter(group__pk=id)
+    context = {"group": group, "testUser": list_credentials, "groupId": groupId}
+    return render(request, "group/groupDetail.html", context=context)
 
 
 def destroyGroup(request, id):
@@ -52,23 +55,29 @@ def updateGroup(request, id):
     return redirect('profHome')
     return render(request, 'group/editGroup.html', {'group': group})
 
-def generateUser(request):
-
-    form = UserForm(request.POST or None)
-
-    if form.is_valid():
-        form.save()
-        return redirect('createPass')
-
-    return render(request, 'group/credentials.html', {'form': form})
+def generateUser(request, id):
+    group = Group.objects.get(pk=id)
+    char = string.ascii_letters + string.punctuation + string.digits
+    if request.method == "POST":
+        form = TestUserForm(request.POST)
+        if form.is_valid():
+            try:
+                instance = form.save(commit=False)
+                instance.username = instance.firstname + instance.lastname
+                instance.password = " ".join(choice(char) for x in range(randint(5, 16)))
+                instance.group = group
+                instance.save()
+                return redirect('profHome')
+            except:
+                pass
+    else:
+        form = TestUserForm()
+        return render(request, 'group/createCredentials.html', {'form': form, 'group': group})
 
 def createPass(request):
 # generates random password successfully and
     char = string.ascii_letters + string.punctuation + string.digits
     password = " ".join(choice(char) for x in range(randint(5, 16)))
 
-    context = {
-        'pass': password
-    }
-    return render(request, 'group/displayPassword.html', context)
+    return password
 
