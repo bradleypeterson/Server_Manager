@@ -22,9 +22,9 @@
         <h2 class="course-header">Description</h2>
         <p>{{group.groupDescription}}</p>
         <h2 class="course-header">Credentials</h2>
-        <p>{{group.groupCredentials}}</p>
+
         <br>
-        <a href="" class="course-display__button">Generate Credentials</a>
+        <a href="{% url 'genCredentials' %}" class="course-display__button">Generate Credentials</a>
     </div>
 </div>
 <br>
