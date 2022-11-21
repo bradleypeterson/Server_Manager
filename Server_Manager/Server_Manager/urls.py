@@ -38,7 +38,7 @@ urlpatterns = [
     path('update/<int:id>', update, name="updateProf"),
     path('register/', user_views.register, name="register"),
 
-    path('createGroup', createGroup, name="createGroup"),
+    path('createGroup/<int:id>', createGroup, name="createGroup"),
     path('group/<int:id>', groupDetail, name="groupDetail"),
     path('updateGroup/<int:id>', updateGroup, name="updateGroup"),
     path('deleteGroup/<int:id>', destroyGroup, name="deleteGroup"),

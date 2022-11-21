@@ -8,8 +8,9 @@ from courses.forms import CourseForm
 
 def detail(request, id):
     course = get_object_or_404(Course, pk=id)
-    list_group = Group.objects.all()
-    context = { "course": course, "group": list_group}
+    courseId = id
+    list_group = Group.objects.filter(course__pk=id)
+    context = { "course": course, "group": list_group, "courseId": courseId}
     return render(request, "courses/detail.html", context=context)
 
 

@@ -1,7 +1,7 @@
 
 {% extends 'base.html' %}
 {% block body %}
-<form method="POST" class="course-form" action="/createGroup">
+<form method="POST" class="course-form" action="{% url 'createGroup' course.id %}">
         {% csrf_token %}
 <br>
     <div class="course-form__content">
