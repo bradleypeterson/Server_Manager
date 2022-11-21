@@ -49,14 +49,20 @@ def updateGroup(request, id):
     return render(request, 'group/editGroup.html', {'group': group})
 
 def generateUser(request):
-
-    form = UserForm(request.POST or None)
-
+    user_list = User.objects.all()
+    char = string.ascii_letters + string.punctuation + string.digits
+    password = " ".join(choice(char) for x in range(randint(5, 16)))
+    form = UserForm(request.POST)
     if form.is_valid():
-        form.save()
-        return redirect('createPass')
+        user = form.save(commit=False)
+        user.username = form.cleaned_data.get('firstname') + form.cleaned_data.get('lastname')
+        user.password = password
+        user.save()
 
-    return render(request, 'group/credentials.html', {'form': form})
+        return redirect('group/4')
+    user = User.objects.get(id=id)
+
+    return render(request, 'group/credentials.html', {'form': form}, {'user': user})
 
 def createPass(request):
 # generates random password successfully and

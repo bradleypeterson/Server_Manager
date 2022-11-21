@@ -22,9 +22,20 @@
         <h2 class="course-header">Description</h2>
         <p>{{group.groupDescription}}</p>
         <h2 class="course-header">Credentials</h2>
-
+        {% block body %}
+{% for user in user_list %}
+    <div class="row">
+    <div class="col-md-3 offset-md-2">
+        <h3>{{ user.username }}</h3>
+    </div>
+    <div class="col-md-4">
+        <h3>{{ user.password }}</h3>
+    </div>
+    </div>
+{% endfor %}
+{% endblock %}
         <br>
-        <a href="{% url 'genCredentials' %}" class="course-display__button">Generate Credentials</a>
+        <a href="{% url 'generateUser' %}" class="course-display__button">Generate Credentials</a>
     </div>
 </div>
 <br>
