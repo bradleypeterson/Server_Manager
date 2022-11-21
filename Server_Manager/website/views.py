@@ -11,6 +11,5 @@ def profHome(request):
     return render(request, "website/professorHome.html",
     {"courses": Course.objects.all()})
 
-
 def studentHome(request):
     return render(request, "website/studentHome.html", {"projects": Project.objects.all()})

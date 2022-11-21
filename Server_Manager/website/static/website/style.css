@@ -12,7 +12,7 @@ main {
     padding: 1.5rem 2.5rem;
 }
 
-/********COURSE DISPLAY***********/
+/********COURSE/GROUP/PROJECT DISPLAY***********/
 
 .course-header {
     font-family: 'Source Sans Pro';
@@ -27,7 +27,7 @@ main {
     border-radius: 5px;
     overflow: hidden;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    background: #eeeeee;
+    background: #fffffe;
     text-align: center;
 }
 /* Float four columns side by side */
@@ -123,6 +123,75 @@ main {
 .course-display:hover {
   box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.2);
 }
+/********MODEL DETAIL***********/
+.model-display,
+.model-display * {
+    box-sizing: border-box;
+    font-family: 'Source Sans Pro'
+}
+
+.model-display {
+    max-width: 80%;
+    margin: 0 auto;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 0 5px;
+}
+
+.model-display__content {
+    padding: 30px;
+    background: #eeeeee;
+}
+/*****ProjectCreation****/
+
+.project-form{
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 40px;
+    margin: 20px 100px;
+}
+
+.project-field-label{
+    font-weight: bold;
+    display: block;
+}
+
+.project-field-label:after {
+    content: ": ";
+}
+
+.project-field-input{
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.project-submit{
+    width: 100%;
+    background-color: #492365;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.project-submit:hover{
+    width: 100%;
+    background-color: #7F56C5;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
 /********LOGIN***********/
 
 .info {

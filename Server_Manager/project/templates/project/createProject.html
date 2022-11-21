@@ -2,15 +2,31 @@
 {% block body %}
 <form method="POST">
         {% csrf_token %}
-<table>
+<p>
+    <a href="{% url 'studentHome' %}" class="course-display__button">Go Back</a>
+</p>
+<div class="project-form">
+
+<h1 style="text-align: center">Upload Project</h1>
         {% for field in form %}
-    <tr><td>{{field.label}} {{field}}</td></tr>
+    <div>
+
+        <h4 class="project-field-label">{{ field.label }}</h4>
+        {% if field.label == 'Addeddate' or field.label == 'Updateddate' %}
+            <input type="date" class="project-field-input" value="{% now "Y-m-d" %}" {{ field }}
+            {% elif field.label == 'Projectdescription'%}
+            <textarea class="project-field-input" {{ field }}
+            {% else %}
+        <input class="project-field-input" {{ field }}
+        {% endif %}
+    </div>
     {% endfor %}
-</table>
-    <button type="submit">Save Project</button>
+    <button class="project-submit" type="submit">Save Project</button>
+</div>
+
 </form>
 
 <p>
-    <a href="{% url 'studentHome' %}">Go Back</a>
+    <a href="{% url 'studentHome' %}" class="course-display__button">Go Back</a>
 </p>
 {% endblock %}
