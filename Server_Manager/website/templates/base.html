@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="/static/website/style.css">
     <title>Server Manager</title>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 <body>
 <header>
@@ -12,6 +13,24 @@
             <a href="https://weber.edu/cs"><img src="/static/website/weber_east.png"></a>
         </div>
 </header>
+<script>
+{% if messages %}
+    {% for message in messages %}
+        {% if message.level == 25 %}
+            swal({
+                text: '{{ message }}',
+                icon: "success",
+             })
+        {% endif %}
+        {% if message.level == 40 %}
+            swal({
+                text: '{{ message }}',
+                icon: "error",
+             })
+        {% endif %}
+    {% endfor %}
+{% endif %}
+</script>
 
 {% block body %}
 {% endblock %}

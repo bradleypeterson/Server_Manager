@@ -5,14 +5,10 @@ from .forms import RegistrationForm
 
 
 class CustomUserAdmin(UserAdmin):
-    add_form = RegistrationForm
-    form = RegistrationForm
     model = AppUser
 
     fieldsets = (
-        (None, {'fields': ('username', 'password',)}),
         ('Personal info', {'fields': ('role',)}),
-        ('Permissions', {'fields': ()}),
     )
 
     add_fieldsets = (
