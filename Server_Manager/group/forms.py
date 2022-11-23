@@ -1,6 +1,6 @@
 from django import forms
 from group.models import Group
-from users.models import User
+from user.models import AppUser
 from group.models import TestUser
 from random import *
 import string

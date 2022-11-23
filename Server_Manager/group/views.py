@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Course
 from .models import Group, TestUser
-from users.models import User
+from user.models import AppUser
 from .forms import GroupForm, TestUserForm
 from random import *
 import string
@@ -24,7 +24,6 @@ def createGroup(request, id):
     else:
         form = GroupForm()
         return render(request, 'group/createGroup.html', {'form': form, 'course': course})
-
 
 
 def groupDetail(request, id):

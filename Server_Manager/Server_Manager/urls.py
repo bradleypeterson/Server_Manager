@@ -23,7 +23,8 @@ from courses.views import editProf
 from courses.views import createCourse
 from courses.views import destroy
 from courses.views import update
-from project.views import *
+from project.views import createProject, updateProject, projectDetail, deleteProject
+from group.views import createGroup, editGroup, destroyGroup, groupDetail, updateGroup, createPass, generateUser
 
 from user import views as user_views
 
@@ -31,10 +32,10 @@ app_name = 'servermanager'
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('createCourse', createCourse, name="createProf"),
-
-    #path('', login),
-    path('', user_views.login_user, name="login"),
     path('professorHome', profHome, name="profHome"),
+   # path('', login),
+    path('', user_views.login_user, name="login"),
+
 
     path('courses/<int:id>', detail, name="detail"),
     path('edit/<int:id>', editProf, name="editProf"),
