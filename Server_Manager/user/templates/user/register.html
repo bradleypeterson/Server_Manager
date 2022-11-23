@@ -3,25 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <title>Server Manager</title>
-    <link rel="stylesheet" href="/static/website/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 </head>
 {% extends "base.html" %}
 {% block body %}
 <body>
+
 <br>
 <form class="login-form" action="./" method="POST">
     {% csrf_token %}
             <div class="login-form__content">
-                <div class="login-form__header">Login to your account</div>
+                <div class="login-form__header">Register your account</div>
                 <div class="row justify-content-center">
                     {{ form.username }}
                 </div>
                 <br>
                 <div class="row justify-content-center">
-                    {{ form.password }}
+                    {{ form.password1 }}
                 </div>
                 <br>
-                <button class="login-form__button" type="submit">Login</button>
+                <div class="row justify-content-center">
+                    {{ form.password2 }}
+                </div>
+                <br>
+                <button class="login-form__button" type="submit">Register</button>
             </div>
 </form>
 
