@@ -10,7 +10,7 @@ import random
 class GroupForm(forms.ModelForm):
     class Meta:
         model = Group
-        fields = ['groupName', 'groupDescription', 'groupCredentials']
+        fields = ['groupName', 'groupDescription']
 
 class TestUserForm(forms.ModelForm):
     class Meta:

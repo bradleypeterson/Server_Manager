@@ -75,9 +75,11 @@ def generateUser(request, id):
         return render(request, 'group/createCredentials.html', {'form': form, 'group': group})
 
 def createPass(request):
-# generates random password successfully and
+# generates random password successfully
     char = string.ascii_letters + string.punctuation + string.digits
     password = " ".join(choice(char) for x in range(randint(5, 16)))
 
-    return password
+    context = {"pass": password}
+
+    return render(request, "group/displayPassword.html", context=context)
 

@@ -8,7 +8,6 @@ from courses.models import Course
 class Group(models.Model):
     groupName = models.CharField(max_length=200)
     groupDescription = models.TextField(null=True)
-    groupCredentials = models.CharField(max_length=200)
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
 
 class TestUser(models.Model):
