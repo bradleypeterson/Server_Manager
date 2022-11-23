@@ -22,11 +22,30 @@
         <h2 class="course-header">Description</h2>
         <p>{{group.groupDescription}}</p>
         <h2 class="course-header">Credentials</h2>
-        <p>{{group.groupCredentials}}</p>
+                    <!-- Credentials -->
+                    <div class="row">
+                        {% for testUser in testUser %}
+                            <div class="column">
+                                <div class="course-display">
+                                    <p>
+                                        <br>
+                                        <h3 class="course-header">Username</h3>
+                                        {{ testUser.username }}
+                                        <br>
+                                        <h3 class="course-header">Password</h3>
+                                        {{ testUser.password }}
+                                    </p>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <br>
         <br>
-        <a href="" class="course-display__button">Generate Credentials</a>
+        <a href="{% url 'generateUser' groupId %}" class="course-display__button">Generate Credentials</a>
+        <a href="{% url 'generateUser' groupId %}"> <img src="/static/website/plus_icon.png"></a>
     </div>
 </div>
+
 <br>
 <br>
 <p>

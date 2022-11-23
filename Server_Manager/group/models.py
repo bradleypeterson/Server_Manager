@@ -8,5 +8,11 @@ from courses.models import Course
 class Group(models.Model):
     groupName = models.CharField(max_length=200)
     groupDescription = models.TextField(null=True)
-    groupCredentials = models.CharField(max_length=200)
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
+
+class TestUser(models.Model):
+    firstname = models.CharField(max_length=200)
+    lastname = models.CharField(max_length=200)
+    username = models.CharField(max_length=200)
+    password = models.CharField(max_length=200)
+    group = models.ForeignKey(Group, on_delete=models.CASCADE)

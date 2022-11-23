@@ -27,17 +27,32 @@ from project.views import *
 
 from user import views as user_views
 
+app_name = 'servermanager'
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('createCourse', createCourse, name="createProf"),
+
+    #path('', login),
     path('', user_views.login_user, name="login"),
     path('professorHome', profHome, name="profHome"),
+
     path('courses/<int:id>', detail, name="detail"),
     path('edit/<int:id>', editProf, name="editProf"),
     path('delete/<int:id>', destroy, name="deleteProf"),
     path('update/<int:id>', update, name="updateProf"),
     path('register/', user_views.register, name="register"),
+
+    path('createGroup/<int:id>', createGroup, name="createGroup"),
+    path('group/<int:id>', groupDetail, name="groupDetail"),
+    path('updateGroup/<int:id>', updateGroup, name="updateGroup"),
+    path('deleteGroup/<int:id>', destroyGroup, name="deleteGroup"),
+    path('editGroup/<int:id>', editGroup, name="editGroup"),
+    #path('generateUser', generateUser, name="generateUser"),
+    #path('createPass', createPass, name="createPass"),
+    path('createCredentials/<int:id>', generateUser, name="generateUser"),
+
     path('user/logout/', auth_views.LogoutView.as_view(template_name='users/logout.html'), name='logout'),
+
 
     path('studentHome/', studentHome, name="studentHome"),
     path('projects/<int:id>', projectDetail, name="projectDetail"),
