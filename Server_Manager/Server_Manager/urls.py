@@ -32,7 +32,7 @@ app_name = 'servermanager'
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('createCourse', createCourse, name="createProf"),
-    path('professorHome', profHome, name="profHome"),
+    path('professorHome/', profHome, name="profHome"),
    # path('', login),
     path('', user_views.login_user, name="login"),
 
