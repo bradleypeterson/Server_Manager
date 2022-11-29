@@ -24,7 +24,7 @@ from courses.views import createCourse
 from courses.views import destroy
 from courses.views import update
 from project.views import createProject, updateProject, projectDetail, deleteProject
-from group.views import createGroup, editGroup, destroyGroup, groupDetail, updateGroup, createPass, generateUser
+from group.views import createGroup, editGroup, destroyGroup, groupDetail, updateGroup, generateUser, deleteCredentials
 
 from user import views as user_views
 
@@ -51,6 +51,7 @@ urlpatterns = [
     #path('generateUser', generateUser, name="generateUser"),
     #path('createPass', createPass, name="createPass"),
     path('createCredentials/<int:id>', generateUser, name="generateUser"),
+    path('group/deleteCredentials/<int:id>', deleteCredentials, name="deleteCredentials"),
 
     path('user/logout/', auth_views.LogoutView.as_view(template_name='users/logout.html'), name='logout'),
 
