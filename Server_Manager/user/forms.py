@@ -6,17 +6,21 @@ from django.core.exceptions import ValidationError
 
 
 class RegistrationForm(UserCreationForm):
+    first_name = forms.CharField(
+        widget=forms.TextInput(attrs={'placeholder': 'First Name', 'style': 'width: 300px;', 'class': 'form-control'}))
+    last_name = forms.CharField(
+        widget=forms.TextInput(attrs={'placeholder': 'Last Name', 'style': 'width: 300px;', 'class': 'form-control'}))
     username = forms.CharField(
         widget=forms.TextInput(attrs={'placeholder': 'Username', 'style': 'width: 300px;', 'class': 'form-control'}))
     password1 = forms.CharField(
         help_text='Enter Password',
         required=True,
-        widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Password'}),
+        widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Password', 'style': 'width: 300px;'}),
     )
     password2 = forms.CharField(
         help_text='Confirm Password',
         required=True,
-        widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Confirm Password'}),
+        widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Confirm Password', 'style': 'width: 300px;'}),
     )
 
     class Meta:

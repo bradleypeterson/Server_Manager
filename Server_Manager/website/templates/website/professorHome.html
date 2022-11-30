@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
-<!-- {% if user.role == 'admin' or user.role == 'faculty' %} -->
+
 {% block body %}
+{% if user.role == 'admin' or user.role == 'faculty' %}
 <h1 class="course-header">Welcome!</h1>
 <p class="course-form__content">
     You are able to manage your courses below:
@@ -36,11 +37,12 @@
     <a href="{% url 'createProf' %}" class="course-display__button">New Course</a>
     <a href="{% url 'createProf' %}"> <img src="/static/website/plus_icon.png"></a>
 </p>
-{% endblock %}
-<!--{% elif user.role == 'student' %} *to include again, move the endblock to the end of the code.*
+
+{% elif user.role == 'student' %}
 <div class="container">
     <p>
         You do not have permission to access this page
     </p>
 </div>
-{% endif %} -->
+{% endif %}
+{% endblock %}
