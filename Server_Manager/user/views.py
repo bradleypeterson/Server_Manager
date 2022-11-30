@@ -36,8 +36,11 @@ def login_user(request):
         if user is not None:
 
             login(request, user)
+            if user.role == 'student':
+                return redirect('studentHome', user.id)
+            else:
+                return redirect('profHome', user.id)
             messages.success(request, 'Login Successful')
-            return redirect('profHome')
         else:
             messages.error(request, 'Login Failed - Try Again')
 
