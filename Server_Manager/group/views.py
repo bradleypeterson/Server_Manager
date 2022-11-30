@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib.auth.hashers import make_password
 from .models import Course
 from .models import Group
 from user.models import AppUser
@@ -65,9 +66,8 @@ def generateUser(request, id):
                 instance = form.save(commit=False)
                 username = instance.first_name + instance.last_name
                 instance.username = instance.first_name + instance.last_name
-                password = " ".join(choice(char) for x in range(randint(5, 16)))
-                instance.password1 = password
-                instance.password2 = password
+                password = "".join(choice(char) for x in range(randint(8, 16)))
+                instance.password = make_password(password)
                 instance.group = group
                 instance.save()
                 context = {"pass": password, "user": username}
