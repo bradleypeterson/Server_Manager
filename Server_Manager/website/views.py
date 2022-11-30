@@ -7,7 +7,8 @@ from group.models import Group
 def login(request):
     return render(request, "website/login.html")
 
-def profHome(request):
+def profHome(request, id):
+    profId = id;
     return render(request, "website/professorHome.html", {"courses": Course.objects.all()})
 
 def studentHome(request):
