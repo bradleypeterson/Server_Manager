@@ -54,6 +54,7 @@ def updateGroup(request, id):
     return redirect('profHome')
     return render(request, 'group/editGroup.html', {'group': group})
 
+
 def generateUser(request, id):
     group = Group.objects.get(pk=id)
     char = string.ascii_letters + string.punctuation + string.digits
@@ -62,23 +63,23 @@ def generateUser(request, id):
         if form.is_valid():
             try:
                 instance = form.save(commit=False)
+                username = instance.firstname + instance.lastname
                 instance.username = instance.firstname + instance.lastname
-                instance.password = " ".join(choice(char) for x in range(randint(5, 16)))
+                password = " ".join(choice(char) for x in range(randint(5, 16)))
+                instance.password = password
                 instance.group = group
                 instance.save()
-                return redirect('profHome')
+                context = {"pass": password, "user": username}
+                context['group'] = group
+                return render(request, "group/displayPassword.html", context=context)
             except:
                 pass
     else:
         form = TestUserForm()
         return render(request, 'group/createCredentials.html', {'form': form, 'group': group})
 
-def createPass(request):
-# generates random password successfully
-    char = string.ascii_letters + string.punctuation + string.digits
-    password = " ".join(choice(char) for x in range(randint(5, 16)))
-
-    context = {"pass": password}
-
-    return render(request, "group/displayPassword.html", context=context)
+def deleteCredentials(request, id):
+  user = TestUser.objects.get(id=id)
+  user.delete()
+  return redirect('groupDetail', user.group.id)
 
