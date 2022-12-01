@@ -8,8 +8,7 @@ def login(request):
     return render(request, "website/login.html")
 
 def profHome(request):
-    return render(request, "website/professorHome.html",
-    {"courses": Course.objects.all()})
+    return render(request, "website/professorHome.html", {"courses": Course.objects.all()})
 
 def studentHome(request):
     return render(request, "website/studentHome.html", {"projects": Project.objects.all()})
