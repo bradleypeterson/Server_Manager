@@ -22,8 +22,8 @@
                     {{ course.courseName }}
                     <br>
 
-                    <a href="{% url 'updateProf' course.id %}" onclick="alert('Course Successfully Updated')">Edit</span></a> |
-                    <a href="{% url 'deleteProf' course.id %}" onclick="alert('Course Successfully Deleted')">Delete</a>
+                    <a href="{% url 'updateProf' course.id %}">Edit</span></a> |
+                    <a href="{% url 'deleteProf' course.id %}">Delete</a>
                 </p>
             </div>
         </div>
@@ -34,8 +34,8 @@
 <p>
     <br>
     <br>
-    <a href="{% url 'createProf' %}" class="course-display__button">New Course</a>
-    <a href="{% url 'createProf' %}"> <img src="/static/website/plus_icon.png"></a>
+    <a href="{% url 'createProf' request.session.userId %}" class="course-display__button">New Course</a>
+    <a href="{% url 'createProf' request.session.userId %}"> <img src="/static/website/plus_icon.png"></a>
 </p>
 
 {% elif user.role == 'student' %}

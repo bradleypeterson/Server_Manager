@@ -39,6 +39,7 @@ def login_user(request):
             if user.role == 'student':
                 return redirect('studentHome', user.id)
             else:
+                request.session['userId'] = user.id
                 return redirect('profHome', user.id)
             messages.success(request, 'Login Successful')
         else:

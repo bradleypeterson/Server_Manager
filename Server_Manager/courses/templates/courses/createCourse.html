@@ -1,7 +1,7 @@
 
 {% extends 'base.html' %}
 {% block body %}
-<form method="POST" class="course-form" action="/createCourse">
+<form method="POST" class="course-form" action="{% url 'createProf' user.id %}">
         {% csrf_token %}
 <br>
     <div class="course-form__content">
@@ -24,6 +24,6 @@
 </form>
 
 <p>
-    <a href="{% url 'profHome' %}">Go Back</a>
+    <a href="{% url 'profHome' user.id %}">Go Back</a>
 </p>
 {% endblock %}
