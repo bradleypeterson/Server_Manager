@@ -1,17 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="/static/website/style.css">
-    <title>Edit Course</title>
-</head>
-<body>
-<header>
-        <div class="jumbotron">
-            <a href="https://weber.edu/cs"><img src="/static/website/weber_east.png"></a>
-        </div>
-</header>
 
+{% extends 'base.html' %}
+{% block body %}
 <form method="POST" class="course-form" action="/update/{{course.id}}">
         {% csrf_token %}
 <br>
@@ -19,9 +8,17 @@
         <h3 class="course-header">Update Details</h3>
         <label class="course-name">Course Name:</label>
             <input class="course-form__input"  type="text" name="courseName" id="id_courseName" required maxlength="100" value="{{ course.courseName }}" />
-        <button type="submit" class="course-form__button">Update</button>
+        <br>
+        <label class="course-Description">Course Description:</label>
+            <input class="course-form__input"  type="text" name="courseDescription" id="id_courseDesc" required maxlength="100" value="{{ course.courseDescription }}" />
+        <br>
+        <label class="course-studentCount">Student Count:</label>
+            <input class="course-form__input"  type="text" name="courseStudentCount" id="id_courseStudentCount" required maxlength="100" value="{{ course.courseStudentCount }}" />
+        <br>
+        <label class="course-Groups">Student Count:</label>
+            <input class="course-form__input"  type="text" name="courseGroups" id="id_courseGroups" required maxlength="100" value="{{ course.courseGroups }}" />
+        <br>
+        <button type="submit" class="course-form__button" onclick="alert('Course Successfully Updated')">Update</button>
     </div>
 </form>
-
-</body>
-</html>
+{% endblock %}

@@ -2,7 +2,6 @@ from django.shortcuts import render, redirect
 from .models import Project
 from .forms import ProjectForm
 
-
 def createProject(request):
     form = ProjectForm(request.POST or None)
 

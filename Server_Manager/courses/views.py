@@ -1,11 +1,17 @@
 from django.shortcuts import render, get_object_or_404, redirect
+
+from group.models import Group
 from .models import Course
+
 from courses.forms import CourseForm
 
 
 def detail(request, id):
     course = get_object_or_404(Course, pk=id)
-    return render(request, "courses/detail.html", {"course": course})
+    courseId = id
+    list_group = Group.objects.filter(course__pk=id)
+    context = { "course": course, "group": list_group, "courseId": courseId}
+    return render(request, "courses/detail.html", context=context)
 
 
 def editProf(request, id):

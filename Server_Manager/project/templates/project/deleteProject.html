@@ -1,22 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="/static/website/style.css">
-    <title>Course Creation</title>
-</head>
-<body>
-<header>
-        <div class="jumbotron">
-            <a href="https://weber.edu/cs"><img src="/static/website/weber_east.png"></a>
-        </div>
-</header>
+{% extends 'base.html' %}
+{% block body %}
 
 <form method="POST">
     {% csrf_token %}
-    <h1>Are you sure you want to delete {{ project.projecttitle }}?</h1>
-    <button type="submit">Confirm</button>
-`<a href="{% url 'studentHome' %}">Go Back</a>
+    <div>
+        <h1>Are you sure you want to delete {{ project.projecttitle }}?</h1>
+        <button class="btn btn-primary" type="submit">Confirm</button>
+        <a href="{% url 'studentHome' %}">Go Back</a>
+    </div>
+
 </form>
-</body>
-</html>
+{% endblock %}

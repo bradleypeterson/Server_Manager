@@ -11,10 +11,52 @@
             <a href="https://weber.edu/cs"><img src="/static/website/weber_east.png"></a>
         </div>
 </header>
-<h1 class="course-header">Course</h1>
-<h2 class="course-header">{{course.courseName}}</h2>
+<div class="model-display">
+    <p>
+        Course Detail and Group Management
+    </p>
+    <div class="model-display__content">
+        <h2 class="course-header">Course</h2>
+        <p>{{course.courseName}}</p>
+        <h2 class="course-header">Description</h2>
+        <p>{{course.courseDescription}}</p>
+        <h2 class="course-header">Number of Students</h2>
+        <p>{{course.courseStudentCount}}</p>
+    </div>
+</div>
+<br>
+<!-- GROUP DISPLAY -->
+<div class="model-display">
+    <div class="model-display__content">
+        <h2 class="course-header">Groups</h2>
+        <div class="row">
+            {% for group in group %}
+                <div class="column">
+                    <div class="course-display">
+                        <p>
+                            <a href="{% url 'groupDetail' group.id %}">
+                            <img src="/static/website/Group_icon.png">
+                            </a>
+                            <br>
+                            {{ group.groupName }}
+                            <br>
+
+                            <a href="{% url 'editGroup' group.id %}">Edit</span></a> |
+                            <a href="{% url 'deleteGroup' group.id %}" onclick="alert('Course Successfully Deleted')">Delete</a>
+
+                        </p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <br>
+        <a href="{% url 'createGroup' courseId %}" class="course-display__button">New Group</a>
+        <a href="{% url 'createGroup' courseId %}"> <img src="/static/website/plus_icon.png"></a>
+    </div>
+
+</div>
 <p>
-    <a href="{% url 'profHome' %}">Go Back</a>
+    <a href="{% url 'profHome' %}" class="course-display__button">Go Back</a>
 </p>
 </body>
 </html>

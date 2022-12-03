@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/static/website/style.css">
+    <title>Group {{group.groupName}}</title>
+</head>
+<body>
+<header>
+        <div class="jumbotron">
+            <a href="https://weber.edu/cs"><img src="/static/website/weber_east.png"></a>
+        </div>
+</header>
+
+<div class="model-display">
+    <p>
+        Group Detail
+    </p>
+    <div class="model-display__content">
+        <h2 class="course-header">Group</h2>
+        <p>{{group.groupName}}</p>
+        <h2 class="course-header">Description</h2>
+        <p>{{group.groupDescription}}</p>
+        <h2 class="course-header">Credentials</h2>
+                    <!-- Credentials -->
+        <table border="1">
+        {% for testUser in testUser %}
+        <tr>
+        <td>{{ testUser.username }}</td>
+        <td>{{ testUser.firstname }}</td>
+        <td>{{ testUser.lastname }}</td>
+        <td><a href="deleteCredentials/{{ testUser.id }}">delete</a></td>
+        </tr>
+        {% endfor %}
+        </table>
+        <br>
+        <br>
+        <a href="{% url 'generateUser' groupId %}" class="course-display__button">Generate Credentials</a>
+        <a href="{% url 'generateUser' groupId %}"> <img src="/static/website/plus_icon.png"></a>
+    </div>
+</div>
+
+<br>
+<br>
+<p>
+    <a href="{% url 'detail' group.course.id %}" class="course-display__button">Go Back</a>
+</p>
+</body>
+</html>
