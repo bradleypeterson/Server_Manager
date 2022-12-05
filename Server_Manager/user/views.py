@@ -34,14 +34,14 @@ def login_user(request):
         password = request.POST['password']
         user = authenticate(username=username, password=password)
         if user is not None:
-
+            messages.success(request, 'Login Successful')
             login(request, user)
             if user.role == 'student':
                 return redirect('studentHome', user.id)
             else:
                 request.session['userId'] = user.id
                 return redirect('profHome', user.id)
-            messages.success(request, 'Login Successful')
+
         else:
             messages.error(request, 'Login Failed - Try Again')
 
