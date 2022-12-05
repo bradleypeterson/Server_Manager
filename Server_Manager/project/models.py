@@ -1,5 +1,7 @@
 from django.db import models
+from user.models import AppUser
 
+# Form for students to create projects
 class Project(models.Model):
     projecttitle = models.CharField(max_length=50)
     projectdescription = models.TextField()
@@ -12,3 +14,4 @@ class Project(models.Model):
     projectimagelink = models.CharField(max_length=50)
     addeddate = models.DateField()
     updateddate = models.DateField()
+    user = models.ForeignKey(AppUser, on_delete=models.CASCADE)
