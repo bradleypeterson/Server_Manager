@@ -1,15 +1,25 @@
 from django.shortcuts import render, redirect
 from .models import Project
 from .forms import ProjectForm
+from .models import AppUser
 
-def createProject(request):
-    form = ProjectForm(request.POST or None)
 
-    if form.is_valid():
-        form.save()
-        return redirect('studentHome')
-
-    return render(request, 'project/createProject.html', {'form': form})
+def createProject(request, id):
+    user = AppUser.objects.get(pk=id)
+    request.session['userId'] = user.id
+    if request.method == 'POST':
+        form = ProjectForm(request.POST or None)
+        if form.is_valid():
+            try:
+                instance = form.save(commit=False)
+                instance.user = user
+                instance.save()
+                return redirect('studentHome', user.id)
+            except:
+                pass
+    else:
+        form = ProjectForm()
+        return render(request, 'project/createProject.html', {'form': form, 'user': user})
 
 # Create your views here.
 
@@ -24,16 +34,18 @@ def projectDetail(request, id):
 
 def updateProject(request, id):
     project = Project.objects.get(pk=id)
+    user = project.user
     form = ProjectForm(request.POST or None, instance=project)
     if form.is_valid():
         form.save()
-        return redirect('studentHome')
-    return render(request, 'project/editProject.html', {'form': form, 'project':project})
+        return redirect('studentHome', user.id)
+    return render(request, 'project/editProject.html', {'form': form, 'project': project})
 
 
 def deleteProject(request, id):
     project = Project.objects.get(pk=id)
+    user = project.user
     if request.method == 'POST':
         project.delete()
-        return redirect('studentHome')
+        return redirect('studentHome', user.id)
     return render(request, 'project/deleteProject.html', {'project':project})

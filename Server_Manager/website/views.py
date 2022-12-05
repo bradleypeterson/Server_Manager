@@ -12,5 +12,6 @@ def profHome(request, id):
     user = get_object_or_404(AppUser, pk=id)
     return render(request, "website/professorHome.html", {"courses": Course.objects.filter(user__pk=id)})
 
-def studentHome(request):
-    return render(request, "website/studentHome.html", {"projects": Project.objects.all()})
+def studentHome(request, id):
+    user = get_object_or_404(AppUser, pk=id)
+    return render(request, "website/studentHome.html", {"projects": Project.objects.filter(user__pk=id), "user": user})

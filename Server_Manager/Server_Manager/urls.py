@@ -56,9 +56,9 @@ urlpatterns = [
     path('user/logout/', auth_views.LogoutView.as_view(template_name='users/logout.html'), name='logout'),
 
 
-    path('studentHome/', studentHome, name="studentHome"),
+    path('studentHome/<int:id>', studentHome, name="studentHome"),
     path('projects/<int:id>', projectDetail, name="projectDetail"),
-    path('createproject', createProject, name='createProject'),
+    path('createproject/<int:id>', createProject, name='createProject'),
     path('deleteproject/<int:id>', deleteProject, name="deleteProject"),
     path('updateproject/<int:id>', updateProject, name="updateProject"),
 
