@@ -1,8 +1,9 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib.auth.hashers import make_password
 from .models import Course
-from .models import Group, TestUser
+from .models import Group
 from user.models import AppUser
-from .forms import GroupForm, TestUserForm
+from .forms import GroupForm, UserForm
 from random import *
 import string
 import random
@@ -30,8 +31,8 @@ def createGroup(request, id):
 def groupDetail(request, id):
     group = get_object_or_404(Group, pk=id)
     groupId = id
-    list_credentials = TestUser.objects.filter(group__pk=id)
-    context = {"group": group, "testUser": list_credentials, "groupId": groupId}
+    user = AppUser.objects.filter(group__pk=id)
+    context = {"group": group, "user": user, "groupId": groupId}
     return render(request, "group/groupDetail.html", context=context)
 
 
@@ -65,14 +66,14 @@ def generateUser(request, id):
     group = Group.objects.get(pk=id)
     char = string.ascii_letters + string.punctuation + string.digits
     if request.method == "POST":
-        form = TestUserForm(request.POST)
+        form = UserForm(request.POST)
         if form.is_valid():
             try:
                 instance = form.save(commit=False)
-                username = instance.firstname + instance.lastname
-                instance.username = instance.firstname + instance.lastname
-                password = " ".join(choice(char) for x in range(randint(5, 16)))
-                instance.password = password
+                username = instance.first_name + instance.last_name
+                instance.username = instance.first_name + instance.last_name
+                password = "".join(choice(char) for x in range(randint(8, 16)))
+                instance.password = make_password(password)
                 instance.group = group
                 instance.save()
                 context = {"pass": password, "user": username}
@@ -81,11 +82,11 @@ def generateUser(request, id):
             except:
                 pass
     else:
-        form = TestUserForm()
+        form = UserForm()
         return render(request, 'group/createCredentials.html', {'form': form, 'group': group})
 
 def deleteCredentials(request, id):
-  user = TestUser.objects.get(id=id)
+  user = AppUser.objects.get(id=id)
   user.delete()
   return redirect('groupDetail', user.group.id)
 

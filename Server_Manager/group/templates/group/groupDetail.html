@@ -24,12 +24,12 @@
         <h2 class="course-header">Credentials</h2>
                     <!-- Credentials -->
         <table border="1">
-        {% for testUser in testUser %}
+        {% for user in user %}
         <tr>
-        <td>{{ testUser.username }}</td>
-        <td>{{ testUser.firstname }}</td>
-        <td>{{ testUser.lastname }}</td>
-        <td><a href="deleteCredentials/{{ testUser.id }}">delete</a></td>
+        <td>{{ user.username }}</td>
+        <td>{{ user.first_name }}</td>
+        <td>{{ user.last_name }}</td>
+        <td><a href="deleteCredentials/{{ user.id }}">delete</a></td>
         </tr>
         {% endfor %}
         </table>
