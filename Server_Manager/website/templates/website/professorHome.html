@@ -2,11 +2,12 @@
 
 {% block body %}
 {% if user.role == 'admin' or user.role == 'faculty' %}
-<h1 class="course-header">Welcome!</h1>
+<h1 class="course-header">Welcome {{user.username}}!</h1>
 <p class="course-form__content">
     You are able to manage your courses below:
 </p>
-<h2 class="course-header">
+<div class="container text-center">
+    <h2 class="course-header">
     Course List
 </h2>
 
@@ -30,13 +31,16 @@
 
     {% endfor %}
     </div>
-
-<p>
+    <p>
     <br>
     <br>
     <a href="{% url 'createProf' request.session.userId %}" class="course-display__button">New Course</a>
     <a href="{% url 'createProf' request.session.userId %}"> <img src="/static/website/plus_icon.png"></a>
 </p>
+</div>
+
+
+
 
 {% elif user.role == 'student' %}
 <div class="container">

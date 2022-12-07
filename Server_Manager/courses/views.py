@@ -5,6 +5,7 @@ from .models import Course
 from .models import AppUser
 from user.views import login_user
 from courses.forms import CourseForm
+from django.contrib import messages
 
 
 def detail(request, id):
@@ -30,6 +31,7 @@ def createCourse(request, id):
                 instance = form.save(commit=False)
                 instance.user = user
                 instance.save()
+                messages.success(request, 'Course Created')
                 return redirect('profHome', user.id)
             except:
                 pass
@@ -42,6 +44,7 @@ def destroy(request, id):
     course = Course.objects.get(id=id)
     user = course.user
     course.delete()
+    messages.success(request, 'Course Deleted')
     return redirect('profHome', user.id)
 
 
@@ -52,5 +55,6 @@ def update(request, id):
     user = course.user
     if form.is_valid():
         form.save()
+        messages.success(request, 'Course Modified')
         return redirect('profHome', user.id)
     return render(request, 'courses/editCourse.html', {'course': course})
