@@ -3,6 +3,7 @@ from .models import Course
 from .models import Group, TestUser
 from user.models import AppUser
 from .forms import GroupForm, TestUserForm
+from django.contrib import messages
 from random import *
 import string
 import random
@@ -88,4 +89,24 @@ def deleteCredentials(request, id):
   user = TestUser.objects.get(id=id)
   user.delete()
   return redirect('groupDetail', user.group.id)
+
+#This is the custom login class for students
+def studentLogin(request):
+    if request.method == "POST":
+
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        hashedPassword = hash(password) #This needs to be adjusted to whatever function is used to hash pass
+
+        #GETTING USER
+        try:
+            user = TestUser.objects.get(username=username, password=hashedPassword)
+
+            # CHECKING IF USER EXISTS
+            if (user == None):
+                messages.error(request, 'Username/Password incorrect!')
+            else:
+                return redirect('studentHome', user.id)
+        except:
+            messages.error(request, 'There is an issue with finding that user!')
 

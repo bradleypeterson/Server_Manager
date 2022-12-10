@@ -24,10 +24,10 @@
     <div class="model-display__content">
         <h3 class="course-header">Group</h3>
         <hr>
-        <p class="bg-white lead">{{group.groupName}}</p>
+        <p class="bg-white lead rounded">{{group.groupName}}</p>
         <h3 class="course-header">Description</h3>
         <hr>
-        <p class="bg-white lead">{{group.groupDescription}}</p>
+        <p class="bg-white lead rounded">{{group.groupDescription}}</p>
         <h3 class="course-header">Credentials</h3>
         <hr>
                     <!-- Credentials -->
@@ -37,7 +37,7 @@
         <td>{{ testUser.username }}</td>
         <td>{{ testUser.firstname }}</td>
         <td>{{ testUser.lastname }}</td>
-        <td><a href="deleteCredentials/{{ testUser.id }}">delete</a></td>
+        <td><a href="deleteCredentials/{{ testUser.id }}" class="btn btn-outline-danger">Delete</a></td>
         </tr>
         {% endfor %}
         </table>

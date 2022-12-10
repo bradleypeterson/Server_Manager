@@ -24,7 +24,7 @@ from courses.views import createCourse
 from courses.views import destroy
 from courses.views import update
 from project.views import createProject, updateProject, projectDetail, deleteProject
-from group.views import createGroup, editGroup, destroyGroup, groupDetail, updateGroup, generateUser, deleteCredentials
+from group.views import *
 
 from user import views as user_views
 
@@ -61,5 +61,6 @@ urlpatterns = [
     path('createproject/<int:id>', createProject, name='createProject'),
     path('deleteproject/<int:id>', deleteProject, name="deleteProject"),
     path('updateproject/<int:id>', updateProject, name="updateProject"),
+    path('studentLogin', studentLogin, name="studentLogin"),
 
 ]
