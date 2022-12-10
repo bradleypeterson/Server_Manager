@@ -2,45 +2,43 @@
 
 {% block body %}
 {% if user.role == 'admin' or user.role == 'faculty' %}
-<h1 class="course-header">Welcome {{user.username}}!</h1>
-<p class="course-form__content">
+<h1 class="container-fluid course-header display-4 ">Welcome {{user.username}}!</h1>
+<p class="course-form__content lead border border-1">
     You are able to manage your courses below:
 </p>
-<div class="container text-center">
-    <h2 class="course-header">
+<h2 class="course-header m-2">
     Course List
 </h2>
-
-    <div class="row">
-    {% for course in courses %}
-
-        <div class="column">
+<div class="container-fluid">
+    <div class="row m-0">
+        {% for course in courses %}
+        <div class="col-3">
             <div class="course-display">
                 <p>
                     <a href="{% url 'detail' course.id %}">
-                    <img src="/static/website/course.png">
+                        <img src="/static/website/course.png">
                     </a>
-                    {{ course.courseName }}
                     <br>
-
-                    <a href="{% url 'updateProf' course.id %}">Edit</span></a> |
-                    <a href="{% url 'deleteProf' course.id %}">Delete</a>
+                <h3 class="course-header">
+                    {{ course.courseName }}
+                </h3>
+                <br>
+                <a href="{% url 'updateProf' course.id %}" class="btn btn-outline-primary btn-sm">Edit</span></a> |
+                <a href="{% url 'deleteProf' course.id %}" class="btn btn-outline-primary btn-sm">Delete</a>
                 </p>
             </div>
         </div>
-
-    {% endfor %}
+        {% endfor %}
     </div>
-    <p>
-    <br>
-    <br>
-    <a href="{% url 'createProf' request.session.userId %}" class="course-display__button">New Course</a>
-    <a href="{% url 'createProf' request.session.userId %}"> <img src="/static/website/plus_icon.png"></a>
-</p>
 </div>
-
-
-
+<br>
+<hr class="card">
+<div class="container m-1">
+    <p>
+        <a href="{% url 'createProf' request.session.userId %}" class="btn btn-dark">New Course</a>
+        <a href="{% url 'createProf' request.session.userId %}"> <img src="/static/website/plus_icon.png"></a>
+    </p>
+</div>
 
 {% elif user.role == 'student' %}
 <div class="container">

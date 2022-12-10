@@ -1,24 +1,29 @@
 
 {% extends 'base.html' %}
 {% block body %}
-<form method="POST" class="course-form" action="{% url 'createGroup' course.id %}">
+<form method="POST" action="{% url 'createGroup' course.id %}">
         {% csrf_token %}
 <br>
-    <div class="course-form__content">
-        <h3 class="course-header">Enter Details</h3>
-        <div class="course-form__header">Group Name:</div>
-        {{ form.groupName }}
-        <br>
+    <div class="model-display">
+        <h1 class=" display-6 m-1">
+        Enter Details
+        </h1>
+        <div class="model-display__content">
+            <h3 class="course-header">Group Name:</h3>
+            {{ form.groupName }}
+            <br>
 
-        <div class="course-form__header">Group Description:</div>
-        {{ form.groupDescription }}
-        <br>
-        <br>
-        <button type="submit" class="course-form__button">Submit</button>
+            <h3 class="course-header">Group Description:</h3>
+            {{ form.groupDescription }}
+            <br>
+            <br>
+            <button type="submit" class="btn btn-dark">Submit</button>
+        </div>
     </div>
+
 </form>
 
 <p>
-    <a href="{% url 'profHome' request.session.userId %}">Go Back</a>
+    <a href="{% url 'profHome' request.session.userId %}" class="btn btn-dark m-3" >Go Back</a>
 </p>
 {% endblock %}
