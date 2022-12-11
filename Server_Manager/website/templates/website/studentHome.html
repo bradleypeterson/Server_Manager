@@ -1,11 +1,11 @@
 {% extends 'base.html' %}
 {% block body %}
 
-<h1 class="course-header">Welcome {{ user.username }}!</h1>
-<p class="course-form__content">
+<h1 class="container-fluid course-header display-4 ">Welcome {{ user.username }}!</h1>
+<p class="course-form__content lead border border-1">
     You are able to manage your projects below:
 </p>
-<h2 class="course-header">
+<h2 class="course-header m-2">
     Project List
 </h2>
 
@@ -29,11 +29,13 @@
 
     {% endfor %}
     </div>
+<hr class="card">
 <p>
     <br>
     <br>
 
-    <a href="{% url 'createProject' user.id %}" class="course-display__button">New project</a>
+    <a href="{% url 'createProject' user.id %}" class="btn btn-dark">New project</a>
+    <a href="{% url 'createProject' user.id %}"> <img src="/static/website/plus_icon.png"></a>
 </p>
 
 {% endblock %}

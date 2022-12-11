@@ -2,9 +2,6 @@
 {% block body %}
 <form method="POST">
         {% csrf_token %}
-<p>
-    <a href="{% url 'studentHome' user.id %}" class="course-display__button">Go Back</a>
-</p>
 <div class="project-form">
 
 <h1 style="text-align: center">Upload Project</h1>
@@ -26,7 +23,7 @@
 
 </form>
 
-<p>
+<p class="text-center">
     <a href="{% url 'studentHome' user.id %}" class="course-display__button">Go Back</a>
 </p>
 {% endblock %}
