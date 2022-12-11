@@ -1,11 +1,11 @@
 from django.shortcuts import render, redirect
 from .models import Project
 from .forms import ProjectForm
-from .models import AppUser
+from .models import TestUser
 
 
 def createProject(request, id):
-    user = AppUser.objects.get(pk=id)
+    user = TestUser.objects.get(pk=id)
     request.session['userId'] = user.id
     if request.method == 'POST':
         form = ProjectForm(request.POST or None)

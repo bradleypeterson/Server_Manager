@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block body %}
-    {% if user.role == 'student' or user.role == 'faculty' or user.role == 'admin'%}
+
 <h1 class="course-header">Welcome {{ user.username }}!</h1>
 <p class="course-form__content">
     You are able to manage your projects below:
@@ -35,12 +35,5 @@
 
     <a href="{% url 'createProject' user.id %}" class="course-display__button">New project</a>
 </p>
-    {% else %}
-        <div class="container">
-            <p>
-        Please Log in to view this page<br>
-                <a href="{% url 'login' %}" class="course-display__button">Log In</a>
-        </p>
-        </div>
-    {% endif %}
+
 {% endblock %}

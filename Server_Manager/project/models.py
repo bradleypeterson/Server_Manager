@@ -1,5 +1,6 @@
 from django.db import models
 from user.models import AppUser
+from group.models import TestUser
 
 class Project(models.Model):
     projecttitle = models.CharField(max_length=50)
@@ -13,4 +14,4 @@ class Project(models.Model):
     projectimagelink = models.CharField(max_length=50)
     addeddate = models.DateField()
     updateddate = models.DateField()
-    user = models.ForeignKey(AppUser, on_delete=models.CASCADE)
+    user = models.ForeignKey(TestUser, on_delete=models.CASCADE)

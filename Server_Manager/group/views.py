@@ -1,12 +1,17 @@
+import bcrypt
+from django.contrib.auth import authenticate
 from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib.auth.hashers import make_password
 from .models import Course
 from .models import Group, TestUser
 from user.models import AppUser
-from .forms import GroupForm, TestUserForm
+from .forms import GroupForm, TestUserForm, StudentLoginForm
 from django.contrib import messages
 from random import *
 import string
-import random
+import hashlib
+import base64
+import uuid
 
 
 # Create your views here.
@@ -72,8 +77,12 @@ def generateUser(request, id):
                 instance = form.save(commit=False)
                 username = instance.firstname + instance.lastname
                 instance.username = instance.firstname + instance.lastname
-                password = " ".join(choice(char) for x in range(randint(5, 16)))
-                instance.password = password
+                password = "".join(choice(char) for x in range(randint(5, 16)))
+                salt = bcrypt.gensalt()
+                encoded = password.encode('utf8')
+                hashpass = bcrypt.hashpw(encoded, salt)
+                hashpass2 = hashpass.decode('utf8')
+                instance.password = hashpass2
                 instance.group = group
                 instance.save()
                 context = {"pass": password, "user": username}
@@ -90,23 +99,22 @@ def deleteCredentials(request, id):
   user.delete()
   return redirect('groupDetail', user.group.id)
 
+
 #This is the custom login class for students
 def studentLogin(request):
     if request.method == "POST":
-
+        form = StudentLoginForm(request.POST)
         username = request.POST.get('username')
         password = request.POST.get('password')
-        hashedPassword = hash(password) #This needs to be adjusted to whatever function is used to hash pass
-
-        #GETTING USER
-        try:
-            user = TestUser.objects.get(username=username, password=hashedPassword)
-
-            # CHECKING IF USER EXISTS
-            if (user == None):
-                messages.error(request, 'Username/Password incorrect!')
-            else:
-                return redirect('studentHome', user.id)
-        except:
-            messages.error(request, 'There is an issue with finding that user!')
-
+        user = TestUser.objects.get(username=username)
+        userBytes = request.POST['password'].encode('utf-8')
+        hash = user.password.encode('utf-8')
+        result = bcrypt.checkpw(password.encode(), hash)
+        print(result)
+        if result is True:
+            return redirect('studentHome', user.id)
+        else:
+            messages.error(request, 'Username/Password incorrect!')
+    else:
+        form = StudentLoginForm(request.POST)
+        return render(request, 'group/studentlogin.html', {'form': form})
