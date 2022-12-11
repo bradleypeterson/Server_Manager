@@ -3,11 +3,12 @@
 <body>
 <br>
 <div class="container text-center">
-    <h3 class="login-form__header">Student Login</h3>
 </div>
 <form class="login-form" action="studentLogin" method="POST">
     {% csrf_token %}
-            <div class="login-form__content">
+            <div class="login-form__content text-center">
+                <h3 class="course-header">Student Login</h3>
+                <hr class="card">
                 <div class="login-form__header">Login to your account</div>
                 <div class="row justify-content-center">
                     {{ form.username }}
@@ -20,6 +21,13 @@
                 <button class="login-form__button" type="submit">Login</button>
             </div>
 </form>
+<div class="text-center">
+<p class="lead">
+    Not a Student?
+    <br>
+    <a href="{% url 'login'  %}" class="btn btn-dark m-3">Instructor Login</a>
+</p>
+  </div>
 
     <footer class="border-top footer text-muted">
         <div class="container">

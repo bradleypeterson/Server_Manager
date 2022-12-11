@@ -4,7 +4,9 @@
 <br>
 <form class="login-form" action="./" method="POST">
     {% csrf_token %}
-            <div class="login-form__content">
+            <div class="text-center login-form__content">
+                <h3 class="course-header">Instructor Login</h3>
+                <hr class="card">
                 <div class="login-form__header">Login to your account</div>
                 <div class="row justify-content-center">
                     {{ form.username }}
@@ -17,8 +19,14 @@
                 <button class="login-form__button" type="submit">Login</button>
             </div>
 </form>
-
-    <footer class="border-top footer text-muted">
+<div class="text-center">
+<p class="lead">
+    Not an Instructor?
+    <br>
+    <a href="{% url 'studentLogin'  %}" class="btn btn-dark m-3">Student Login</a>
+</p>
+  </div>
+<footer class="border-top footer text-muted">
         <div class="container">
 
         </div>
@@ -26,7 +34,7 @@
 </body>
 {% endblock %}
 
-<p>
-    <a href="{% url 'studentLogin'  %}" class="btn btn-dark m-3">Student Login</a>
+
+
 </p>
 </html>
