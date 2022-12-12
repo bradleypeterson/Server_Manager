@@ -32,12 +32,17 @@
     {% endfor %}
     </div>
 <hr class="card">
-<p>
-    <br>
-    <br>
+<div class="container m-1">
+    <p>
+        <a href="{% url 'createProject' user.id %}" class="btn btn-dark">New project</a>
+        <a href="{% url 'createProject' user.id %}"> <img src="/static/website/plus_icon.png"></a>
+    </p>
+</div>
 
-    <a href="{% url 'createProject' user.id %}" class="btn btn-dark">New project</a>
-    <a href="{% url 'createProject' user.id %}"> <img src="/static/website/plus_icon.png"></a>
+<div>
+<p class="lead">
+    <a href="{% url 'logout'  %}" class="btn btn-dark m-3">Logout</a>
 </p>
+</div>
 
 {% endblock %}

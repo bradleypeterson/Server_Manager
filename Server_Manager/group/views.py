@@ -51,6 +51,13 @@ def groupDetail(request, id):
     context = {"group": group, "testUser": list_credentials, "groupId": groupId, "project": list_projects}
     return render(request, "group/groupDetail.html", context=context)
 
+def profProjects(request, id):
+    project = get_object_or_404(Project, pk=id)
+    projectId = id
+    user = project.user
+    group = user.group
+    context = {"project": project, "group": group, "user": user, "projectId": projectId}
+    return render(request, "group/profProjects.html", context=context)
 
 def destroyGroup(request, id):
     group = Group.objects.get(id=id)
@@ -117,16 +124,22 @@ def studentLogin(request):
         form = StudentLoginForm(request.POST)
         username = request.POST.get('username')
         password = request.POST.get('password')
-        user = TestUser.objects.get(username=username)
-        userBytes = request.POST['password'].encode('utf-8')
-        hash = user.password.encode('utf-8')
-        result = bcrypt.checkpw(password.encode(), hash)
-        print(result)
-        if result is True:
-            request.session['userId'] = user.id
-            return redirect('studentHome', user.id)
+        try:
+            user = TestUser.objects.get(username=username)
+        except TestUser.DoesNotExist:
+            user = None
+        if user is not None:
+            userBytes = request.POST['password'].encode('utf-8')
+            hash = user.password.encode('utf-8')
+            result = bcrypt.checkpw(password.encode(), hash)
+            print(result)
+            if result is True:
+                messages.success(request, 'Login Successful')
+                request.session['userId'] = user.id
+                return redirect('studentHome', user.id)
+            else: messages.error(request, 'Login Failed - Try Again')
         else:
-            messages.error(request, 'Username/Password incorrect!')
+            messages.error(request, 'Login Failed - Try Again')
     else:
         form = StudentLoginForm(request.POST)
-        return render(request, 'group/studentlogin.html', {'form': form})
+    return render(request, 'group/studentlogin.html', {'form': form})
