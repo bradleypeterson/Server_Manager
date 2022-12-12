@@ -26,6 +26,7 @@ def createProject(request, id):
 
 def projectDetail(request, id):
     project = Project.objects.get(pk=id)
+
     context = {
         'project': project
     }

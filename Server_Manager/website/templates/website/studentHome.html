@@ -9,21 +9,23 @@
     Project List
 </h2>
 
-    <div class="row">
+    <div class="row m-0">
     {% for project in projects %}
 
-        <div class="column">
+        <div class="col-3">
             <div class="course-display">
-                <p><a href="{% url 'updateProject' project.id %}">{{ project.projecttitle }}</a>
+                <h3><a href="{% url 'updateProject' project.id %}" class="course-header">{{ project.projecttitle }}</a></h3>
                     <br>
                     <a href="{% url 'projectDetail' project.id %}">
                     <img src="/static/website/project.png">
                     </a>
-
                     <br>
-                    <a href="{% url 'updateProject' project.id %}">Edit</a> |
-                    <a href="{% url 'deleteProject' project.id %}">Delete</a>
-                </p>
+                    <br>
+                    <a href="{% url 'updateProject' project.id %}" class="btn btn-outline-primary btn-sm">Edit</a> |
+                    <a href="{% url 'deleteProject' project.id %}" class="btn btn-outline-danger btn-sm">Delete</a>
+                <br>
+                <br>
+                </h3>
             </div>
         </div>
 
