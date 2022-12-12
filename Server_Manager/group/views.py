@@ -6,6 +6,7 @@ from .models import Group, TestUser, Course
 from project.models import Project
 from user.models import AppUser
 from .forms import GroupForm, TestUserForm, StudentLoginForm
+from project.forms import ProjectForm
 from django.contrib import messages
 from random import *
 import string
@@ -40,10 +41,13 @@ def groupDetail(request, id):
     list_projects = []
 
     for user in list_credentials:
-        project = Project.objects.filter(user__pk=user.id)
-        if(project != None):
-            list_projects.append(Project.objects.filter(user__pk=user.id))
-
+        userId = user.id
+        try:
+            projects = Project.objects.filter(user__pk=userId)
+            for project in projects:
+                list_projects.append(project)
+        except:
+            pass
     context = {"group": group, "testUser": list_credentials, "groupId": groupId, "project": list_projects}
     return render(request, "group/groupDetail.html", context=context)
 
