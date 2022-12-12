@@ -6,7 +6,7 @@ from .models import TestUser
 
 def createProject(request, id):
     user = TestUser.objects.get(pk=id)
-    request.session['userId'] = user.id
+
     if request.method == 'POST':
         form = ProjectForm(request.POST or None)
         if form.is_valid():

@@ -2,8 +2,8 @@ import bcrypt
 from django.contrib.auth import authenticate
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.hashers import make_password
-from .models import Course
-from .models import Group, TestUser
+from .models import Group, TestUser, Course
+from project.models import Project
 from user.models import AppUser
 from .forms import GroupForm, TestUserForm, StudentLoginForm
 from django.contrib import messages
@@ -37,7 +37,14 @@ def groupDetail(request, id):
     group = get_object_or_404(Group, pk=id)
     groupId = id
     list_credentials = TestUser.objects.filter(group__pk=id)
-    context = {"group": group, "testUser": list_credentials, "groupId": groupId}
+    list_projects = []
+
+    for user in list_credentials:
+        project = Project.objects.filter(user__pk=user.id)
+        if(project != None):
+            list_projects.append(Project.objects.filter(user__pk=user.id))
+
+    context = {"group": group, "testUser": list_credentials, "groupId": groupId, "project": list_projects}
     return render(request, "group/groupDetail.html", context=context)
 
 
@@ -112,6 +119,7 @@ def studentLogin(request):
         result = bcrypt.checkpw(password.encode(), hash)
         print(result)
         if result is True:
+            request.session['userId'] = user.id
             return redirect('studentHome', user.id)
         else:
             messages.error(request, 'Username/Password incorrect!')

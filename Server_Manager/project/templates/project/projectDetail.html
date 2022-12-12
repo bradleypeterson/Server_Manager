@@ -12,8 +12,8 @@
                 <div class="card text-center">
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item"><a href="{% url 'studentHome' request.session.userId %}">Back to Projects</a></li>
-                        <li class="list-group-item"><a href="{% url 'updateProject' project.id %}">Edit Project</a></li>
-                            <li class="list-group-item"><a href="{% url 'deleteProject' project.id %}">Delete Project</a></li>
+                        <li class="list-group-item"><a href="{% url 'updateProject' request.session.userId %}">Edit Project</a></li>
+                            <li class="list-group-item"><a href="{% url 'deleteProject' request.session.userId %}">Delete Project</a></li>
                     </ul>
                 </div>
             </div>
