@@ -2,6 +2,7 @@ import bcrypt
 from django.contrib.auth import authenticate
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.hashers import make_password
+
 from .models import Group, TestUser, Course
 from project.models import Project
 from user.models import AppUser
@@ -37,6 +38,7 @@ def createGroup(request, id):
 def groupDetail(request, id):
     group = get_object_or_404(Group, pk=id)
     groupId = id
+
     list_credentials = TestUser.objects.filter(group__pk=id)
     list_projects = []
 
@@ -49,6 +51,7 @@ def groupDetail(request, id):
         except:
             pass
     context = {"group": group, "testUser": list_credentials, "groupId": groupId, "project": list_projects}
+
     return render(request, "group/groupDetail.html", context=context)
 
 def profProjects(request, id):
@@ -89,10 +92,11 @@ def generateUser(request, id):
     group = Group.objects.get(pk=id)
     char = string.ascii_letters + string.punctuation + string.digits
     if request.method == "POST":
-        form = TestUserForm(request.POST)
+        form = UserForm(request.POST)
         if form.is_valid():
             try:
                 instance = form.save(commit=False)
+
                 username = instance.firstname + instance.lastname
                 instance.username = instance.firstname + instance.lastname
                 password = "".join(choice(char) for x in range(randint(5, 16)))
@@ -101,6 +105,7 @@ def generateUser(request, id):
                 hashpass = bcrypt.hashpw(encoded, salt)
                 hashpass2 = hashpass.decode('utf8')
                 instance.password = hashpass2
+
                 instance.group = group
                 instance.save()
                 context = {"pass": password, "user": username}
@@ -109,11 +114,11 @@ def generateUser(request, id):
             except:
                 pass
     else:
-        form = TestUserForm()
+        form = UserForm()
         return render(request, 'group/createCredentials.html', {'form': form, 'group': group})
 
 def deleteCredentials(request, id):
-  user = TestUser.objects.get(id=id)
+  user = AppUser.objects.get(id=id)
   user.delete()
   return redirect('groupDetail', user.group.id)
 

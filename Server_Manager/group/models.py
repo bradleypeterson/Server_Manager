@@ -16,3 +16,4 @@ class TestUser(models.Model):
     username = models.CharField(max_length=200)
     password = models.CharField(max_length=500)
     group = models.ForeignKey(Group, on_delete=models.CASCADE)
+

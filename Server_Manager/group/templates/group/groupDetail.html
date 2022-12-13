@@ -35,6 +35,7 @@
         <hr>
         <!-- Credentials -->
         <table border="1">
+
             {% for testUser in testUser %}
             <tr>
                 <td>{{ testUser.username }}</td>
@@ -43,6 +44,7 @@
                 <td><a href="deleteCredentials/{{ testUser.id }}" class="btn btn-outline-danger">Delete</a></td>
             </tr>
             {% endfor %}
+
         </table>
         <br>
         <br>
