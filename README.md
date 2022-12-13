@@ -10,7 +10,7 @@ Students may login using the provided credentials and create/manage their own pr
 
 ### Technology Used
 This project uses the Pythong/Django framework along with SQLite for database operations.
-![](images/Instructor_Home.PNG)
+<img src="/images/Instructor_Home.PNG" width="50%" height="50%">
 
 # Getting Started
 
