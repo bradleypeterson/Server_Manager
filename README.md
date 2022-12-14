@@ -23,10 +23,14 @@ On Mac or Linux operating systems, run "pip3 install django" from the terminal.
 
 On Windows, run "pip3 install django" from the command line, then add the script path to your environment variables.
 
+Other libraries needed are sweetify and bcrypt which can be installed with "pip3 install sweetify" and "pip3 install bcrypt"
+
 ## Running the project
 To run the project, clone the repository and open the project with an IDE. We used Pycharm from Jetbrains, which is free for students and can be downloaded here https://www.jetbrains.com/pycharm/.
 
-Next, navigate to the correct folder in the terminal (the one that contains the manage.py file) and run "python3 manage.py migrate --run-syncdb" 
+Next, navigate to the correct folder in the terminal (the one that contains the manage.py file) and run "python3 manage.py migrate --run-syncdb"
+
+(if the previous command fails, make sure the required packages are installed. If not this can be done by running "pip3 install PACKAGENAMEHERE" in the terminal)
 
 Next, run "python3 manage.py makemigrations" to make the migrations then finally run "python3 manage.py migrate"
 
