@@ -20,6 +20,7 @@ This project was made using the Django web framework. To get started, make sure 
 Once python is installed, Django needs to be installed.
 
 On Mac or Linux operating systems, run "pip3 install django" from the terminal.
+Note: If "pip3" is not recognized, use "pip".
 
 On Windows, run "pip3 install django" from the command line, then add the script path to your environment variables.
 
@@ -28,8 +29,8 @@ Other libraries needed are sweetify and bcrypt which can be installed with "pip3
 ## Running the project
 To run the project, clone the repository and open the project with an IDE. We used Pycharm from Jetbrains, which is free for students and can be downloaded here https://www.jetbrains.com/pycharm/.
 
-Next, navigate to the correct folder in the terminal (the one that contains the manage.py file) and run "python3 manage.py migrate --run-syncdb"
-Note: If python3 is not recognized, use "python"
+Next, navigate to the correct folder in the terminal (the one that contains the manage.py file) and run "python3 manage.py migrate --run-syncdb".
+Note: If "python3" is not recognized, use "python".
 
 (if the previous command fails, make sure the required packages are installed. If not this can be done by running "pip3 install PACKAGENAMEHERE" in the terminal)
 
