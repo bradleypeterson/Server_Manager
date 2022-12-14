@@ -37,10 +37,14 @@ Next, run "python3 manage.py makemigrations" to make the migrations then finally
 <img width="602" alt="image" src="https://user-images.githubusercontent.com/90224390/207728970-a2e1614a-102b-4d81-b970-b076af9ad222.png">
 
 After the migrations are successfully applied, run "python3 manage.py createsuperuser" in the terminal, then follow the instructions to create an admin user.
+Note: For security purposes, the password will not be displayed as you enter it.
+<img width="649" alt="image" src="https://user-images.githubusercontent.com/90224390/207729468-540b8a55-ac34-4d47-835e-5464a45e951b.png">
 
 After the migrations have been applied and a super user has been created, run "python3 manage.py runserver" and if everything was successful, the project should start and be hosted on 127.0.0.1:8000. 
+<img width="960" alt="image" src="https://user-images.githubusercontent.com/90224390/207729894-c3b98aa6-b611-42f6-9183-ba00774ba089.png">
 
 From there you can go to 127.0.0.1:8000/admin and login with your super user. This will show you all the database tables and allow you to make users with different roles to test the project.
+<img width="960" alt="image" src="https://user-images.githubusercontent.com/90224390/207730195-2234f81e-1544-40a2-84b3-2e8c796f49b0.png">
 
 ## Creating A Project
 Once logged in as a student, your dashboard will display all group/individual projects. To create a new project, simply click on the button labeled “New Project” in the bottom left. You will be redirected to a new page. A form will be displayed, fill out all the information accordingly. 
