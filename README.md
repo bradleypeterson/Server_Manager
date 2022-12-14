@@ -70,5 +70,3 @@ Only students/ groups and the professor associated with the project can view it.
 ### Bugs:</br>
 -User can switch ID and see another student's page (I think) </br>
 -A confirmation message is sent even if deleting/updating fails </br>
-
-## What's Next?
