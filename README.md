@@ -48,18 +48,18 @@ Once finished, click “Save”. All information will be stored as a new project
 Only students/ groups and the professor associated with the project can view it. Students can further edit and delete projects.
 
 ## Project Priorities
-What must be done (and is):
--Fully functional Front End
--Working Models
--User Authentication (Salt and Hash)
-Project Priorities:
--Professors can view student's projects and details 
--Student's can create projects and details
--Professors have full CRUD operations for Courses, groups, and user credentials
--Students have full CRUD operations for their projects
--Docker Containerization (Outside of this project's scope)
-Bugs:
--User can switch ID and see another student's page (I think)
--A confirmation message is sent even if deleting/updating fails
+### Tier 1 </br>
+-Fully functional Front End ✓ </br>
+-Working Models ✓</br>
+-User Authentication (Salt and Hash) ✓</br>
+### Tier 2 </br>
+-Professors can view student's projects and details ✓</br>
+-Student's can create projects and details ✓</br>
+-Professors have full CRUD operations for Courses, groups, and user credentials ✓</br>
+-Students have full CRUD operations for their projects ✓</br>
+-Docker Containerization (Outside of this project's scope) </br>
+Bugs:</br>
+-User can switch ID and see another student's page (I think) </br>
+-A confirmation message is sent even if deleting/updating fails </br>
 
 ## What's Next?
