@@ -29,10 +29,12 @@ Other libraries needed are sweetify and bcrypt which can be installed with "pip3
 To run the project, clone the repository and open the project with an IDE. We used Pycharm from Jetbrains, which is free for students and can be downloaded here https://www.jetbrains.com/pycharm/.
 
 Next, navigate to the correct folder in the terminal (the one that contains the manage.py file) and run "python3 manage.py migrate --run-syncdb"
+Note: If python3 is not recognized, use "python"
 
 (if the previous command fails, make sure the required packages are installed. If not this can be done by running "pip3 install PACKAGENAMEHERE" in the terminal)
 
-Next, run "python3 manage.py makemigrations" to make the migrations then finally run "python3 manage.py migrate"
+Next, run "python3 manage.py makemigrations" to make the migrations then finally run "python3 manage.py migrate". Once changes are migrated you should see a similar output in your terminal.
+<img width="602" alt="image" src="https://user-images.githubusercontent.com/90224390/207728970-a2e1614a-102b-4d81-b970-b076af9ad222.png">
 
 After the migrations are successfully applied, run "python3 manage.py createsuperuser" in the terminal, then follow the instructions to create an admin user.
 
