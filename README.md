@@ -57,8 +57,11 @@ Only students/ groups and the professor associated with the project can view it.
 -Student's can create projects and details ✓</br>
 -Professors have full CRUD operations for Courses, groups, and user credentials ✓</br>
 -Students have full CRUD operations for their projects ✓</br>
--Docker Containerization (Outside of this project's scope) </br>
-Bugs:</br>
+### Tier 3 (Beyond scope for semester) </br>
+-Functionality for students to upload files required for containerizing projects </br>
+-Collaborate with Weber IT to get a proper server set up for hosting project </br>
+-Docker Containerization and deployment for working web app </br>
+### Bugs:</br>
 -User can switch ID and see another student's page (I think) </br>
 -A confirmation message is sent even if deleting/updating fails </br>
 
