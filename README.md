@@ -58,5 +58,7 @@ Project Priorities
 -Professors have full CRUD operations for Courses, groups, and user credentials
 -Students have full CRUD operations for their projects
 -Docker Containerization (Outside of this project's scope)
+Bugs
+-User can switch ID and see another student's page (I think)
 
 ## What's Next?
