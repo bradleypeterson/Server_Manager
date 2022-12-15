@@ -6,7 +6,7 @@
     <div>
         <h1>Are you sure you want to delete {{ project.projecttitle }}?</h1>
         <button class="btn btn-primary" type="submit">Confirm</button>
-        <a href="{% url 'studentHome' user.id %}">Go Back</a>
+        <a href="{% url 'studentHome' request.session.userId %}">Go Back</a>
     </div>
 
 </form>
