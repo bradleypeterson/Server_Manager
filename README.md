@@ -9,7 +9,7 @@ Instructors can provide the generated credentials to students within groups to l
 Students may login using the provided credentials and create/manage their own project(s). The student fills out the required information in the project form and submits it; from there, they are given full CRUD operations for their projects. 
 
 ### Technology Used
-This project uses the Pythong/Django framework along with SQLite for database operations.
+This project uses the Python/Django framework along with SQLite for database operations.
 <img src="/images/Instructor_Home.PNG" width="50%" height="50%">
 
 # Getting Started
