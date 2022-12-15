@@ -94,7 +94,9 @@ def generateUser(request, id):
             try:
                 instance = form.save(commit=False)
                 username = instance.firstname + instance.lastname
-                instance.username = instance.firstname + instance.lastname
+                if TestUser.objects.filter(username=username).exists():
+                    username = username + str(randint(1, 100))
+                instance.username = username
                 password = "".join(choice(char) for x in range(randint(5, 16)))
                 salt = bcrypt.gensalt()
                 encoded = password.encode('utf8')

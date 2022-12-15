@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta charset="UTF-8">
     <link rel="stylesheet" href="/static/website/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="/static/website/style.css">
@@ -45,8 +44,10 @@
             {% endfor %}
         </table>
         <br>
+        <a href="{% url 'generateUser' groupId %}" class="btn btn-dark">Generate Credentials</a>
+        <a href="{% url 'generateUser' groupId %}"> <img src="/static/website/plus_icon.png"></a>
         <br>
-
+        <br>
         <!-- PROJECT DISPLAY -->
         <div class="model-display">
             <div class="model-display__content border border-1">
@@ -75,13 +76,7 @@
                     <br>
                 </p>
             </div>
-
         </div>
-
-        <br>
-        <br>
-        <a href="{% url 'generateUser' groupId %}" class="btn btn-dark">Generate Credentials</a>
-        <a href="{% url 'generateUser' groupId %}"> <img src="/static/website/plus_icon.png"></a>
     </div>
 </div>
 
