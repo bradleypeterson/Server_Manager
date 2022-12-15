@@ -56,8 +56,9 @@ Only students/ groups and the professor associated with the project can view it.
 
 # Troubleshooting
 Occasionally, the django framework does not properly update the models and database when making updates to the Django models.
-Django will state that there are no migrations to perform, however, 
-
+This results in being presented with several error messages such as certain tables (E.G. "group_TestUser) not being found. When this happened, there are several workarounds that can be attempted:
+## 1)
+Open the terminal and apply the migration to the specific app, E.G. 
 # Project Priorities
 ### Tier 1 </br>
 -Fully functional Front End ✓ </br>
