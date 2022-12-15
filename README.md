@@ -55,10 +55,15 @@ Once finished, click “Save”. All information will be stored as a new project
 Only students/ groups and the professor associated with the project can view it. Students can further edit and delete projects.
 
 # Troubleshooting
-Occasionally, the django framework does not properly update the models and database when making updates to the Django models.
+Occasionally, the django framework does not properly update the models and database when making updates to the Django models. The cause is unknown.
 This results in being presented with several error messages such as certain tables (E.G. "group_TestUser) not being found. When this happened, there are several workarounds that can be attempted:
-## 1)
-Open the terminal and apply the migration to the specific app, E.G. 
+## 1) Specifc App Migrations
+Open the terminal and apply the migrations to a specific app, E.G. "python manage.py makemigrations group". This will typically fix the problem where a specific model doesn't get updated with the normal migrations command.
+## 2) Sync Database
+Open the terminal and type "python manage.py migrate --run-syncdb"
+## 3) Delete Database (Loss of user accounts)
+If the above 2 fail, you can try deleting the db.sqlite3 file and repeating steps 1 and 2. Please note that this will remove all user accounts from the database.
+
 # Project Priorities
 ### Tier 1 </br>
 -Fully functional Front End ✓ </br>
