@@ -47,13 +47,6 @@ After the migrations have been applied and a super user has been created, run "p
 From there you can go to 127.0.0.1:8000/admin and login with your super user. This will show you all the database tables and allow you to make users with different roles to test the project.
 <img width="960" alt="image" src="https://user-images.githubusercontent.com/90224390/207730195-2234f81e-1544-40a2-84b3-2e8c796f49b0.png">
 
-## Creating A Project
-Once logged in as a student, your dashboard will display all group/individual projects. To create a new project, simply click on the button labeled “New Project” in the bottom left. You will be redirected to a new page. A form will be displayed, fill out all the information accordingly. 
-
-Once finished, click “Save”. All information will be stored as a new project to the database. In this case, we are using sqlite.
-
-Only students/ groups and the professor associated with the project can view it. Students can further edit and delete projects.
-
 # Troubleshooting
 Occasionally, the django framework does not properly update the models and database when making updates to the Django models. The cause is unknown.
 This results in being presented with several error messages such as certain tables (E.G. "group_TestUser) not being found. When this happened, there are several workarounds that can be attempted:
