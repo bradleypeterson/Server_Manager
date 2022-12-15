@@ -54,7 +54,11 @@ Once finished, click “Save”. All information will be stored as a new project
 
 Only students/ groups and the professor associated with the project can view it. Students can further edit and delete projects.
 
-## Project Priorities
+# Troubleshooting
+Occasionally, the django framework does not properly update the models and database when making updates to the Django models.
+Django will state that there are no migrations to perform, however, 
+
+# Project Priorities
 ### Tier 1 </br>
 -Fully functional Front End ✓ </br>
 -Working Models ✓</br>
