@@ -74,5 +74,4 @@ If the above 2 fail, you can try deleting the db.sqlite3 file and repeating step
 -Docker Containerization and deployment for working web app </br>
 ### Bugs:</br>
 -User can switch ID and see another student's page </br>
--Error when student attempts to update another student's project due to aformentioned bug </br>
 -A confirmation message is sent even if deleting/updating fails </br>
