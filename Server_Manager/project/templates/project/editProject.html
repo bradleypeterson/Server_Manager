@@ -3,7 +3,7 @@
 <form method="POST">
         {% csrf_token %}
 <p>
-    <a href="{% url 'studentHome' user.id %}" class="course-display__button">Go Back</a>
+    <a href="{% url 'studentHome' request.session.userId %}" class="course-display__button">Go Back</a>
 </p>
 <div class="project-form">
 
@@ -29,6 +29,6 @@
 </form>
 
 <p>
-    <a href="{% url 'studentHome' user.id %}" class="course-display__button">Go Back</a>
+    <a href="{% url 'studentHome' request.session.userId %}" class="course-display__button">Go Back</a>
 </p>
 {% endblock %}
