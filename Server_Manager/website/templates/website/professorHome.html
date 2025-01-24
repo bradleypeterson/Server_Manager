@@ -13,11 +13,10 @@
     <div class="row m-0">
         {% for course in courses %}
         <div class="col-3">
+            <a href="{% url 'detail' course.id %}">
             <div class="course-display">
                 <p>
-                    <a href="{% url 'detail' course.id %}">
                         <img src="/static/website/course.png">
-                    </a>
                     <br>
                 <h3 class="course-header">
                     {{ course.courseName }}
@@ -27,6 +26,7 @@
                 <a href="{% url 'deleteProf' course.id %}" class="btn btn-outline-danger btn-sm">Delete</a>
                 </p>
             </div>
+            </a>
         </div>
         {% endfor %}
     </div>

@@ -18,22 +18,22 @@
         <div class="col-10">
             <div class="d-flex justify-content-between">
                 <div>
-                    <h1>{{ project.projecttitle }}</h1>
+                    <h1>{{ project.project_title }}</h1>
                     <h2 style="margin-bottom: 1rem">Project Details</h2>
                 </div>
                 <div>
-                    <p><b>Added On:</b> {{ project.addeddate }} <b>Last Update:</b> {{ project.updateddate }}</p>
+                    <p><b>Added On:</b> {{ project.added_date }} <b>Last Update:</b> {{ project.updated_date }}</p>
                     <div class="text-right">
-                        <span style="padding-right: 1em">Docker Container: {{ project.dockerid }}</span>
+                        <span style="padding-right: 1em">Docker Container: {{ project.docker_id }}</span>
                     </div>
                 </div>
             </div>
 
-            <p>{{ project.projectdescription }}</p>
+            <p>{{ project.project_description }}</p>
             <p>
-                <b>Project Language:</b> {{ project.projectlanguage }}<br>
-                <b>Project Database:</b> {{ project.projectdatabase }}<br>
-                <b>Project Backend: </b> {{ project.projectbackend }}<br>
+                <b>Project Language:</b> {{ project.project_language }}<br>
+                <b>Project Database:</b> {{ project.project_database }}<br>
+                <b>Project Backend: </b> {{ project.project_backend }}<br>
             </p>
         </div>
     </div>

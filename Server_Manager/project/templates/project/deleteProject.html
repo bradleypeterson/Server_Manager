@@ -4,7 +4,7 @@
 <form method="POST">
     {% csrf_token %}
     <div>
-        <h1>Are you sure you want to delete {{ project.projecttitle }}?</h1>
+        <h1>Are you sure you want to delete {{ project.project_title }}?</h1>
         <button class="btn btn-primary" type="submit">Confirm</button>
         <a href="{% url 'studentHome' request.session.userId %}">Go Back</a>
     </div>
