@@ -28,5 +28,6 @@ urlpatterns = [
     path('professorHome/<int:id>', profHome, name="profHome"),
    # path('', login),
     path('', user_views.login_user, name="login"),
+    path('register/', user_views.register, name="register"),
     path('user/logout/', auth_views.LogoutView.as_view(template_name='users/logout.html'), name='logout'),
 ]
