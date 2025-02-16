@@ -18,7 +18,12 @@
                 <br>
                 <button class="login-form__button" type="submit">Login</button>
                 <hr/>
-                <a class="register-form__button" href="{% url 'register'  %}">Register</a>
+                <div>
+                    <a class="register-form__button" href="{% url 'register'  %}">Register</a>
+                </div>
+                <div>
+                    <a class="login-form" href="{% url 'resetPassword' %}">Password Reset</a>
+                </div>
             </div>
 </form>
 <footer class="border-top footer text-muted">

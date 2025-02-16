@@ -1,7 +1,7 @@
 from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
-from .forms import LoginForm, RegistrationForm
-from django.contrib.auth.forms import UserCreationForm
+from .forms import LoginForm, RegistrationForm, ResetPasswordForm
+from django.contrib.auth.forms import UserCreationForm, PasswordResetForm
 from django.contrib import messages
 from user.models import AppUser
 
@@ -50,3 +50,7 @@ def login_user(request):
         form = LoginForm(request.POST)
 
     return render(request, 'website/login.html', {'form': form})
+
+def password_reset(request):
+    form = ResetPasswordForm(request.POST)
+    return render(request, "user/resetPassword.html", {'form': form})

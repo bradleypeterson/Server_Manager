@@ -1,5 +1,5 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, PasswordResetForm
 from django.contrib.auth import get_user_model
 from .models import AppUser
 from django.core.exceptions import ValidationError
@@ -40,3 +40,18 @@ class LoginForm(AuthenticationForm):
     class Meta:
         model = AppUser
         fields = ("username",)
+
+class ResetPasswordForm(PasswordResetForm):
+    password1 = forms.CharField(
+        help_text='Enter Password',
+        required=True,
+        widget=forms.PasswordInput(
+            attrs={'class': 'form-control', 'placeholder': 'Password', 'style': 'width: 300px;'}),
+    )
+
+    password2 = forms.CharField(
+        help_text='Confirm Password',
+        required=True,
+        widget=forms.PasswordInput(
+            attrs={'class': 'form-control', 'placeholder': 'Confirm Password', 'style': 'width: 300px;'}),
+    )
