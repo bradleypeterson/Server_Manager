@@ -5,5 +5,6 @@ class AppUser(AbstractUser):
     ROLE = (
         ('faculty', 'faculty'),
         ('admin', 'admin'),
+        ('student', 'student'),
     )
     role = models.CharField(max_length=100, choices=ROLE, default='faculty')
