@@ -20,7 +20,7 @@ from django.conf.urls.static import static
 from django.conf import settings
 import user.views as user_views
 
-app_name = 'ServerManager'
+app_name = 'servermanager'
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('home/', user_views.home, name="home"),
