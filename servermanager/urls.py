@@ -16,19 +16,20 @@ Including another URLconf
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from django.urls import path
+from django.conf.urls.static import static
+from django.conf import settings
+import user.views as user_views
 
-from website.views import login
-from website.views import profHome
-
-from user import views as user_views
-
-app_name = 'servermanager'
+app_name = 'ServerManager'
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('professorHome/<int:id>', profHome, name="profHome"),
-   # path('', login),
-    path('', user_views.login_user, name="login"),
+    path('home/', user_views.home, name="home"),
     path('register/', user_views.register, name="register"),
     path('resetPassword/', user_views.password_reset, name="resetPassword"),
-    path('user/logout/', auth_views.LogoutView.as_view(template_name='users/logout.html'), name='logout'),
+    path('', auth_views.LoginView.as_view(template_name="login.html"), name='login'),
+    path('logout/', auth_views.LogoutView.as_view(template_name="logout.html"), name='logout'),
 ]
+#]+static(settings.STATIC_URL, document_root=settings.STATIC_ROOT, show_indexes=True)
+
+print(settings.STATIC_ROOT)
+print(settings.STATIC_URL)

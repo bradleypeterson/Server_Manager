@@ -1,9 +1,8 @@
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from .forms import LoginForm, RegistrationForm, ResetPasswordForm
-from django.contrib.auth.forms import UserCreationForm, PasswordResetForm
 from django.contrib import messages
-from user.models import AppUser
 
 # Create your views here.
 def register(request):
@@ -23,7 +22,8 @@ def register(request):
     else:
         form = RegistrationForm(request.POST)
 
-    return render(request, 'user/register.html', {'form': form})
+    return render(request, 'register.html', {'form': form})
+
 
 
 def login_user(request):
@@ -49,8 +49,12 @@ def login_user(request):
     else:
         form = LoginForm(request.POST)
 
-    return render(request, 'website/login.html', {'form': form})
+    return render(request, 'login.html', {'form': form})
 
 def password_reset(request):
     form = ResetPasswordForm(request.POST)
-    return render(request, "user/resetPassword.html", {'form': form})
+    return render(request, "resetPassword.html", {'form': form})
+
+@login_required
+def home(request):
+    return render(request, "professorHome.html", {})

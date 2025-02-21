@@ -1,16 +1,16 @@
 """
-ASGI config for Server_Manager project.
+ASGI config for servermanager project.
 
 It exposes the ASGI callable as a module-level variable named ``application``.
 
 For more information on this file, see
-https://docs.djangoproject.com/en/4.1/howto/deployment/asgi/
+https://docs.djangoproject.com/en/5.1/howto/deployment/asgi/
 """
 
 import os
 
 from django.core.asgi import get_asgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'Server_Manager.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'servermanager.settings')
 
 application = get_asgi_application()

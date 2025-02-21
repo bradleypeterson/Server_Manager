@@ -5,9 +5,12 @@
 <h1 class="container-fluid course-header display-4 ">Welcome {{user.username}}!</h1>
 <div>
 <p class="lead">
-    <a href="{% url 'group' %}" class="btn btn-dark m-3">Create Group</a>
+    <a href="#" class="btn btn-dark m-3">Create Group</a>
     <br>
-    <a href="{% url 'logout'  %}" class="btn btn-dark m-3">Logout</a>
+    <form action="{% url 'logout' %}" method="post">
+        {% csrf_token %}
+        <button class="btn btn-dark m-3" type="submit">Logout</button>
+    </form>
 </p>
 </div>
 

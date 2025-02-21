@@ -1,8 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, PasswordResetForm
-from django.contrib.auth import get_user_model
-from .models import AppUser
-from django.core.exceptions import ValidationError
+from user.models import AppUser
 
 
 class RegistrationForm(UserCreationForm):
