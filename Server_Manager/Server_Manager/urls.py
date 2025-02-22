@@ -19,6 +19,7 @@ from django.urls import path
 
 from website.views import login
 from website.views import profHome
+from website.views import addProject
 
 from user import views as user_views
 
@@ -31,4 +32,5 @@ urlpatterns = [
     path('register/', user_views.register, name="register"),
     path('resetPassword/', user_views.password_reset, name="resetPassword"),
     path('user/logout/', auth_views.LogoutView.as_view(template_name='users/logout.html'), name='logout'),
+    path('addProject/', addProject, name="addProject")
 ]
