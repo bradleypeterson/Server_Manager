@@ -350,6 +350,69 @@ Clear floats after the columns
     background-color: #4B4945;
 }
 
+/********ADD PROJECT***********/
+.add-project-hr {
+    width: 40%;
+    border: 1px solid #492365;
+    margin: auto auto 20px;
+}
+
+.add-project-form {
+    position: relative;
+    margin: 0 auto;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
+    box-sizing: border-box;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+.add-project-button {
+    display: block;
+    width: 250px;
+    height: 60px;
+    margin: 15px auto;
+    padding: 15px 25px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #ffffff;
+    background: #8446AC;
+    border: none;
+    outline: none;
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.add-project-button:hover {
+    background: #492365;
+}
+
+.add-project-button:active {
+    background: #008067;
+}
+
+.cancel-project-button {
+    display: block;
+    width: 200px; /* Slightly smaller width */
+    height: 50px; /* Slightly smaller height */
+    margin: 10px auto; /* Centers and adds spacing */
+    padding: 12px 20px;
+    font-size: 16px; /* Smaller font */
+    font-weight: bold;
+    color: #ffffff;
+    background: #8446AC; /* Bootstrap-style red */
+    border: none;
+    outline: none;
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: center;
+}
+.cancel-project-button:hover {
+    background: #492365;
+}
+.cancel-project-button:active {
+    background: #008067;
+}
 
 /* End of custom CSS */
 

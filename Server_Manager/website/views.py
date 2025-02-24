@@ -7,3 +7,6 @@ def login(request):
 def profHome(request, id):
     user = get_object_or_404(AppUser, pk=id)
     return render(request, "website/professorHome.html", {})
+
+def addProject(request):
+    return render(request, "website/addProject.html")
