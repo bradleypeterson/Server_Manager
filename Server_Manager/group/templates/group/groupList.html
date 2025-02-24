@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Server Manager</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+{% extends "base.html" %}
+{% block body %}
+<body>
+      <h1>Group List</h1>
+  <ul>
+    {% for group in groups %}
+      <li>{{ group.group_name }}</li>
+    {% empty %}
+      <li>No groups available.</li>
+    {% endfor %}
+  </ul>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+
+        </div>
+    </footer>
+</body>
+{% endblock %}
+</html>

@@ -19,7 +19,7 @@ from django.urls import path
 
 from website.views import login
 from website.views import profHome
-
+from group import views as group_views
 from user import views as user_views
 
 app_name = 'servermanager'
@@ -30,5 +30,7 @@ urlpatterns = [
     path('', user_views.login_user, name="login"),
     path('register/', user_views.register, name="register"),
     path('resetPassword/', user_views.password_reset, name="resetPassword"),
+    path('group/', group_views.createGroup, name="group"),
+    path('group/list/', group_views.groupList, name='group_list'),
     path('user/logout/', auth_views.LogoutView.as_view(template_name='users/logout.html'), name='logout'),
 ]
