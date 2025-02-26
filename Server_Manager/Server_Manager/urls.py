@@ -19,6 +19,7 @@ from django.urls import path
 
 from website.views import login
 from website.views import profHome
+from website.views import addProject
 from group import views as group_views
 from user import views as user_views
 

@@ -9,4 +9,4 @@ def profHome(request, id):
     return render(request, "website/professorHome.html", {})
 
 def addProject(request):
-    return render(request, "website/addProject.html")
+    return render(request, "website/addProject.html", {})
