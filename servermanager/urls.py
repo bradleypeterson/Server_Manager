@@ -18,6 +18,7 @@ from django.contrib.auth import views as auth_views
 from django.urls import path
 from django.conf import settings
 import user.views as user_views
+import group.views as group_views
 
 app_name = 'servermanager'
 urlpatterns = [
@@ -28,6 +29,8 @@ urlpatterns = [
     path('addProject/', user_views.addProject, name="addProject"),
     path('', auth_views.LoginView.as_view(template_name="login.html"), name='login'),
     path('logout/', auth_views.LogoutView.as_view(template_name="logout.html"), name='logout'),
+    path('group/', group_views.createGroup, name="group"),
+    path('group/list/', group_views.groupList, name='group_list'),
 ]
 #]+static(settings.STATIC_URL, document_root=settings.STATIC_ROOT, show_indexes=True)
 

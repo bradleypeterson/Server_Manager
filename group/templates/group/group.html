@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Server Manager</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+</head>
+{% extends "base.html" %}
+{% block body %}
+<body>
+    <div class="container mt-4">
+        <h2>Create a New Group</h2>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="mb-3">
+                {{ form.group_name.label_tag }}
+                {{ form.group_name }}
+            </div>
+            <div class="mb-3">
+                {{ form.project_name.label_tag }}
+                {{ form.project_name }}
+            </div>
+            <div class="mb-3">
+                {{ form.description.label_tag }}
+                {{ form.description }}
+            </div>
+            <div class="mb-3">
+                {{ form.users.label_tag }}
+                <div>
+                    {{ form.users }}
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Create Group</button>
+        </form>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+
+        </div>
+    </footer>
+</body>
+{% endblock %}
+</html>

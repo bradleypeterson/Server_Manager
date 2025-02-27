@@ -34,6 +34,7 @@ ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '0.0.0.0', 'testserver']
 INSTALLED_APPS = [
     'user',
     'website',
+    'group',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
