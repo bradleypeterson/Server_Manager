@@ -177,6 +177,8 @@ cython_debug/
 .idea/**/usage.statistics.xml
 .idea/**/dictionaries
 .idea/**/shelf
+.idea/**/misc.xml
+.idea/**/Server_Manager.iml
 
 # AWS User-specific
 .idea/**/aws.xml
