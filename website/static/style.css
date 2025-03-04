@@ -414,6 +414,10 @@ Clear floats after the columns
     background: #008067;
 }
 
+.bg-mid {
+    background: #b4b1ac;
+}
+
 /* End of custom CSS */
 
 a.navbar-brand {
