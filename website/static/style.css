@@ -393,11 +393,11 @@ Clear floats after the columns
 
 .cancel-project-button {
     display: block;
-    width: 200px; /* Slightly smaller width */
-    height: 50px; /* Slightly smaller height */
-    margin: 10px auto; /* Centers and adds spacing */
+    width: 200px;
+    height: 50px;
+    margin: 10px auto;
     padding: 12px 20px;
-    font-size: 16px; /* Smaller font */
+    font-size: 16px;
     font-weight: bold;
     color: #ffffff;
     background: #8446AC; /* Bootstrap-style red */

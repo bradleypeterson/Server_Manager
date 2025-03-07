@@ -27,71 +27,54 @@
 <form action="./" method="POST">
 <div class="container mt-5 mb-5">
     <div class="p-4 shadow-sm login-form__content add-project-form">
-        <h1 class="mb-3 text-center course-header">New Project</h1>
+        <h1 class="mb-3 text-center course-header">New Server</h1>
         <hr class="add-project-hr">
         {% csrf_token %}
         <div class="row">
             <!-- Left Column -->
             <div class="col-md-6">
+
                 <div class="mb-3">
-                    <label for="project" class="form-label">Project Name</label>
-                    <input type="text" class="form-control" id="project" name="project" required tabindex="1">
+                    <label for="server" class="form-label">Server Name</label>
+                    <input type="text" class="form-control" id="server" name="server" required tabindex="1">
                 </div>
 
                 <div class="mb-3">
-                    <label for="stack" class="form-label">Stack</label>
-                    <input type="text" class="form-control" id="stack" name="stack" tabindex="3">
+                    <label for="operating_system" class="form-label">Operating System</label>
+                    <input type="text" class="form-control" id="operating_system" name="operating_system" tabindex="3">
                 </div>
 
                 <div class="mb-3">
-                    <label for="last_audit" class="form-label">Last Audit</label>
-                    <input type="date" class="form-control" id="last_audit" name="last_audit" tabindex="5">
-                </div>
-
-                <div class="mb-3">
-                    <label for="github_repo" class="form-label">GitHub Repo Link</label>
-                    <input type="url" class="form-control" id="github_repo" name="github_repo" tabindex="7">
-                </div>
-
-                <div class="mb-3">
-                    <label for="special_notes" class="form-label">Notes</label>
-                    <textarea class="form-control" id="special_notes" name="special_notes" tabindex="9"></textarea>
+                    <label for="software_installed" class="form-label">Software Installed</label>
+                    <textarea class="form-control" id="software_installed" name="software_installed" tabindex="5"></textarea>
                 </div>
 
             </div>
 
             <!-- Right Column -->
             <div class="col-md-6">
+
                 <div class="mb-3">
-                    <label for="server" class="form-label">Server(s)</label>
-                    <input type="text" class="form-control" id="server" name="server" required tabindex="2">
+                    <label for="ip_address" class="form-label">IP Address</label>
+                    <input type="text" class="form-control" id="ip_address" name="ip_address" tabindex="2">
                 </div>
 
                 <div class="mb-3">
-                    <label for="user_rights" class="form-label">User Rights</label>
-                    <input type="text" class="form-control" id="user_rights" name="user_rights" tabindex="4">
+                    <label for="idrac" class="form-label">iDRAC Info</label>
+                    <textarea class="form-control" id="idrac" name="idrac" tabindex="4"></textarea>
                 </div>
 
                 <div class="mb-3">
-                    <label for="currently_in_use" class="form-label">Currently in Use</label>
-                    <select class="form-control" id="currently_in_use" name="currently_in_use" tabindex="6">
-                        <option value="yes">Yes</option>
-                        <option value="no">No</option>
-                    </select>
+                    <label for="special_notes" class="form-label">Notes</label>
+                    <textarea class="form-control" id="special_notes" name="special_notes" tabindex="6"></textarea>
                 </div>
-
-                <div class="mb-3">
-                    <label for="trello_link" class="form-label">Trello Link</label>
-                    <input type="url" class="form-control" id="trello_link" name="trello_link" tabindex="8">
-                </div>
-
             </div>
         </div>
 
         <!-- Description -->
         <div class="mb-3">
             <label for="project_purpose" class="form-label">Description</label>
-            <textarea class="form-control" id="project_purpose" name="project_purpose" rows="4" tabindex="10"></textarea>
+            <textarea class="form-control" id="project_purpose" name="project_purpose" rows="4" tabindex="7"></textarea>
         </div>
 
         <!-- Custom Fields -->
@@ -99,7 +82,7 @@
         <div id="custom-fields" class="row"></div>
         <button type="button" class="btn btn-secondary mb-3" onclick="addCustomField()">Add Custom Field</button>
         <div class="text-center">
-            <button type="submit" class="add-project-button">Add Project</button>
+            <button type="submit" class="add-project-button">Add Server</button>
             <button onclick="window.location.href='{% url 'home' %}'" class="cancel-project-button">Cancel</button>
         </div>
     </div>
