@@ -27,6 +27,7 @@ urlpatterns = [
     path('register/', user_views.register, name="register"),
     path('resetPassword/<int:user_id>/', user_views.password_reset, name="resetPassword"),
     path('addProject/', user_views.addProject, name="addProject"),
+    path('addServer/', user_views.addServer, name="addServer"),
     path('', auth_views.LoginView.as_view(template_name="login.html"), name='login'),
     path('logout/', auth_views.LogoutView.as_view(template_name="logout.html"), name='logout'),
     path('group/', group_views.createGroup, name="group"),

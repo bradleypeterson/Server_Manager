@@ -80,3 +80,7 @@ def home(request):
 @login_required
 def addProject(request):
     return render(request, "addProject.html", {})
+
+@login_required
+def addServer(request):
+    return render(request, "addServer.html", {})
