@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import LoginForm, RegistrationForm, ResetPasswordForm
 from django.contrib import messages
+from django.urls import reverse
 
 from .models import AppUser
 
