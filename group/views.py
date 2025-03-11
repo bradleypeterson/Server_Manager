@@ -1,11 +1,17 @@
 from django.shortcuts import render, redirect
+from django.views import View
+
 from .forms import GroupForm
 from .models import Group
 from django.contrib.auth.decorators import login_required
 
 @login_required
-def createGroup(request):
-    if request.method == 'POST':
+class CreateGroupView(View):
+    def get(self, request):
+        form = GroupForm()
+        return render(request, 'group/group.html', {'form': form})
+
+    def post(self, request):
         form = GroupForm(request.POST)
         if form.is_valid():
             group = form.save(commit=False)
@@ -15,12 +21,7 @@ def createGroup(request):
 
             print("Group created successfully!")
             return redirect('group_list')
-
-    else:
-        form = GroupForm()
-
-    return render(request, 'group/group.html', {'form': form})
-
+        return render(request, 'group/group.html', {'form': form})
 
 def groupList(request):
     # Get all groups, you can customize this if needed
