@@ -1,8 +1,13 @@
+import sys
+
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.contrib.auth.password_validation import validate_password
+from django.core.exceptions import ValidationError
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
+from django.utils.safestring import mark_safe
 
 from .forms import LoginForm, RegistrationForm, ResetPasswordForm
 from django.contrib import messages
@@ -65,10 +70,21 @@ def password_reset(request, user_id):
             messages.error(request, 'Passwords do not match')
         else:
             user = get_object_or_404(AppUser, id=user_id)
-            user.set_password(password1)
-            user.save()
-            messages.success(request, 'Password Reset Successful')
-            return redirect('/')
+
+            try:
+                validate_password(password1, user)
+            except ValidationError as e:
+                err_msg = 'Invalid password'
+                for error in e.messages:
+                    err_msg += '<br>' + error
+                messages.error(request, mark_safe(str(err_msg)))
+            else:
+                user.set_password(password1)
+                user.save()
+                messages.success(request, 'Password Reset Successful')
+                return redirect('/')
+
+
     else:
         form = ResetPasswordForm(request.POST)
     return render(request, "resetPassword.html", {'form': form, 'user_id': user_id})
