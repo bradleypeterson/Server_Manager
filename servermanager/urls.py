@@ -20,14 +20,14 @@ from django.conf import settings
 import user.views as user_views
 import group.views as group_views
 from group.views import CreateGroupView
-from user.views import PasswordResetView, RegisterView
+from user.views import RegisterView, password_reset
 
 app_name = 'servermanager'
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('home/', user_views.home, name="home"),
     path('register/', RegisterView.as_view(), name="register"),
-    path('resetPassword/<int:user_id>/', PasswordResetView, name="resetPassword"),
+    path('resetPassword/<int:user_id>/', password_reset, name="resetPassword"),
     path('addProject/', user_views.addProject, name="addProject"),
     path('addServer/', user_views.addServer, name="addServer"),
     path('', auth_views.LoginView.as_view(template_name="login.html"), name='login'),

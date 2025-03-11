@@ -54,11 +54,9 @@ class RegisterView(View):
 #             messages.error(request, 'Login Failed - Try Again')
 #         return render(request, 'login.html', {'form': form})
 
-def PasswordResetView(View):
-    def get(self, request, user_id):
-        form = ResetPasswordForm(request.POST)
-        return render(request, "resetPassword.html", {'form': form, 'user_id': user_id})
-    def post(self, request, user_id):
+@login_required
+def password_reset(request, user_id):
+    if request.method == 'POST':
         form = ResetPasswordForm(request.POST)
         password1 = request.POST['password1']
         password2 = request.POST['password2']
@@ -71,7 +69,9 @@ def PasswordResetView(View):
             user.save()
             messages.success(request, 'Password Reset Successful')
             return redirect('/')
-        return render(request, "resetPassword.html", {'form': form, 'user_id': user_id})
+    else:
+        form = ResetPasswordForm(request.POST)
+    return render(request, "resetPassword.html", {'form': form, 'user_id': user_id})
 
 @login_required
 def home(request):
