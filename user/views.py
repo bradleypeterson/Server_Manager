@@ -8,7 +8,7 @@ from .forms import LoginForm, RegistrationForm, ResetPasswordForm
 from django.contrib import messages
 from django.urls import reverse
 
-from .models import AppUser
+from .models import AppUser, Server, CustomField, Project
 
 
 # Create your views here.
@@ -81,6 +81,41 @@ def home(request):
 def addProject(request):
     return render(request, "addProject.html", {})
 
+
 @login_required
 def addServer(request):
-    return render(request, "addServer.html", {})
+    if request.method == "POST":
+        # Extract data from the form
+        name = request.POST.get("server")
+        operating_system = request.POST.get("operating_system")
+        ip_address = request.POST.get("ip_address")
+        software_installed = request.POST.get("software_installed", "")
+        idrac_info = request.POST.get("idrac", "")
+        notes = request.POST.get("special_notes", "")
+        description = request.POST.get("project_purpose", "")
+
+        # Create and save the server instance
+        server = Server.objects.create(
+            name=name,
+            operating_system=operating_system,
+            ip_address=ip_address,
+            software_installed=software_installed,
+            idrac_info=idrac_info,
+            notes=notes,
+            description=description,
+            created_by=request.user
+        )
+
+        # Handle custom fields
+        field_names = request.POST.getlist("custom_field_names[]")
+        field_values = request.POST.getlist("custom_field_values[]")
+
+        for name, value in zip(field_names, field_values):
+            if name:  # Ensure the field has a name
+                custom_field = CustomField.objects.create(name=name, value=value)
+                server.custom_fields.add(custom_field)
+
+        messages.success(request, "Server added successfully!")
+        return redirect("home")  # Redirect to home page or a different page
+
+    return render(request, "addServer.html")
