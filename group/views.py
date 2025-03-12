@@ -24,8 +24,6 @@ class CreateGroupView(View):
         return render(request, 'group/group.html', {'form': form})
 
 def groupList(request):
-    # Get all groups, you can customize this if needed
     groups = Group.objects.all()
 
-    # Render the group list template with the groups
     return render(request, 'group/groupList.html', {'groups': groups})

@@ -1,6 +1,6 @@
 from django import forms
 from .models import Group
-from user.models import AppUser
+from user.models import AppUser, Project
 
 class GroupForm(forms.ModelForm):
     group_name = forms.CharField(
@@ -23,4 +23,11 @@ class GroupForm(forms.ModelForm):
 
     class Meta:
         model = Group
-        fields = ['group_name', 'project_name', 'description', 'users']
+        fields = ['group_name', 'project_name', 'description', 'users', 'project']
+
+    project = forms.ModelMultipleChoiceField(
+        queryset=Project.objects.all(),
+        widget=forms.CheckboxSelectMultiple(),
+        required=False
+    )
+
