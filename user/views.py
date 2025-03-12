@@ -1,4 +1,4 @@
-import sys
+import sys, sweetify
 
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
@@ -74,10 +74,10 @@ def password_reset(request, user_id):
             try:
                 validate_password(password1, user)
             except ValidationError as e:
-                err_msg = 'Invalid password'
+                err_msg = ''
                 for error in e.messages:
-                    err_msg += '<br>' + error
-                messages.error(request, mark_safe(str(err_msg)))
+                    err_msg += '<br>' + error + '<br>'
+                sweetify.error(request, 'Invalid password', html=mark_safe(err_msg), persistent=True)
             else:
                 user.set_password(password1)
                 user.save()
