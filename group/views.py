@@ -5,7 +5,6 @@ from .forms import GroupForm
 from .models import Group
 from django.contrib.auth.decorators import login_required
 
-@login_required
 class CreateGroupView(View):
     def get(self, request):
         form = GroupForm()

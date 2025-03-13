@@ -4,9 +4,9 @@
 <h1 class="container-fluid course-header display-4 ">Welcome {{ user.username }}!</h1>
 
 <div>
-<p class="lead">
-    <a href="{% url 'logout'  %}" class="btn btn-dark m-3">Logout</a>
-</p>
+<form class="lead" action="/logout" method="post">
+    <button type="submit" class="btn btn-dark m-3">Logout</button>
+</form>
 </div>
 
 {% endblock %}

@@ -25,15 +25,12 @@ app_name = 'servermanager'
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('home/', user_views.home, name="home"),
-    path('register/', user_views.register, name="register"),
-    path('resetPassword/', user_views.password_reset, name="resetPassword"),
+    path('register/', user_views.RegisterView.as_view(), name="register"),
+    path('resetPassword/<int:user_id>/', user_views.password_reset, name="resetPassword"),
     path('addProject/', project_views.AddProjectView.as_view(), name="addProject"),
+    path('addServer/', user_views.addServer, name="addServer"),
     path('', auth_views.LoginView.as_view(template_name="login.html"), name='login'),
     path('logout/', auth_views.LogoutView.as_view(template_name="logout.html"), name='logout'),
-    path('group/', group_views.createGroup, name="group"),
+    path('group/', group_views.CreateGroupView.as_view(), name="group"),
     path('group/list/', group_views.groupList, name='group_list'),
 ]
-#]+static(settings.STATIC_URL, document_root=settings.STATIC_ROOT, show_indexes=True)
-
-print(settings.STATIC_ROOT)
-print(settings.STATIC_URL)

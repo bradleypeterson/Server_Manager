@@ -1,31 +1,8 @@
 {% extends 'base.html' %}
 
 {% block body %}
-<nav class="navbar navbar-expand-lg bg-body-tertiary bg-mid">
-    <div class="container-fluid">
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link disabled" aria-current="page" href="#">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'addProject'  %}">Add Project</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'addServer' %}">Add Server</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'logout'  %}">Logout</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
+{% include 'navbar.html' %}
 <br>
-{% if user.role == 'admin' or user.role == 'faculty' %}
 <h1 class="container-fluid course-header display-4 ">Welcome {{user.username}}!</h1>
 <div>
 
@@ -34,15 +11,17 @@
 
 <div class="container-fluid mt-4">
     <div class="row">
-        <div class="col-md-2">
-            <div class="card-homepage p-3 mb-1 rounded">
-                <div class="card-body">
-                    <h1 class="card-title text-center">{{ server.name }}</h1>
-                    <p class="card-text text-center">{{ server.ip_address }}</p>
-{#                    <a class="btn btn-dark m-2">Edit</a>#}
+        {% for project in projects %}
+            <div class="col-md-2">
+                <div class="card-homepage p-3 mb-1 rounded">
+                    <div class="card-body">
+                        <h1 class="card-title text-center">{{ project.name }}</h1>
+                        <!--<p class="card-text text-center">{{ server.ip_address }}</p>-->
+                        {#                    <a class="btn btn-dark m-2">Edit</a>#}
+                    </div>
                 </div>
             </div>
-        </div>
+        {% endfor %}
     </div>
 </div>
 
@@ -78,12 +57,4 @@
     <a href="{% url 'logout'  %}" class="btn btn-dark m-3">Logout</a>
 </p>
 </div>
-
-{% elif user.role == 'student' %}
-<div class="container">
-    <p>
-        You do not have permission to access this page
-    </p>
-</div>
-{% endif %}
 {% endblock %}

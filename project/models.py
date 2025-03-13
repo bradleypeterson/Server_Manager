@@ -21,6 +21,7 @@ class Project(models.Model):
     # Linked models
     custom_fields = models.ManyToManyField(CustomField, related_name='project_custom_fields', blank=True)
     users = models.ManyToManyField('user.AppUser', related_name='project_users', blank=True)
+    created_by = models.ForeignKey('user.AppUser', on_delete=models.SET_NULL, null=True, blank=True)
 
     def __str__(self):
         return self.name

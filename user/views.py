@@ -13,7 +13,8 @@ from .forms import LoginForm, RegistrationForm, ResetPasswordForm
 from django.contrib import messages
 from django.urls import reverse
 
-from .models import AppUser, Server, CustomField, Project
+from .models import AppUser
+from project.models import Server, CustomField, Project
 
 
 # Create your views here.
@@ -92,7 +93,8 @@ def password_reset(request, user_id):
 @login_required
 def home(request):
     user_servers = Server.objects.filter(created_by=request.user)
-    return render(request, "professorHome.html", {"servers": user_servers})
+    user_projects = Project.objects.filter(created_by=request.user)
+    return render(request, "professorHome.html", {"servers": user_servers, "projects": user_projects})
 
 @login_required
 def addProject(request):
