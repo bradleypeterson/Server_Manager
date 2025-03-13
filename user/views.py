@@ -58,7 +58,3 @@ def password_reset(request):
 @login_required
 def home(request):
     return render(request, "professorHome.html", {})
-
-@login_required
-def addProject(request):
-    return render(request, "addProject.html", {})
