@@ -7,10 +7,6 @@ class GroupForm(forms.ModelForm):
         widget=forms.TextInput(attrs={'placeholder': 'Group Name', 'style': 'width: 300px;', 'class': 'form-control'})
     )
 
-    project_name = forms.CharField(
-        widget=forms.TextInput(attrs={'placeholder': 'Project Name', 'style': 'width: 300px;', 'class': 'form-control'})
-    )
-
     description = forms.CharField(
         widget=forms.Textarea(attrs={'placeholder': 'Enter group description', 'rows': 3, 'class': 'form-control'})
     )
@@ -23,4 +19,4 @@ class GroupForm(forms.ModelForm):
 
     class Meta:
         model = Group
-        fields = ['group_name', 'project_name', 'description', 'users']
+        fields = ['group_name', 'description', 'users']

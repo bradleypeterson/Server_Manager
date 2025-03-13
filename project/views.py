@@ -1,5 +1,5 @@
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic import View
 
 from project.forms import ProjectForm
@@ -17,6 +17,5 @@ class AddProjectView(View):
         return render(request, "addProject.html", {'form': form})
     def post(self, request):
         form = ProjectForm(request.POST or None)
-        print(form.is_valid())
         form.save()
-        return render(request, "addProject.html", {'form': form})
+        return redirect('home')
