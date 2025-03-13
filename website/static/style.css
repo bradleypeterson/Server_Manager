@@ -350,6 +350,16 @@ Clear floats after the columns
     background-color: #4B4945;
 }
 
+.card-homepage {
+    color: #492365;
+    background-color: #F2ECFB;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 250px;
+}
+
 /********ADD PROJECT***********/
 .add-project-hr {
     width: 40%;

@@ -28,9 +28,47 @@
 {% if user.role == 'admin' or user.role == 'faculty' %}
 <h1 class="container-fluid course-header display-4 ">Welcome {{user.username}}!</h1>
 <div>
+
+<br>
+<h3 class="container-fluid course-header display-7">Your Projects</h3>
+
+<div class="container-fluid mt-4">
+    <div class="row">
+        <div class="col-md-2">
+            <div class="card-homepage p-3 mb-1 rounded">
+                <div class="card-body">
+                    <h1 class="card-title text-center">{{ server.name }}</h1>
+                    <p class="card-text text-center">{{ server.ip_address }}</p>
+{#                    <a class="btn btn-dark m-2">Edit</a>#}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <p class="lead">
     <a href="{% url 'addProject'  %}" class="btn btn-dark m-3">Add Project</a>
-    <br>
+</p>
+
+<h3 class="container-fluid course-header display-7">Your Servers</h3>
+
+<div class="container-fluid mt-4">
+    <div class="row">
+        {% for server in servers %}
+        <div class="col-md-2">
+            <div class="card-homepage p-3 mb-1 rounded">
+                <div class="card-body">
+                    <h1 class="card-title text-center">{{ server.name }}</h1>
+                    <p class="card-text text-center">{{ server.ip_address }}</p>
+{#                    <a class="btn btn-dark m-2">Edit</a>#}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<p class="lead">
     <a href="{% url 'addServer'  %}" class="btn btn-dark m-3">Add Server</a>
 {#    <a href="{% url 'group' %}" class="btn btn-dark m-3">Create Group</a>#}
     <br>
