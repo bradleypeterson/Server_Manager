@@ -15,7 +15,7 @@
                     <a class="nav-link disabled" href="#">Add Project</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'addServer' %}">Add Server</a>
+                    <a class="nav-link" href="#">Add Server</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'logout' %}">Logout</a>
@@ -34,70 +34,61 @@
             <!-- Left Column -->
             <div class="col-md-6">
                 <div class="mb-3">
-                    <label for="project" class="form-label">Project Name</label>
-                    <input type="text" class="form-control" id="project" name="project" required tabindex="1">
+                    <label for="name" class="form-label">Project Name</label>
+                    {{ form.name }}
                 </div>
 
                 <div class="mb-3">
                     <label for="stack" class="form-label">Stack</label>
-                    <input type="text" class="form-control" id="stack" name="stack" tabindex="3">
+                    {{ form.stack }}
                 </div>
 
                 <div class="mb-3">
                     <label for="last_audit" class="form-label">Last Audit</label>
-                    <input type="date" class="form-control" id="last_audit" name="last_audit" tabindex="5">
+                    {{ form.last_audit }}
                 </div>
 
-                <div class="mb-3">
-                    <label for="github_repo" class="form-label">GitHub Repo Link</label>
-                    <input type="url" class="form-control" id="github_repo" name="github_repo" tabindex="7">
-                </div>
 
                 <div class="mb-3">
-                    <label for="special_notes" class="form-label">Notes</label>
-                    <textarea class="form-control" id="special_notes" name="special_notes" tabindex="9"></textarea>
+                    <label for="repo_link" class="form-label">Repo Link</label>
+                    {{ form.repo_link }}
                 </div>
 
             </div>
 
             <!-- Right Column -->
             <div class="col-md-6">
-                <div class="mb-3">
-                    <label for="server" class="form-label">Server(s)</label>
-                    <input type="text" class="form-control" id="server" name="server" required tabindex="2">
-                </div>
 
                 <div class="mb-3">
-                    <label for="user_rights" class="form-label">User Rights</label>
-                    <input type="text" class="form-control" id="user_rights" name="user_rights" tabindex="4">
-                </div>
-
-                <div class="mb-3">
-                    <label for="currently_in_use" class="form-label">Currently in Use</label>
-                    <select class="form-control" id="currently_in_use" name="currently_in_use" tabindex="6">
-                        <option value="yes">Yes</option>
-                        <option value="no">No</option>
-                    </select>
+                    <label for="currently_in_use" class="form-check-label">Currently In Use:</label>
+                    <br>
+                    {{ form.currently_in_use }}
                 </div>
 
                 <div class="mb-3">
                     <label for="trello_link" class="form-label">Trello Link</label>
-                    <input type="url" class="form-control" id="trello_link" name="trello_link" tabindex="8">
+                    {{ form.trello_link }}
                 </div>
 
+                <div class="mb-3">
+                    <label for="notes" class="form-label">Notes</label>
+                    {{ form.notes }}
+                </div>
             </div>
         </div>
 
         <!-- Description -->
         <div class="mb-3">
-            <label for="project_purpose" class="form-label">Description</label>
-            <textarea class="form-control" id="project_purpose" name="project_purpose" rows="4" tabindex="10"></textarea>
+            <label for="description" class="form-label">Description</label>
+            {{ form.description }}
         </div>
 
         <!-- Custom Fields -->
+        <!--
         <h3>Custom Fields</h3>
         <div id="custom-fields" class="row"></div>
         <button type="button" class="btn btn-secondary mb-3" onclick="addCustomField()">Add Custom Field</button>
+        -->
         <div class="text-center">
             <button type="submit" class="add-project-button">Add Project</button>
             <button onclick="window.location.href='{% url 'home' %}'" class="cancel-project-button">Cancel</button>

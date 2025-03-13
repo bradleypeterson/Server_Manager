@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'user',
     'website',
     'group',
+    'project',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
