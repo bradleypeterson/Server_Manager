@@ -93,8 +93,7 @@ def password_reset(request, user_id):
 @login_required
 def home(request):
     user_projects = Project.objects.filter(users=request.user)
-    #user_servers = Server.objects.filter(project=user_projects)
-    user_servers = []
+    user_servers = Server.objects.filter(created_by=request.user)
     return render(request, "professorHome.html", {"servers": user_servers, "projects": user_projects})
 
 @login_required
