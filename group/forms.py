@@ -17,6 +17,12 @@ class GroupForm(forms.ModelForm):
         required=False
     )
 
+    projects = forms.ModelMultipleChoiceField(
+        queryset=Project.objects.all(),
+        widget=forms.CheckboxSelectMultiple(),
+        required=False
+    )
+
     class Meta:
         model = Group
-        fields = ['group_name', 'description', 'users']
+        fields = ['group_name', 'description', 'users', 'projects']
