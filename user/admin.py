@@ -6,13 +6,13 @@ class CustomUserAdmin(UserAdmin):
     model = AppUser
 
     fieldsets = (
-        ('Personal info', {'fields': ('first_name', 'last_name', 'username', 'password', 'role',)}),
+        ('Personal info', {'fields': ('first_name', 'last_name', 'username', 'password')}),
     )
 
     add_fieldsets = (
         (None, {
             'classes': ('wide',),
-            'fields': ('first_name', 'last_name', 'username', 'password1', 'password2', 'role',),
+            'fields': ('first_name', 'last_name', 'username', 'password1', 'password2'),
         }),
     )
 
