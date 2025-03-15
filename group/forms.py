@@ -1,6 +1,7 @@
 from django import forms
 from .models import Group
 from user.models import AppUser
+from project.models import Project
 
 class GroupForm(forms.ModelForm):
     group_name = forms.CharField(
