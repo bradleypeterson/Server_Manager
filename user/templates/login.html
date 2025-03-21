@@ -1,10 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Server Manager</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+</head>
 {% extends "base.html" %}
 {% block body %}
 <body>
 <br>
 <form class="login-form" action="./" method="POST">
     {% csrf_token %}
-            <div class="text-center login-form__content">
+            <div class="text-center login-form__content ">
                 <h3 class="course-header">Instructor Login</h3>
                 <hr class="card">
                 <div class="login-form__header">Login to your account</div>
@@ -34,5 +41,4 @@
 
 
 
-</p>
 </html>
