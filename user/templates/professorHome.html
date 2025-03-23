@@ -3,17 +3,42 @@
 {% block body %}
 {% include 'navbar.html' %}
 <br>
-<h1 class="container-fluid course-header display-4 ">Welcome {{user.username}}!</h1>
-<div>
-
+<h1 class="text-center container-fluid course-header display-5">Welcome {{user.username}}!</h1>
 <br>
-<h3 class="container-fluid course-header display-7">Your Projects</h3>
 
-<div class="container-fluid mt-4">
+<div class="flex-container">
+    <div class="d-flex flex-row">
+        <div class="ps-4">
+            <h3 class="course-header display-7 ms-5">Your Projects</h3>
+        </div>
+        <div class="ps-4">
+            <a href="{% url 'addProject'  %}" class="btn btn-dark">Add Project</a>
+        </div>
+        <div class="ps-4 flex-grow-1">
+            <a href="{% url 'group' %}" class="btn btn-dark">Create Group</a>
+        </div>
+        <div class="ps-4">
+            <a href="{% url 'resetPassword' user.id %}" class="btn btn-dark">Reset Password</a>
+        </div>
+        <div class="ps-4">
+            <form action="/logout/" method="post" id="logout-form">
+                {% csrf_token %}
+                <button
+                    type="button" class="btn btn-dark me-5"
+                    onclick="document.getElementById('logout-form').submit()">Logout
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<hr class="mx-5 card">
+
+<div class="flex-container mx-5">
     <div class="row">
         {% for project in projects %}
-            <div class="col-md-2">
-                <div class="card-homepage p-3 mb-1 rounded">
+            <div class="col-md-2 ">
+                <div class="card-homepage p-3 mb-4 rounded">
                     <div class="card-body">
                         <h1 class="card-title text-center">{{ project.name }}</h1>
                         {#                    <a class="btn btn-dark m-2">Edit</a>#}
@@ -24,18 +49,27 @@
     </div>
 </div>
 
-<p class="lead">
-    <a href="{% url 'addProject'  %}" class="btn btn-dark m-3">Add Project</a>
-    <a href="{% url 'group' %}" class="btn btn-dark m-3">Create Group</a>
-</p>
+<br>
+<br>
 
-<h3 class="container-fluid course-header display-7">Your Servers</h3>
+<div class="flex-container">
+    <div class="d-flex flex-row">
+        <div class="ps-4">
+            <h3 class="container-fluid course-header display-7 ms-5">Your Servers</h3>
+        </div>
+        <div class="ps-4">
+            <a href="{% url 'addServer'  %}" class="btn btn-dark">Add Server</a>
+        </div>
+    </div>
+</div>
 
-<div class="container-fluid mt-4">
+<hr class="mx-5 card">
+
+<div class="flex-container mx-5">
     <div class="row">
         {% for server in servers %}
         <div class="col-md-2">
-            <div class="card-homepage p-3 mb-1 rounded">
+            <div class="card-homepage p-3 mb-4 rounded">
                 <div class="card-body">
                     <h1 class="card-title text-center">{{ server.name }}</h1>
                     <p class="card-text text-center">{{ server.ip_address }}</p>
@@ -45,22 +79,5 @@
         </div>
         {% endfor %}
     </div>
-</div>
-
-<p class="lead">
-    <a href="{% url 'addServer'  %}" class="btn btn-dark m-3">Add Server</a>
-{#    <a href="{% url 'group' %}" class="btn btn-dark m-3">Create Group</a>#}
-    <br>
-    <a href="{% url 'resetPassword' user.id %}" class="btn btn-dark m-3">Reset Password</a>
-    <br>
-{#    <a href="{% url 'logout'  %}" class="btn btn-dark m-3">Logout</a>#}
-    <form action="/logout/" method="post" id="logout-form">
-        {% csrf_token %}
-        <button
-            type="button" class="btn btn-dark m-3"
-            onclick="document.getElementById('logout-form').submit()">Logout</button>
-{#        <a class="nav-link" onclick="document.getElementById('logout-form').submit()">Logout</a>#}
-    </form>
-</p>
 </div>
 {% endblock %}
