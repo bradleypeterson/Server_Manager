@@ -69,13 +69,14 @@
     <div class="row">
         {% for server in servers %}
         <div class="col-md-2">
-            <div class="card-homepage p-3 mb-4 rounded">
-                <div class="card-body">
-                    <h1 class="card-title text-center">{{ server.name }}</h1>
-                    <p class="card-text text-center">{{ server.ip_address }}</p>
-{#                    <a class="btn btn-dark m-2">Edit</a>#}
+            <a href="{% url 'viewServer' server.id %}" class="text-decoration-none text-dark">
+                <div class="card-homepage p-3 mb-4 rounded">
+                    <div class="card-body">
+                        <h1 class="card-title text-center">{{ server.name }}</h1>
+                        <p class="card-text text-center">{{ server.ip_address }}</p>
+                    </div>
                 </div>
-            </div>
+            </a>
         </div>
         {% endfor %}
     </div>
