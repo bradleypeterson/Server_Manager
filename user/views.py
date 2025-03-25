@@ -97,9 +97,15 @@ def home(request):
 def viewServer(request, server_id):
     server = get_object_or_404(Server, id=server_id)
 
-    form = ServerForm(request.POST or None, instance=server)
-    cleaned_data = form.cleaned_data if form.is_valid() else None
-    print(form.is_valid())
-    print(cleaned_data)
-    print(form)
+    if request.method == "POST":
+        form = ServerForm(request.POST, instance=server)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Server updated successfully!")
+            return redirect('home')
+        else:
+            messages.error(request, "Update failed. Please correct the errors below.")
+    else:
+        form = ServerForm(instance=server)
+
     return render(request, "addServer.html", {"form": form, "edit": True})
