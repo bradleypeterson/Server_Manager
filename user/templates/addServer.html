@@ -6,7 +6,7 @@
 <form action="./" method="POST">
 <div class="container mt-5 mb-5">
     <div class="p-4 shadow-sm login-form__content add-project-form">
-        <h1 class="mb-3 text-center course-header">New Server</h1>
+        <h1 class="mb-3 text-center course-header" id="header">New Server</h1>
         <hr class="add-project-hr">
         {% csrf_token %}
 
@@ -36,25 +36,23 @@
             <div class="col-md-6">
 
                 <div class="mb-3">
-                    <label for="server" class="form-label">Server Name</label>
-                    <input type="text" class="form-control" id="name" name="name" required tabindex="1">
+                    <label for="name" class="form-label">Server Name</label>
+                    {{ form.name }}
                 </div>
 
                 <div class="mb-3">
                     <label for="operating_system" class="form-label">Operating System</label>
-                    <select class="form-control" id="operating_system" name="operating_system" tabindex="3">
-                        <option value="" disabled selected>Select OS</option>
-                        <option value="windows">Windows</option>
-                        <option value="linux">Linux</option>
-                        <option value="other">Other</option>
-                    </select>
+                    {{ form.operating_system }}
                 </div>
 
                 <div class="mb-3">
                     <label for="software_installed" class="form-label">Software Installed</label>
-                    <textarea class="form-control" id="software_installed" name="software_installed" tabindex="5"></textarea>
+                    {{ form.software_installed }}
                 </div>
-
+                <div class="mb-3">
+                    <label for="project" class="form-label">Project</label>
+                    {{ form.project }}
+                </div>
             </div>
 
             <!-- Right Column -->
@@ -62,17 +60,17 @@
 
                 <div class="mb-3">
                     <label for="ip_address" class="form-label">IP Address</label>
-                    <input type="text" class="form-control" id="ip_address" name="ip_address" tabindex="2">
+                    {{ form.ip_address }}
                 </div>
 
                 <div class="mb-3">
-                    <label for="idrac" class="form-label">iDRAC Info</label>
-                    <textarea class="form-control" id="idrac" name="idrac" tabindex="4"></textarea>
+                    <label for="idrac_info" class="form-label">iDRAC Info</label>
+                    {{ form.idrac_info }}
                 </div>
 
                 <div class="mb-3">
-                    <label for="special_notes" class="form-label">Notes</label>
-                    <textarea class="form-control" id="special_notes" name="special_notes" tabindex="6"></textarea>
+                    <label for="notes" class="form-label">Notes</label>
+                    {{ form.notes }}
                 </div>
             </div>
         </div>
@@ -80,7 +78,7 @@
         <!-- Description -->
         <div class="mb-3">
             <label for="project_purpose" class="form-label">Description</label>
-            <textarea class="form-control" id="project_purpose" name="project_purpose" rows="4" tabindex="7"></textarea>
+            {{ form.description }}
         </div>
 
         <!-- Custom Fields -->
@@ -111,5 +109,11 @@ function addCustomField() {
 function removeCustomField(button) {
     button.parentElement.remove();
 }
+
+
+{% if edit %}
+    document.getElementById("header").innerText = document.getElementById("id_name").value
+{% endif %}
+
 </script>
 {% endblock %}

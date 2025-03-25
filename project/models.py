@@ -3,6 +3,13 @@ from django.db import models
 class CustomField(models.Model):
     name = models.CharField(max_length=100)
     value = models.CharField(max_length=100)
+    def __str__(self):
+        return self.name
+
+class OperatingSystem(models.Model):
+    name = models.CharField(max_length=100)
+    def __str__(self):
+        return self.name
 
 # Create your models here.
 class Project(models.Model):
@@ -33,7 +40,7 @@ class Server(models.Model):
     date_updated = models.DateTimeField(auto_now=True)
     # Basic info
     name = models.CharField(max_length=100)
-    operating_system = models.CharField(max_length=100)
+    operating_system = models.ForeignKey('OperatingSystem', on_delete=models.SET_NULL, null=True, blank=True, related_name='server_operating_system')
     ip_address = models.GenericIPAddressField()
     software_installed = models.TextField(blank=True, null=True)
     idrac_info = models.TextField(blank=True, null=True)

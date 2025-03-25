@@ -7,16 +7,6 @@ from project.forms import ProjectForm
 from project.forms import ServerForm
 
 # Create your views here.
-@login_required
-def add_project(request):
-    form = ProjectForm(request.POST or None)
-    return render(request, "addProject.html", {})
-
-@login_required
-def add_server(request):
-    form = ServerForm(request.POST or None)
-    return render(request, "addServer.html", {})
-
 class AddProjectView(View):
     def get(self, request):
         form = ProjectForm(request.POST or None)
