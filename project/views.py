@@ -12,9 +12,16 @@ class AddProjectView(View):
         form = ProjectForm(request.POST or None)
         return render(request, "addProject.html", {'form': form})
     def post(self, request):
-        form = ProjectForm(request.POST or None)
-        form.save()
-        return redirect('home')
+        form = ProjectForm(request.POST)
+        if form.is_valid():
+            project = form.save(commit=False)  # Do not save yet
+            project.created_by = request.user  # Set created_by
+            project.save()  # Now save the instance
+            messages.success(request, "Project added successfully!")
+            return redirect('home')
+        else:
+            messages.error(request, "Form submission failed. Please correct the errors below.")
+            return render(request, "addProject.html", {'form': form})
 
 class AddServerView(View):
     def get(self, request):

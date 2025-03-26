@@ -15,7 +15,7 @@ from django.contrib import messages
 from django.urls import reverse
 
 from .models import AppUser
-from project.models import Server, CustomField, Project
+from project.models import Server, Project
 
 
 # Create your views here.
@@ -89,7 +89,11 @@ def password_reset(request, user_id):
 
 @login_required
 def home(request):
-    user_projects = Project.objects.filter(users=request.user)
+    user_projects = Project.objects.filter(created_by=request.user)
+    for project in  Project.objects.all():
+        print(project.name)
+        for u in project.users.all():
+            print(u.username)
     user_servers = Server.objects.filter(created_by=request.user)
     return render(request, "professorHome.html", {"servers": user_servers, "projects": user_projects})
 

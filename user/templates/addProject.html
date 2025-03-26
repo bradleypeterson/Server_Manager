@@ -8,6 +8,28 @@
         <h1 class="mb-3 text-center course-header">New Project</h1>
         <hr class="add-project-hr">
         {% csrf_token %}
+
+        <!-- Display Django Messages -->
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert {% if message.tags == 'error' %}alert-danger{% else %}alert-success{% endif %}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        <!-- Display Form Errors -->
+        {% if form.errors %}
+            <div class="alert alert-danger">
+                <strong>Please fix the following errors:</strong>
+                <ul>
+                    {% for field, errors in form.errors.items %}
+                        <li><strong>{{ field|title }}:</strong> {{ errors|join:", " }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+
         <div class="row">
             <!-- Left Column -->
             <div class="col-md-6">
@@ -68,14 +90,6 @@
         <div class="mb-3">
             <label for="description" class="form-label">Description</label>
             {{ form.description }}
-        </div>
-
-        <!-- Custom Fields -->
-        <!--
-        <h3>Custom Fields</h3>
-        <div id="custom-fields" class="row"></div>
-        <button type="button" class="btn btn-secondary mb-3" onclick="addCustomField()">Add Custom Field</button>
-        -->
         <div class="text-center">
             <button type="submit" class="add-project-button">Add Project</button>
             <button onclick="window.location.href='{% url 'home' %}'" class="cancel-project-button">Cancel</button>
@@ -83,22 +97,4 @@
     </div>
 </div>
 </form>
-
-<script>
-function addCustomField() {
-    let container = document.getElementById("custom-fields");
-    let div = document.createElement("div");
-    div.classList.add("col-md-6", "mb-3");
-    div.innerHTML = `
-        <input type="text" class="form-control" name="custom_field_names[]" placeholder="Field Name" required>
-        <input type="text" class="form-control" name="custom_field_values[]" placeholder="Field Value">
-        <button type="button" class="btn btn-danger btn-sm" onclick="removeCustomField(this)">Remove</button>
-    `;
-    container.appendChild(div);
-}
-
-function removeCustomField(button) {
-    button.parentElement.remove();
-}
-</script>
 {% endblock %}
