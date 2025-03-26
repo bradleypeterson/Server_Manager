@@ -54,7 +54,7 @@
                     {{ form.project }}
                 </div>
                 <div class="mb-3">
-                    <button type="button" class="btn btn-primary" onclick="ping(event)">Ping</button>
+                    <button type="button" class="btn btn-primary" onclick="ping()">Ping</button>
                     <span id="ping_result"></span>
                 </div>
             </div>
@@ -122,10 +122,15 @@ function removeCustomField(button) {
 {% endif %}
 
 function ping(button) {
-    event.preventDefault();
+    console.log("Ping button clicked!");
 
-let ip_address = document.getElementById("ip_address").value;
+    let ip_address_element = document.getElementById("ip_address");
     let ping_result = document.getElementById("ping_result");
+    console.log("IP Address Element:", ip_address_element);
+
+    let ip_address = ip_address_element.value;
+    console.log("IP Addy: ",ip_address);
+
 
     if (!ip_address) {
         ping_result.textContent = "Please enter an IP address";

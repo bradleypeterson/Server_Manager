@@ -34,5 +34,5 @@ urlpatterns = [
     path('logout/', auth_views.LogoutView.as_view(template_name="logout.html"), name='logout'),
     path('group/', group_views.CreateGroupView.as_view(), name="group"),
     path('group/list/', group_views.groupList, name='group_list'),
-    path('pingServer', user_views.ping_server, name="pingServer"),
+    path('pingServer/', user_views.ping_server, name="pingServer"),
 ]
