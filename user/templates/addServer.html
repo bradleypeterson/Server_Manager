@@ -124,7 +124,7 @@ function removeCustomField(button) {
 function ping(button) {
     console.log("Ping button clicked!");
 
-    let ip_address_element = document.getElementById("ip_address");
+    let ip_address_element = document.getElementById("id_ip_address");
     let ping_result = document.getElementById("ping_result");
     console.log("IP Address Element:", ip_address_element);
 
@@ -137,6 +137,9 @@ function ping(button) {
         ping_result.style.color = "red";
         return;
     }
+
+    ping_result.textContent = "Pinging...";
+    ping_result.style.color = "black";
 
     fetch("{% url 'pingServer' %}", {
         method: "POST",
