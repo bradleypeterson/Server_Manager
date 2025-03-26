@@ -53,6 +53,10 @@
                     <label for="project" class="form-label">Project</label>
                     {{ form.project }}
                 </div>
+                <div class="mb-3">
+                    <button type="button" class="btn btn-primary" onclick="ping(event)">Ping</button>
+                    <span id="ping_result"></span>
+                </div>
             </div>
 
             <!-- Right Column -->
@@ -116,6 +120,42 @@ function removeCustomField(button) {
     document.getElementById("submit").innerText = "Save Changes"
     document.getElementById("cancel").innerText = "Return to Homepage"
 {% endif %}
+
+function ping(button) {
+    event.preventDefault();
+
+let ip_address = document.getElementById("ip_address").value;
+    let ping_result = document.getElementById("ping_result");
+
+    if (!ip_address) {
+        ping_result.textContent = "Please enter an IP address";
+        ping_result.style.color = "red";
+        return;
+    }
+
+    fetch("{% url 'pingServer' %}", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "X-CSRFToken": "{{ csrf_token }}",
+        },
+        body: JSON.stringify({ ip_address: ip_address })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.status === "active") {
+            ping_result.textContent = "Active";
+            ping_result.style.color = "green";
+        } else {
+            ping_result.textContent = "Inactive";
+            ping_result.style.color = "red";
+        }
+    })
+    .catch(error => {
+        ping_result.textContent = "Error!";
+        ping_result.style.color = "red";
+    });
+}
 
 </script>
 {% endblock %}

@@ -8,6 +8,9 @@ from django.core.exceptions import ValidationError
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
 from django.utils.safestring import mark_safe
+import json, subprocess, os
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
 
 from project.forms import ServerForm
 from .forms import LoginForm, RegistrationForm, ResetPasswordForm
@@ -113,3 +116,53 @@ def viewServer(request, server_id):
         form = ServerForm(instance=server)
 
     return render(request, "addServer.html", {"form": form, "edit": True})
+
+@csrf_exempt
+def ping_server(request):
+    if request.method == "POST":
+        try:
+            data = json.loads(request.body)
+            ip_address = data.get("ip_address")
+
+            if not ip_address:
+                return JsonResponse({"error": "No IP address provided"}, status=400)
+
+            if os.name == "nt":
+                command = ["ping", "-n", "1", ip_address]
+            else:
+                command = ["ping", "-c", "1", ip_address]
+
+            result = subprocess.run(command, capture_output=True, text=True)
+
+            print(f"Return code: {result.returncode}")
+            print(f"Output:\n{result.stdout}")
+            print(f"Error:\n{result.stderr}")
+
+            if result.returncode == 0:
+                output = result.stdout.splitlines()
+
+                time_line = [line for line in output if "time=" in line or "time<" in line]
+                if time_line:
+                    time = time_line[0].split("time=")[-1].split(" ")[0] if "time=" in time_line[0] else \
+                    time_line[0].split("time<")[-1].split(" ")[0]
+                    return JsonResponse({
+                        "status": "active",
+                        "time": time,
+                        "message": "Ping successful"
+                    })
+                else:
+                    return JsonResponse({
+                        "status": "inactive",
+                        "message": "Ping failed - no time data"
+                    })
+            else:
+                return JsonResponse({
+                    "status": "inactive",
+                    "message": "Ping failed",
+                    "error": result.stderr
+                })
+
+        except Exception as e:
+            return JsonResponse({"error": str(e)}, status=500)
+
+    return JsonResponse({"error": "Invalid request"}, status=400)
