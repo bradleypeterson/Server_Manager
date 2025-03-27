@@ -12,7 +12,7 @@ import json, subprocess, os
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 
-from project.forms import ServerForm
+from project.forms import ServerForm, ProjectForm
 from .forms import LoginForm, RegistrationForm, ResetPasswordForm
 from django.contrib import messages
 from django.urls import reverse
@@ -99,6 +99,24 @@ def home(request):
             print(u.username)
     user_servers = Server.objects.filter(created_by=request.user)
     return render(request, "professorHome.html", {"servers": user_servers, "projects": user_projects})
+
+
+@login_required
+def viewProject(request, project_id):
+    project = get_object_or_404(Project, id=project_id)
+
+    if request.method == "POST":
+        form = ProjectForm(request.POST, instance=project)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Project updated successfully!")
+            return redirect('home')
+        else:
+            messages.error(request, "Update failed. Please correct the errors below.")
+    else:
+        form = ProjectForm(instance=project)
+
+    return render(request, "addProject.html", {"form": form, "edit": True})
 
 @login_required
 def viewServer(request, server_id):

@@ -1,15 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Server Manager</title>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
-</head>
+
 {% extends "base.html" %}
 {% block body %}
 {% include 'navbar.html' %}
-<body>
     <div class="container mt-4">
         <h1>Group List</h1>
         <ul class="list-group">
@@ -74,6 +66,5 @@
             modal.find('#groupProjects').text(projects);
         });
     </script>
-</body>
 {% endblock %}
 </html>

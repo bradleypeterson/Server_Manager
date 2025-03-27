@@ -38,10 +38,15 @@
     <div class="row">
         {% for project in projects %}
             <div class="col-md-2 ">
-                <div class="card-homepage p-3 mb-4 rounded">
+                <div class="card-homepage p-3 mb-4 rounded" data-toggle="modal" data-target="#projectModal"
+                     data-project-id="{{ project.id }}"
+                     data-project-name="{{ project.name }}"
+                     data-description="{{ project.description }}"
+                     data-stack="{{ project.stack }}"
+                     data-repo-link="{{ project.repo_link }}"
+                     data-trello-link="{{ project.trello_link }}">
                     <div class="card-body">
                         <h1 class="card-title text-center">{{ project.name }}</h1>
-                        {#                    <a class="btn btn-dark m-2">Edit</a>#}
                     </div>
                 </div>
             </div>
@@ -69,7 +74,15 @@
     <div class="row">
         {% for server in servers %}
         <div class="col-md-2">
-            <a href="{% url 'viewServer' server.id %}" class="text-decoration-none text-dark">
+            <a href="#" class="text-decoration-none text-dark" data-toggle="modal" data-target="#serverModal"
+               data-server-id="{{ server.id }}"
+               data-server-name="{{ server.name }}"
+               data-description="{{ server.description }}"
+               data-ip-address="{{ server.ip_address }}"
+               data-operating-system="{{ server.operating_system }}"
+               data-software="{{ server.software_installed }}"
+               data-idrac-info="{{ server.idrac_info }}"
+               data-notes="{{ server.notes }}">
                 <div class="card-homepage p-3 mb-4 rounded">
                     <div class="card-body">
                         <h1 class="card-title text-center">{{ server.name }}</h1>
@@ -81,4 +94,168 @@
         {% endfor %}
     </div>
 </div>
+
+<!-- Project Modal -->
+<div class="modal fade" id="projectModal" tabindex="-1" role="dialog" aria-labelledby="projectModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="projectModalLabel">Project Details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h4 id="projectName"></h4>
+                <p><strong>Description:</strong> <span id="projectDescription"></span></p>
+                <p><strong>Stack:</strong> <span id="projectStack"></span></p>
+                <p><strong>Repo Link:</strong> <a href="#" id="projectRepoLink" target="_blank">View Repo</a></p>
+                <p><strong>Trello Link:</strong> <a href="#" id="projectTrelloLink" target="_blank">View Trello</a></p>
+            </div>
+            <div class="modal-footer">
+                <a id="editProjectButton" href="#" class="btn btn-primary">Edit</a>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Server Modal -->
+<div class="modal fade" id="serverModal" tabindex="-1" role="dialog" aria-labelledby="serverModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="serverModalLabel">Server Details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h4 id="serverName"></h4>
+                <p><strong>Description:</strong> <span id="serverDescription"></span></p>
+                    <p><strong>IP Address:</strong> <span id="serverIPAddress"></span></p>
+
+                <p><strong>Operating System:</strong> <span id="serverOS"></span></p>
+                <p><strong>Software Installed:</strong> <span id="serverSoftware"></span></p>
+                <p><strong>iDRAC Info:</strong> <span id="serverIdracInfo"></span></p>
+                <p><strong>Notes:</strong> <span id="serverNotes"></span></p>
+            </div>
+            <div class="modal-footer">
+
+                <div class="d-flex w-50" style="margin-left: 25px">
+                    <button id="pingButton" type="button" class="btn btn-primary w-50" style="margin-right: 25px" onclick="ping()">Ping</button>
+                    <span id="ping_result" class="p-1 w-50"></span>
+                </div>
+
+                <a id="editServerButton" href="#" class="btn btn-primary">Edit</a>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script>
+    $('#projectModal').on('show.bs.modal', (event) => {
+        let button = $(event.relatedTarget); // The button that triggered the modal
+        let projectName = button.data('project-name');
+        let description = button.data('description');
+        let stack = button.data('stack');
+        let repoLink = button.data('repo-link');
+        let trelloLink = button.data('trello-link');
+        let id = button.data('project-id');
+
+        document.getElementById('projectName').innerText = projectName;
+        document.getElementById('projectDescription').innerText = description;
+        document.getElementById('projectStack').innerText = stack;
+        document.getElementById('projectRepoLink').href = repoLink ? repoLink : "#"
+        document.getElementById('projectRepoLink').innerText = repoLink ? 'View Repo' : 'No Repo Link'
+        document.getElementById('projectTrelloLink').href = trelloLink ? trelloLink : "#"
+        document.getElementById('projectTrelloLink').innerText = trelloLink ? 'View Trello' : 'No Trello Link'
+        document.getElementById('editProjectButton').href = "/project/"+id;
+    });
+
+
+
+    $('#serverModal').on('show.bs.modal', (event) => {
+        let button = $(event.relatedTarget); // The button that triggered the modal
+
+        // Get the data from the server card
+        let serverName = button.data('server-name');
+        let description = button.data('description');
+        let ipAddress = button.data('ip-address');
+        let operatingSystem = button.data('operating-system');
+        let softwareInstalled = button.data('software');
+        let idracInfo = button.data('idrac-info');
+        let notes = button.data('notes');
+        let id = button.data('server-id');
+
+        let pingButton = document.getElementById("pingButton");
+        let ping_result = document.getElementById("ping_result");
+        ping_result.textContent = "";
+
+        pingButton.onclick = null;
+
+        pingButton.addEventListener('click', () => {
+            ping(ipAddress)
+        })
+
+
+        document.getElementById('serverName').innerText = serverName;
+        document.getElementById('serverDescription').innerText = description;
+        document.getElementById('serverIPAddress').innerText = ipAddress;
+        document.getElementById('serverOS').innerText = operatingSystem;
+        document.getElementById('serverSoftware').innerText = softwareInstalled;
+        document.getElementById('serverIdracInfo').innerText = idracInfo;
+        document.getElementById('serverNotes').innerText = notes;
+        document.getElementById('editServerButton').href = "/server/"+id;
+    });
+
+
+    function ping(ip_address) {
+        console.log("Ping button clicked!");
+
+        let ping_result = document.getElementById("ping_result");
+
+        console.log("IP Addy: ",ip_address);
+
+        if (!ip_address) {
+            ping_result.textContent = "Please enter an IP address";
+            ping_result.style.color = "red";
+            return;
+        }
+
+        ping_result.textContent = "Pinging...";
+        ping_result.style.color = "black";
+
+        fetch("{% url 'pingServer' %}", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "X-CSRFToken": "{{ csrf_token }}",
+            },
+            body: JSON.stringify({ ip_address: ip_address })
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === "active") {
+                    ping_result.textContent = "Active";
+                    ping_result.style.color = "green";
+                } else {
+                    ping_result.textContent = "Inactive";
+                    ping_result.style.color = "red";
+                }
+            })
+            .catch(error => {
+                ping_result.textContent = "Error!";
+                ping_result.style.color = "red";
+            });
+    }
+
+
+</script>
 {% endblock %}

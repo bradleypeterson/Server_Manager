@@ -30,6 +30,7 @@ urlpatterns = [
     path('addProject/', project_views.AddProjectView.as_view(), name="addProject"),
     path('addServer/', project_views.AddServerView.as_view(), name="addServer"),
     path('server/<int:server_id>/', user_views.viewServer, name="viewServer"),
+    path('project/<int:project_id>/', user_views.viewProject, name="viewProject"),
     path('', user_views.LoginView.as_view(), name='login'),
     path('logout/', auth_views.LogoutView.as_view(template_name="logout.html"), name='logout'),
     path('group/', group_views.CreateGroupView.as_view(), name="group"),
