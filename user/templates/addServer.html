@@ -88,37 +88,11 @@
             <label for="project_purpose" class="form-label">Description</label>
             {{ form.description }}
         </div>
-
-        <!-- Custom Fields -->
-        <h3>Custom Fields</h3>
-        <div id="custom-fields" class="row"></div>
-        <button type="button" class="btn btn-secondary mb-3" onclick="addCustomField()">Add Custom Field</button>
-        <div class="text-center">
-            <button id="submit" type="submit" class="add-project-button">Add Server</button>
-            <button id="cancel" type="button" onclick="window.location.href='{% url 'home' %}'" class="cancel-project-button">Cancel</button>
-        </div>
     </div>
 </div>
 </form>
 
 <script>
-function addCustomField() {
-    let container = document.getElementById("custom-fields");
-    let div = document.createElement("div");
-    div.classList.add("col-md-6", "mb-3");
-    div.innerHTML = `
-        <input type="text" class="form-control" name="custom_field_names[]" placeholder="Field Name" required>
-        <input type="text" class="form-control" name="custom_field_values[]" placeholder="Field Value">
-        <button type="button" class="btn btn-danger btn-sm" onclick="removeCustomField(this)">Remove</button>
-    `;
-    container.appendChild(div);
-}
-
-function removeCustomField(button) {
-    button.parentElement.remove();
-}
-
-
 {% if edit %}
     document.getElementById("header").innerText = "Edit Server"
     document.getElementById("submit").innerText = "Save Changes"
