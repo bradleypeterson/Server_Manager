@@ -11,14 +11,13 @@ from django.utils.safestring import mark_safe
 import json, subprocess, os
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-
 from project.forms import ServerForm, ProjectForm
 from .forms import LoginForm, RegistrationForm, ResetPasswordForm
 from django.contrib import messages
 from django.urls import reverse
-
 from .models import AppUser
 from project.models import Server, Project
+from django.db.models import Q
 
 
 # Create your views here.
@@ -92,14 +91,20 @@ def password_reset(request, user_id):
 
 @login_required
 def home(request):
-    user_projects = Project.objects.filter(created_by=request.user)
-    for project in  Project.objects.all():
-        print(project.name)
-        for u in project.users.all():
-            print(u.username)
-    user_servers = Server.objects.filter(created_by=request.user)
-    return render(request, "professorHome.html", {"servers": user_servers, "projects": user_projects})
+    # Get projects where the user is directly linked, in a group linked to the project, or is the creator.
+    user_projects = Project.objects.filter(
+        Q(users=request.user) |
+        Q(groups__users=request.user) |
+        Q(created_by=request.user)
+    ).distinct()
 
+    # Get servers that are linked to any of these projects or directly created by the user.
+    user_servers = Server.objects.filter(
+        Q(project__in=user_projects) |
+        Q(created_by=request.user)
+    ).distinct()
+
+    return render(request, "professorHome.html", {"projects": user_projects, "servers": user_servers})
 
 @login_required
 def viewProject(request, project_id):
