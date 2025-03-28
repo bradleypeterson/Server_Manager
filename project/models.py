@@ -12,7 +12,7 @@ class Project(models.Model):
     date_updated = models.DateTimeField(auto_now=True)
     name = models.CharField(max_length=100)
     stack = models.TextField(blank=True, null=True)
-    last_audit = models.DateField()
+    last_audit = models.DateField(blank=True, null=True)
     currently_in_use = models.BooleanField(default=True)
     repo_link =  models.URLField(blank=True, null=True)
     trello_link = models.URLField(blank=True, null=True)
