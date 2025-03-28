@@ -88,6 +88,12 @@
             <label for="project_purpose" class="form-label">Description</label>
             {{ form.description }}
         </div>
+
+        <div class="text-center">
+            <button id="submit" type="submit" class="add-project-button">Add Server</button>
+            <button id="cancel" type="button" onclick="window.location.href='{% url 'home' %}'" class="cancel-project-button">Cancel</button>
+        </div>
+
     </div>
 </div>
 </form>
