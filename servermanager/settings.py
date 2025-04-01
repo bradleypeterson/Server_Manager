@@ -96,6 +96,9 @@ AUTH_PASSWORD_VALIDATORS = [
     },
     {
         'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'OPTIONS': {
+            'min_length': 16,
+        }
     },
     {
         'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
@@ -103,6 +106,12 @@ AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
+    {
+        'NAME': 'servermanager.validators.SpecialCharacterCheckValidator',
+        'OPTIONS': {
+            'char_count': 1,
+        }
+    }
 ]
 
 CSRF_TRUSTED_ORIGINS = ["https://cameronmckay.xyz"]
