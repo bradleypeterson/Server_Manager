@@ -428,6 +428,55 @@ Clear floats after the columns
     background: #b4b1ac;
 }
 
+/*****GroupCreation****/
+.add-group-button {
+    display: block;
+    width: 250px;
+    height: 60px;
+    margin: 15px auto;
+    padding: 15px 25px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #ffffff;
+    background: #8446AC;
+    border: none;
+    outline: none;
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.add-group-button:hover {
+    background: #492365;
+}
+
+.add-group-button:active {
+    background: #008067;
+}
+
+.cancel-group-button {
+    display: block;
+    width: 200px;
+    height: 50px;
+    margin: 10px auto;
+    padding: 12px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #ffffff;
+    background: #8446AC;
+    border: none;
+    outline: none;
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: center;
+}
+.cancel-project-button:hover {
+    background: #492365;
+}
+.cancel-project-button:active {
+    background: #008067;
+}
+
 /* End of custom CSS */
 
 a.navbar-brand {

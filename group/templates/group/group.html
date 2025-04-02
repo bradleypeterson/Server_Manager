@@ -1,47 +1,79 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Server Manager</title>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-</head>
 {% extends "base.html" %}
+
 {% block body %}
 {% include 'navbar.html' %}
-<body>
-    <div class="container mt-4">
-        <h2>Create a New Group</h2>
-        <form method="POST">
+<form method="POST">
+    <div class="container mt-5 mb-5">
+        <div class="p-4 shadow-sm login-form__content add-project-form">
+            <h1 class="mb-3 text-center course-header" id="header">New Group</h1>
+            <hr class="add-project-hr">
             {% csrf_token %}
-            <div class="mb-3">
-                {{ form.group_name.label_tag }}
-                {{ form.group_name }}
-            </div>
-            <div class="mb-3">
-                {{ form.description.label_tag }}
-                {{ form.description }}
-            </div>
-            <div class="mb-3">
-                {{ form.users.label_tag }}
-                <div>
-                    {{ form.users }}
+
+            <!-- Display Django Messages -->
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert {% if message.tags == 'error' %}alert-danger{% else %}alert-success{% endif %}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+
+            <!-- Display Form Errors -->
+            {% if form.errors %}
+                <div class="alert alert-danger">
+                    <strong>Please fix the following errors:</strong>
+                    <ul>
+                        {% for field, errors in form.errors.items %}
+                            <li><strong>{{ field|title }}:</strong> {{ errors|join:", " }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+
+            <!-- Form Fields -->
+            <div class="row">
+                <!-- Left Column -->
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="group_name" class="form-label">Group Name</label>
+                        {{ form.group_name }}
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Description</label>
+                        {{ form.description }}
+                    </div>
+                </div>
+
+                <!-- Right Column -->
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="users" class="form-label">Users</label>
+                        {{ form.users }}
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="projects" class="form-label">Projects</label>
+                        {{ form.projects }}
+                    </div>
                 </div>
             </div>
-            <div class="mb-3">
-                {{ form.projects.label_tag }}
-                <div>
-                    {{ form.projects }}
-                </div>
+
+            <div class="text-center">
+                <button type="submit" class="add-group-button">Create Group</button>
+                <button type="button" onclick="window.location.href='{% url 'home' %}'" class="cancel-group-button">Cancel</button>
             </div>
-            <button type="submit" class="btn btn-primary">Create Group</button>
-        </form>
-    </div>
-
-    <footer class="border-top footer text-muted">
-        <div class="container">
-
         </div>
-    </footer>
-</body>
+    </div>
+</form>
+
+<script>
+    // Customize header text for editing purposes if needed
+    {% if edit %}
+        document.getElementById("header").innerText = "Edit Group";
+        document.querySelector("button[type='submit']").innerText = "Save Changes";
+        document.querySelector("button[type='button']").innerText = "Return to Homepage";
+    {% endif %}
+</script>
+
 {% endblock %}
-</html>
