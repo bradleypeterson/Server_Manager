@@ -20,7 +20,7 @@ class CreateGroupView(View):
             selected_user_ids = request.POST.getlist('users')
             selected_users = AppUser.objects.filter(id__in=selected_user_ids)
 
-            group.users.set(selected_users)  # Save the relationship in the DB
+            group.users.set(selected_users)  
             group.save()
 
             form.save_m2m()
