@@ -3,6 +3,7 @@ from django.views import View
 
 from .forms import GroupForm
 from .models import Group
+from user.models import  AppUser
 from django.contrib.auth.decorators import login_required
 
 class CreateGroupView(View):
@@ -16,6 +17,12 @@ class CreateGroupView(View):
             group = form.save(commit=False)
             group.save()
 
+            selected_user_ids = request.POST.getlist('users')
+            selected_users = AppUser.objects.filter(id__in=selected_user_ids)
+
+            group.users.set(selected_users)  # Save the relationship in the DB
+            group.save()
+
             form.save_m2m()
 
             print("Group created successfully!")
@@ -24,5 +31,8 @@ class CreateGroupView(View):
 
 def groupList(request):
     groups = Group.objects.all()
+    for group in groups:
+        print(f"Group: {group.group_name}")
+        print(f"Projects: {[project.name for project in group.projects.all()]}")
 
     return render(request, 'group/groupList.html', {'groups': groups})

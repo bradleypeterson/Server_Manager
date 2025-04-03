@@ -43,18 +43,28 @@
                         <label for="description" class="form-label">Description</label>
                         {{ form.description }}
                     </div>
+
+                    <div class="mb-3">
+                        <label for="projects" class="form-label">Projects</label>
+                        {{ form.projects }}
+                    </div>
                 </div>
 
                 <!-- Right Column -->
                 <div class="col-md-6">
                     <div class="mb-3">
-                        <label for="users" class="form-label">Users</label>
-                        {{ form.users }}
+                        <label for="available_users" class="form-label">Available Users</label>
+                        <select id="available_users" name="available_users" class="form-control" size="10" multiple>
+                            {% for user in form.available_users.field.queryset %}
+                                <option value="{{ user.id }}">{{ user.username }}</option>
+                            {% endfor %}
+                        </select>
                     </div>
 
                     <div class="mb-3">
-                        <label for="projects" class="form-label">Projects</label>
-                        {{ form.projects }}
+                        <label for="users" class="form-label">Selected Users</label>
+                        <select id="users" name="users" class="form-control" size="10" multiple>
+                        </select>
                     </div>
                 </div>
             </div>
@@ -68,12 +78,48 @@
 </form>
 
 <script>
-    // Customize header text for editing purposes if needed
-    {% if edit %}
-        document.getElementById("header").innerText = "Edit Group";
-        document.querySelector("button[type='submit']").innerText = "Save Changes";
-        document.querySelector("button[type='button']").innerText = "Return to Homepage";
-    {% endif %}
+    function handleUserClick(event, listType) {
+        var clickedOption = event.target;
+        var availableList = document.getElementById('available_users');
+        var usersList = document.getElementById('users');
+
+        if (listType === 'available') {
+            usersList.add(clickedOption);
+        }
+        else if (listType === 'users') {
+            availableList.add(clickedOption);
+        }
+
+        updateUsersInput();
+    }
+
+    function updateUsersInput() {
+        var selectedUsers = document.getElementById('users').options;
+        var selectedUserIds = [];
+
+        for (var i = 0; i < selectedUsers.length; i++) {
+            selectedUserIds.push(selectedUsers[i].value);
+        }
+
+        document.getElementById('users').name = 'users';  // Ensure the selected users field is named correctly
+    }
+
+    // Add event listeners for available and users lists
+    document.getElementById('available_users').addEventListener('click', function(event) {
+        if (event.target.tagName === 'OPTION') {
+            handleUserClick(event, 'available');
+        }
+    });
+
+    document.getElementById('users').addEventListener('click', function(event) {
+        if (event.target.tagName === 'OPTION') {
+            handleUserClick(event, 'users');
+        }
+    });
+
+    document.querySelector("form").addEventListener("submit", function() {
+        updateUsersInput();
+    });
 </script>
 
 {% endblock %}
