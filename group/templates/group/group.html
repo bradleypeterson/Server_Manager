@@ -104,7 +104,6 @@
         document.getElementById('users').name = 'users';
     }
 
-    // Add event listeners for available and users lists
     document.getElementById('available_users').addEventListener('click', function(event) {
         if (event.target.tagName === 'OPTION') {
             handleUserClick(event, 'available');

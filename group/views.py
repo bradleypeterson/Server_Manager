@@ -20,7 +20,7 @@ class CreateGroupView(View):
             selected_user_ids = request.POST.getlist('users')
             selected_users = AppUser.objects.filter(id__in=selected_user_ids)
 
-            group.users.set(selected_users)  
+            group.users.set(selected_users)
             group.save()
 
             form.save_m2m()
@@ -31,8 +31,5 @@ class CreateGroupView(View):
 
 def groupList(request):
     groups = Group.objects.all()
-    for group in groups:
-        print(f"Group: {group.group_name}")
-        print(f"Projects: {[project.name for project in group.projects.all()]}")
 
     return render(request, 'group/groupList.html', {'groups': groups})
