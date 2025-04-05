@@ -1,10 +1,12 @@
 {% extends 'base.html' %}
 
 {% block body %}
+
 {% include 'navbar.html' %}
 <br>
 <h1 class="text-center container-fluid course-header display-5">Welcome {{user.username}}!</h1>
 <br>
+
 
 <div class="flex-container">
     <div class="d-flex flex-row">
@@ -34,25 +36,34 @@
 
 <hr class="mx-5 card">
 
-<div class="flex-container mx-5">
-    <div class="row">
-        {% for project in projects %}
-            <div class="col-md-2 ">
-                <div class="card-homepage p-3 mb-4 rounded" data-toggle="modal" data-target="#projectModal"
-                     data-project-id="{{ project.id }}"
-                     data-project-name="{{ project.name }}"
-                     data-description="{{ project.description }}"
-                     data-stack="{{ project.stack }}"
-                     data-repo-link="{{ project.repo_link }}"
-                     data-trello-link="{{ project.trello_link }}">
-                    <div class="card-body">
-                        <h1 class="card-title text-center">{{ project.name }}</h1>
+<div class="ps-5 pb-3">
+    <button class="btn btn-dark" id="projectCollapseButton" onclick="toggleText(this.id)" type="button" data-bs-toggle="collapse" data-bs-target="#projectCollapse">
+        Hide
+    </button>
+</div>
+
+<div class="collapse show" id="projectCollapse">
+    <div class="flex-container mx-5">
+        <div class="row">
+            {% for project in projects %}
+                <div class="col-md-2 ">
+                    <div class="card-homepage p-3 mb-4 rounded" data-toggle="modal" data-target="#projectModal"
+                         data-project-id="{{ project.id }}"
+                         data-project-name="{{ project.name }}"
+                         data-description="{{ project.description }}"
+                         data-stack="{{ project.stack }}"
+                         data-repo-link="{{ project.repo_link }}"
+                         data-trello-link="{{ project.trello_link }}">
+                        <div class="card-body">
+                            <h1 class="card-title text-center">{{ project.name }}</h1>
+                        </div>
                     </div>
                 </div>
-            </div>
-        {% endfor %}
+            {% endfor %}
+        </div>
     </div>
 </div>
+
 
 <br>
 <br>
@@ -70,28 +81,36 @@
 
 <hr class="mx-5 card">
 
-<div class="flex-container mx-5">
-    <div class="row">
-        {% for server in servers %}
-        <div class="col-md-2">
-            <a href="#" class="text-decoration-none text-dark" data-toggle="modal" data-target="#serverModal"
-               data-server-id="{{ server.id }}"
-               data-server-name="{{ server.name }}"
-               data-description="{{ server.description }}"
-               data-ip-address="{{ server.ip_address }}"
-               data-operating-system="{{ server.operating_system }}"
-               data-software="{{ server.software_installed }}"
-               data-idrac-info="{{ server.idrac_info }}"
-               data-notes="{{ server.notes }}">
-                <div class="card-homepage p-3 mb-4 rounded">
-                    <div class="card-body">
-                        <h1 class="card-title text-center">{{ server.name }}</h1>
-                        <p class="card-text text-center">{{ server.ip_address }}</p>
+<div class="ps-5 pb-3">
+    <button class="btn btn-dark" id="serverCollapseButton" onclick="toggleText(this.id)" type="button" data-bs-toggle="collapse" data-bs-target="#serverCollapse">
+        Hide
+    </button>
+</div>
+
+<div class="collapse show" id="serverCollapse">
+    <div class="flex-container mx-5">
+        <div class="row">
+            {% for server in servers %}
+            <div class="col-md-2">
+                <a href="#" class="text-decoration-none text-dark" data-toggle="modal" data-target="#serverModal"
+                   data-server-id="{{ server.id }}"
+                   data-server-name="{{ server.name }}"
+                   data-description="{{ server.description }}"
+                   data-ip-address="{{ server.ip_address }}"
+                   data-operating-system="{{ server.operating_system }}"
+                   data-software="{{ server.software_installed }}"
+                   data-idrac-info="{{ server.idrac_info }}"
+                   data-notes="{{ server.notes }}">
+                    <div class="card-homepage p-3 mb-4 rounded">
+                        <div class="card-body">
+                            <h1 class="card-title text-center">{{ server.name }}</h1>
+                            <p class="card-text text-center">{{ server.ip_address }}</p>
+                        </div>
                     </div>
-                </div>
-            </a>
+                </a>
+            </div>
+            {% endfor %}
         </div>
-        {% endfor %}
     </div>
 </div>
 
@@ -256,6 +275,19 @@
             });
     }
 
-
+    function toggleText(element) {
+        let button = element;
+        document.getElementById(button).disabled = true;
+        let x = document.getElementById(button);
+        if (x.innerText === "Hide") {
+            x.innerText = "Show";
+        } else {
+            x.innerText = "Hide";
+        }
+        setTimeout(function(){
+            let element = document.getElementById(button);
+            element.disabled = false;
+        }, 350);
+    }
 </script>
 {% endblock %}
