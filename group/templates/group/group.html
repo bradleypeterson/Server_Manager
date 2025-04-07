@@ -38,20 +38,9 @@
                         <label for="group_name" class="form-label">Group Name</label>
                         {{ form.group_name }}
                     </div>
-
-                    <div class="mb-3">
-                        <label for="description" class="form-label">Description</label>
-                        {{ form.description }}
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="projects" class="form-label">Projects</label>
-                        {{ form.projects }}
-                    </div>
-                </div>
-
-                <!-- Right Column -->
-                <div class="col-md-6">
+                    <br>
+                    <br>
+                    <!-- Available Users -->
                     <div class="mb-3">
                         <label for="available_users" class="form-label">Available Users</label>
                         <select id="available_users" name="available_users" class="form-control" size="10" multiple>
@@ -60,12 +49,38 @@
                             {% endfor %}
                         </select>
                     </div>
+                    <!-- Available Projects -->
+                    <div class="mb-3">
+                        <label for="available_projects" class="form-label">Available Projects</label>
+                        <select id="available_projects" name="available_projects" class="form-control" size="10" multiple>
+                            {% for project in form.available_projects.field.queryset %}
+                                <option value="{{ project.id }}">{{ project.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                </div>
+
+                <!-- Right Column -->
+                <div class="col-md-6">
+
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Description</label>
+                        {{ form.description }}
+                    </div>
 
                     <div class="mb-3">
                         <label for="users" class="form-label">Selected Users</label>
                         <select id="users" name="users" class="form-control" size="10" multiple>
                         </select>
                     </div>
+
+                    <div class="mb-3">
+                        <label for="projects" class="form-label">Selected Projects</label>
+                        <select id="projects" name="projects" class="form-control" size="10" multiple>
+                        </select>
+                    </div>
+
                 </div>
             </div>
 
@@ -78,46 +93,58 @@
 </form>
 
 <script>
-    function handleUserClick(event, listType) {
+    function handleItemClick(event, listType, listName) {
         var clickedOption = event.target;
-        var availableList = document.getElementById('available_users');
-        var usersList = document.getElementById('users');
+        var availableList = document.getElementById('available_' + listName);
+        var selectedList = document.getElementById(listName);
 
         if (listType === 'available') {
-            usersList.add(clickedOption);
-        }
-        else if (listType === 'users') {
-            availableList.add(clickedOption);
+            selectedList.appendChild(clickedOption);
+        } else if (listType === 'selected') {
+            availableList.appendChild(clickedOption);
         }
 
-        updateUsersInput();
+        updateItemsInput(listName);
     }
 
-    function updateUsersInput() {
-        var selectedUsers = document.getElementById('users').options;
-        var selectedUserIds = [];
+    function updateItemsInput(listName) {
+        var selectedItems = document.getElementById(listName).options;
+        var selectedItemIds = [];
 
-        for (var i = 0; i < selectedUsers.length; i++) {
-            selectedUserIds.push(selectedUsers[i].value);
+        for (var i = 0; i < selectedItems.length; i++) {
+            selectedItemIds.push(selectedItems[i].value);
         }
 
-        document.getElementById('users').name = 'users';
+        document.getElementById(listName).name = listName;
     }
 
     document.getElementById('available_users').addEventListener('click', function(event) {
         if (event.target.tagName === 'OPTION') {
-            handleUserClick(event, 'available');
+            handleItemClick(event, 'available', 'users');
         }
     });
 
     document.getElementById('users').addEventListener('click', function(event) {
         if (event.target.tagName === 'OPTION') {
-            handleUserClick(event, 'users');
+            handleItemClick(event, 'selected', 'users');
+        }
+    });
+
+    document.getElementById('available_projects').addEventListener('click', function(event) {
+        if (event.target.tagName === 'OPTION') {
+            handleItemClick(event, 'available', 'projects');
+        }
+    });
+
+    document.getElementById('projects').addEventListener('click', function(event) {
+        if (event.target.tagName === 'OPTION') {
+            handleItemClick(event, 'selected', 'projects');
         }
     });
 
     document.querySelector("form").addEventListener("submit", function() {
-        updateUsersInput();
+        updateItemsInput('users');
+        updateItemsInput('projects');
     });
 </script>
 

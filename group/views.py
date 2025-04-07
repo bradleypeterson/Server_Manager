@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views import View
 
+from project.models import Project
 from .forms import GroupForm
 from .models import Group
 from user.models import  AppUser
@@ -19,8 +20,12 @@ class CreateGroupView(View):
 
             selected_user_ids = request.POST.getlist('users')
             selected_users = AppUser.objects.filter(id__in=selected_user_ids)
-
             group.users.set(selected_users)
+
+            selected_project_ids = request.POST.getlist('projects')
+            selected_projects = Project.objects.filter(id__in=selected_project_ids)
+            group.projects.set(selected_projects)
+
             group.save()
 
             form.save_m2m()
