@@ -33,6 +33,11 @@
                         <a class="nav-link" href="{% url 'group_list' %}">Group List</a>
                     {% endif %}
                 </li>
+                {% if user.is_superuser == True %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'admin:index' %}">Admin</a>
+                </li>
+                {% endif %}
                 <li class="nav-item">
                     <form action="/logout/" method="post" id="logout-form">
                         {% csrf_token %}
