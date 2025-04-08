@@ -18,6 +18,7 @@ from django.urls import reverse
 from .models import AppUser
 from project.models import Server, Project
 from django.db.models import Q
+from group.models import Group
 
 
 # Create your views here.
@@ -104,7 +105,9 @@ def home(request):
         Q(created_by=request.user)
     ).distinct()
 
-    return render(request, "professorHome.html", {"projects": user_projects, "servers": user_servers})
+    all_groups = Group.objects.all().order_by('group_name')
+
+    return render(request, "professorHome.html", {"projects": user_projects, "servers": user_servers, "groups": all_groups})
 
 @login_required
 def viewProject(request, project_id):
