@@ -43,10 +43,12 @@
                         {{ form.stack }}
                     </div>
 
+                    {% if edit %}
                     <div class="mb-3">
                         <label for="last_audit" class="form-label">Last Audit</label>
                         {{ form.last_audit }}
                     </div>
+                    {% endif %}
 
 
                     <div class="mb-3">
@@ -93,7 +95,7 @@
             </div>
             <div class="text-center">
                 <button id="submit" type="submit" class="add-project-button">Add Project</button>
-                <button id="cancel" onclick="window.location.href='{% url 'home' %}'" class="cancel-project-button">Cancel</button>
+                <button id="cancel" type="button" onclick="window.location.href='{% url 'home' %}'" class="cancel-project-button">Cancel</button>
             </div>
         </div>
     </div>

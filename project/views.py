@@ -16,6 +16,7 @@ class AddProjectView(View):
         if form.is_valid():
             project = form.save(commit=False)  # Do not save yet
             project.created_by = request.user  # Set created_by
+            project.updated_by = request.user  # Set created_by
             project.save()  # Now save the instance
             messages.success(request, "Project added successfully!")
             return redirect('home')
@@ -33,6 +34,7 @@ class AddServerView(View):
         if form.is_valid():
             server = form.save(commit=False)  # Do not save yet
             server.created_by = request.user  # Set created_by
+            server.updated_by = request.user  # Set created_by
             server.save()  # Now save the instance
             messages.success(request, "Server added successfully!")
             return redirect('home')

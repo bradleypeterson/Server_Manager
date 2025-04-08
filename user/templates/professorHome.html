@@ -52,6 +52,10 @@
                          data-project-name="{{ project.name }}"
                          data-description="{{ project.description }}"
                          data-stack="{{ project.stack }}"
+                         data-date-created="{{ project.date_created }}"
+                         data-date-updated="{{ project.date_updated }}"
+                         data-created-by="{{ project.created_by }}"
+                         data-updated-by="{{ project.updated_by }}"
                          data-repo-link="{{ project.repo_link }}"
                          data-trello-link="{{ project.trello_link }}">
                         <div class="card-body">
@@ -100,6 +104,10 @@
                    data-operating-system="{{ server.operating_system }}"
                    data-software="{{ server.software_installed }}"
                    data-idrac-info="{{ server.idrac_info }}"
+                   data-date-created="{{ server.date_created }}"
+                   data-date-updated="{{ server.date_updated }}"
+                   data-updated-by="{{ server.updated_by }}"
+                   data-created-by="{{ server.created_by }}"
                    data-notes="{{ server.notes }}">
                     <div class="card-homepage p-3 mb-4 rounded">
                         <div class="card-body">
@@ -130,6 +138,10 @@
                 <p><strong>Stack:</strong> <span id="projectStack"></span></p>
                 <p><strong>Repo Link:</strong> <a href="#" id="projectRepoLink" target="_blank">View Repo</a></p>
                 <p><strong>Trello Link:</strong> <a href="#" id="projectTrelloLink" target="_blank">View Trello</a></p>
+                <p><strong>Date Created:</strong> <span id="projectDateCreated"></span></p>
+                <p><strong>Date Updated:</strong> <span id="projectDateUpdated"></span></p>
+                <p><strong>Created By:</strong> <span id="projectCreatedBy"></span></p>
+                <p><strong>Updated By:</strong> <span id="projectUpdatedBy"></span></p>
             </div>
             <div class="modal-footer">
                 <a id="editProjectButton" href="#" class="btn btn-primary">Edit</a>
@@ -158,6 +170,10 @@
                 <p><strong>Software Installed:</strong> <span id="serverSoftware"></span></p>
                 <p><strong>iDRAC Info:</strong> <span id="serverIdracInfo"></span></p>
                 <p><strong>Notes:</strong> <span id="serverNotes"></span></p>
+                <p><strong>Date Created:</strong> <span id="serverDateCreated"></span></p>
+                <p><strong>Date Updated:</strong> <span id="serverDateUpdated"></span></p>
+                <p><strong>Created By:</strong> <span id="serverCreatedBy"></span></p>
+                <p><strong>Updated By:</strong> <span id="serverUpdatedBy"></span></p>
             </div>
             <div class="modal-footer">
 
@@ -187,6 +203,10 @@
         let repoLink = button.data('repo-link');
         let trelloLink = button.data('trello-link');
         let id = button.data('project-id');
+        let createdBy = button.data('created-by');
+        let updatedBy = button.data('updated-by');
+        let dateUpdated = button.data('date-updated');
+        let dateCreated = button.data('date-created');
 
         document.getElementById('projectName').innerText = projectName;
         document.getElementById('projectDescription').innerText = description;
@@ -195,6 +215,10 @@
         document.getElementById('projectRepoLink').innerText = repoLink ? 'View Repo' : 'No Repo Link'
         document.getElementById('projectTrelloLink').href = trelloLink ? trelloLink : "#"
         document.getElementById('projectTrelloLink').innerText = trelloLink ? 'View Trello' : 'No Trello Link'
+        document.getElementById('projectCreatedBy').innerText = createdBy
+        document.getElementById('projectUpdatedBy').innerText = updatedBy
+        document.getElementById('projectDateUpdated').innerText = dateUpdated
+        document.getElementById('projectDateCreated').innerText = dateCreated
         document.getElementById('editProjectButton').href = "/project/"+id;
     });
 
@@ -212,6 +236,10 @@
         let idracInfo = button.data('idrac-info');
         let notes = button.data('notes');
         let id = button.data('server-id');
+        let createdBy = button.data('created-by');
+        let updatedBy = button.data('updated-by');
+        let dateUpdated = button.data('date-updated');
+        let dateCreated = button.data('date-created');
 
         let pingButton = document.getElementById("pingButton");
         let ping_result = document.getElementById("ping_result");
@@ -232,6 +260,10 @@
         document.getElementById('serverIdracInfo').innerText = idracInfo;
         document.getElementById('serverNotes').innerText = notes;
         document.getElementById('editServerButton').href = "/server/"+id;
+        document.getElementById('serverCreatedBy').innerText = createdBy
+        document.getElementById('serverUpdatedBy').innerText = updatedBy
+        document.getElementById('serverDateUpdated').innerText = dateUpdated
+        document.getElementById('serverDateCreated').innerText = dateCreated
     });
 
 

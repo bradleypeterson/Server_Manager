@@ -113,7 +113,9 @@ def viewProject(request, project_id):
     if request.method == "POST":
         form = ProjectForm(request.POST, instance=project)
         if form.is_valid():
-            form.save()
+            project = form.save(commit=False)
+            project.updated_by = request.user
+            project.save()
             messages.success(request, "Project updated successfully!")
             return redirect('home')
         else:
@@ -130,7 +132,9 @@ def viewServer(request, server_id):
     if request.method == "POST":
         form = ServerForm(request.POST, instance=server)
         if form.is_valid():
-            form.save()
+            server = form.save(commit=False)
+            server.updated_by = request.user
+            server.save()
             messages.success(request, "Server updated successfully!")
             return redirect('home')
         else:

@@ -21,7 +21,8 @@ class Project(models.Model):
     # Linked models
     users = models.ManyToManyField('user.AppUser', related_name='project_users', blank=True)
     groups = models.ManyToManyField('group.Group', related_name='project_groups', blank=True)
-    created_by = models.ForeignKey('user.AppUser', on_delete=models.SET_NULL, null=True, blank=True)
+    created_by = models.ForeignKey('user.AppUser', on_delete=models.SET_NULL, null=True, blank=True, related_name='project_created_by')
+    updated_by = models.ForeignKey('user.AppUser', on_delete=models.SET_NULL, null=True, blank=True, related_name='project_updated_by')
 
     def __str__(self):
         return self.name
@@ -40,7 +41,8 @@ class Server(models.Model):
     description = models.TextField(blank=True, null=True)
     # Linked models
     project = models.ForeignKey('Project', on_delete=models.SET_NULL, null=True, blank=True, related_name='server_projects')
-    created_by = models.ForeignKey('user.AppUser', on_delete=models.SET_NULL, null=True, blank=True)
+    created_by = models.ForeignKey('user.AppUser', on_delete=models.SET_NULL, null=True, blank=True, related_name='server_created_by')
+    updated_by = models.ForeignKey('user.AppUser', on_delete=models.SET_NULL, null=True, blank=True, related_name='server_updated_by')
 
     def __str__(self):
         return self.name
