@@ -152,7 +152,7 @@
                    data-group-id="{{ group.group_id }}"
                    data-group-name="{{ group.group_name }}"
                    data-group-users="{% for user in group.users.all %}{{ user.username }}{% if not forloop.last %}, {% endif %}{% endfor %}"
-                     data-group-projects="{% if group.projects.all %}{% for project in group.projects.all %}{{ project.name }}{% if not forloop.last %}, {% endif %}{% endfor %}{% else %}No projects assigned{% endif %}"
+                   data-group-projects="{% if group.project_groups.all %}{% for project in group.project_groups.all %}{{ project.name }}{% if not forloop.last %}, {% endif %}{% endfor %}{% else %}No projects assigned{% endif %}"
                    data-group-description="{{ server.description }}">
                     <div class="card-homepage p-3 mb-4 rounded">
                         <div class="card-body">
@@ -255,7 +255,7 @@
             </div>
         </div>
     </div>
-
+</div>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>

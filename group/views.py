@@ -24,9 +24,9 @@ class CreateGroupView(View):
 
             selected_project_ids = request.POST.getlist('projects')
             selected_projects = Project.objects.filter(id__in=selected_project_ids)
-            group.projects.set(selected_projects)
-
-            group.save()
+            for project in selected_projects:
+                project.groups.add(group)
+                project.save()
 
             form.save_m2m()
 

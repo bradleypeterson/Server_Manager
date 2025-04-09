@@ -6,7 +6,6 @@ class Group(models.Model):
     group_name = models.CharField(max_length=100, unique=True)
     users = models.ManyToManyField(settings.AUTH_USER_MODEL)
     description = models.TextField(blank=True, null=True)
-    projects = models.ManyToManyField( to='project.Project', related_name='group_projects')
 
     def __str__(self):
         return self.group_name
