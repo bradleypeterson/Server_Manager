@@ -1,12 +1,15 @@
 from django.forms.models import ModelForm
-
+from django import forms
 from project.models import Project
 from project.models import Server
+from user.models import AppUser
+from group.models import Group
+
 
 class ProjectForm(ModelForm):
     class Meta:
         model = Project
-        fields = ['name', 'stack', 'last_audit', 'currently_in_use', 'repo_link', 'trello_link', 'notes', 'description', 'users', 'groups']
+        fields = ['name', 'stack', 'last_audit', 'currently_in_use', 'repo_link', 'trello_link', 'notes', 'description']
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -18,8 +21,18 @@ class ProjectForm(ModelForm):
         self.fields['trello_link'].widget.attrs.update({'class': 'form-control'})
         self.fields['notes'].widget.attrs.update({'class': 'form-control'})
         self.fields['description'].widget.attrs.update({'class': 'form-control'})
-        self.fields['users'].widget.attrs.update({'class': 'form-select'})
-        self.fields['groups'].widget.attrs.update({'class': 'form-select'})
+        #self.fields['users'].widget.attrs.update({'class': 'form-select'})
+        self.fields['available_users'] = forms.ModelMultipleChoiceField(
+            queryset=AppUser.objects.all(),
+            widget=forms.Select(attrs={'class': 'form-control'}),
+            required=False
+        )
+        self.fields['available_groups'] = forms.ModelMultipleChoiceField(
+            queryset=Group.objects.all(),
+            widget=forms.Select(attrs={'class': 'form-control'}),
+            required=False
+        )
+        #self.fields['groups'].widget.attrs.update({'class': 'form-select'})
 
 class ServerForm(ModelForm):
     class Meta:

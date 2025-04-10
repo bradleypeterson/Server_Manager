@@ -5,6 +5,8 @@ from django.contrib import messages
 
 from project.forms import ProjectForm
 from project.forms import ServerForm
+from user.models import AppUser
+from group.models import Group
 
 # Create your views here.
 class AddProjectView(View):
@@ -18,6 +20,19 @@ class AddProjectView(View):
             project.created_by = request.user  # Set created_by
             project.updated_by = request.user  # Set created_by
             project.save()  # Now save the instance
+
+            selected_users = form.cleaned_data['available_users']
+            selected_groups = form.cleaned_data['available_groups']
+
+            # If groups were selected, filter groups by group_id
+            selected_groups = Group.objects.filter(group_id__in=selected_groups)
+
+            # Set the many-to-many relationships for the project
+            project.users.set(selected_users)  # Set the selected users for the project
+            project.groups.set(selected_groups)
+
+            project.save()  # Now save the instance
+
             messages.success(request, "Project added successfully!")
             return redirect('home')
         else:

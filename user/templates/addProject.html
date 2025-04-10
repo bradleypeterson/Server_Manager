@@ -56,6 +56,26 @@
                         {{ form.repo_link }}
                     </div>
 
+                    <!-- Users -->
+                    <div class="mb-3">
+                        <label for="available_users" class="form-label">Available Users</label>
+                        <select id="available_users" class="form-control" size="8" multiple>
+                            {% for user in form.available_users.field.queryset %}
+                                <option value="{{ user.id }}">{{ user.username }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <!-- Groups -->
+                    <div class="mb-3">
+                        <label for="available_groups" class="form-label">Available Groups</label>
+                        <select id="available_groups" class="form-control" size="8" multiple>
+                            {% for group in form.available_groups.field.queryset %}
+                                <option value="{{ group.id }}">{{ group.group_name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
                 </div>
 
                 <!-- Right Column -->
@@ -66,6 +86,7 @@
                         <br>
                         {{ form.currently_in_use }}
                     </div>
+                    <br>
 
                     <div class="mb-3">
                         <label for="trello_link" class="form-label">Trello Link</label>
@@ -78,13 +99,16 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="users" class="form-label">Users</label>
-                        {{ form.users }}
+                        <label for="users" class="form-label">Selected Users</label>
+                        <select id="users" name="users" class="form-control" size="8" multiple></select>
                     </div>
+
+
                     <div class="mb-3">
-                        <label for="groups" class="form-label">Groups</label>
-                        {{ form.groups }}
+                        <label for="groups" class="form-label">Selected Groups</label>
+                        <select id="groups" name="groups" class="form-control" size="8" multiple></select>
                     </div>
+
                 </div>
             </div>
 
@@ -108,5 +132,49 @@
         document.getElementById("submit").innerText = "Save Changes"
         document.getElementById("cancel").innerText = "Return to Homepage"
     {% endif %}
+
+    function handleItemClick(event, listType, listName) {
+        const clickedOption = event.target;
+        const availableList = document.getElementById('available_' + listName);
+        const selectedList = document.getElementById(listName);
+
+        if (listType === 'available') {
+            selectedList.appendChild(clickedOption);
+        } else {
+            availableList.appendChild(clickedOption);
+        }
+
+        updateItemsInput(listName);
+    }
+
+    function updateItemsInput(listName) {
+        const selectedItems = document.getElementById(listName).options;
+        const selectedItemIds = [];
+
+        for (let i = 0; i < selectedItems.length; i++) {
+            selectedItemIds.push(selectedItems[i].value);
+        }
+
+        document.getElementById(listName).name = listName;
+    }
+
+    ['users', 'groups'].forEach(function (listName) {
+        document.getElementById('available_' + listName).addEventListener('click', function (event) {
+            if (event.target.tagName === 'OPTION') {
+                handleItemClick(event, 'available', listName);
+            }
+        });
+
+        document.getElementById(listName).addEventListener('click', function (event) {
+            if (event.target.tagName === 'OPTION') {
+                handleItemClick(event, 'selected', listName);
+            }
+        });
+    });
+
+    document.querySelector("form").addEventListener("submit", function () {
+        updateItemsInput('users');
+        updateItemsInput('groups');
+    });
 </script>
 {% endblock %}
