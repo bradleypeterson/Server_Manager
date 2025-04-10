@@ -24,11 +24,9 @@ class AddProjectView(View):
             selected_users = form.cleaned_data['available_users']
             selected_groups = form.cleaned_data['available_groups']
 
-            # If groups were selected, filter groups by group_id
             selected_groups = Group.objects.filter(group_id__in=selected_groups)
 
-            # Set the many-to-many relationships for the project
-            project.users.set(selected_users)  # Set the selected users for the project
+            project.users.set(selected_users)
             project.groups.set(selected_groups)
 
             project.save()  # Now save the instance
