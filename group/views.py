@@ -6,6 +6,7 @@ from .forms import GroupForm
 from .models import Group
 from user.models import  AppUser
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
 class CreateGroupView(View):
     def get(self, request):
@@ -30,8 +31,8 @@ class CreateGroupView(View):
 
             form.save_m2m()
 
-            print("Group created successfully!")
-            return redirect('group_list')
+            messages.success(request, "Group added successfully!")
+            return redirect('home')
         return render(request, 'group/group.html', {'form': form})
 
 def groupList(request):

@@ -153,7 +153,7 @@
                    data-group-name="{{ group.group_name }}"
                    data-group-users="{% for user in group.users.all %}{{ user.username }}{% if not forloop.last %}, {% endif %}{% endfor %}"
                    data-group-projects="{% if group.project_groups.all %}{% for project in group.project_groups.all %}{{ project.name }}{% if not forloop.last %}, {% endif %}{% endfor %}{% else %}No projects assigned{% endif %}"
-                   data-group-description="{{ server.description }}">
+                   data-group-description="{{ group.description }}">
                     <div class="card-homepage p-3 mb-4 rounded">
                         <div class="card-body">
                             <h1 class="card-title text-center">{{ group.group_name }}</h1>
