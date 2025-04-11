@@ -123,6 +123,28 @@ def viewProject(request, project_id):
             project = form.save(commit=False)
             project.updated_by = request.user
             project.save()
+
+            selected_users = request.POST.getlist('users')
+            selected_groups = request.POST.getlist('groups')
+
+            unselected_users = AppUser.objects.exclude(id__in=selected_users)
+            unselected_groups = Group.objects.exclude(id__in=selected_groups)
+
+            selected_users = AppUser.objects.filter(id__in=selected_users)
+            selected_groups = Group.objects.filter(id__in=selected_groups)
+
+            for group in selected_groups:
+                project.groups.add(group)
+            for user in selected_users:
+                project.users.add(user)
+
+            for group in unselected_groups:
+                project.groups.remove(group)
+            for user in unselected_users:
+                project.users.remove(user)
+
+            project.save()  # Now save the instance
+
             messages.success(request, "Project updated successfully!")
             return redirect('home')
         else:
@@ -160,7 +182,25 @@ def viewGroup(request, group_id):
         if form.is_valid():
             group = form.save(commit=False)
             group.updated_by = request.user
+
+            selected_user_ids = request.POST.getlist('users')
+            selected_users = AppUser.objects.filter(id__in=selected_user_ids)
+            group.users.set(selected_users)
+
+            selected_project_ids = request.POST.getlist('projects')
+            selected_projects = Project.objects.filter(id__in=selected_project_ids)
+            unselected_projects = Project.objects.exclude(id__in=selected_project_ids)
+            for project in selected_projects:
+                project.groups.add(group)
+                project.save()
+            for project in unselected_projects:
+                project.groups.remove(group)
+                project.save()
+
+            form.save_m2m()
+
             group.save()
+
             messages.success(request, "Group updated successfully!")
             return redirect('home')
         else:

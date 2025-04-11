@@ -21,7 +21,9 @@ class ProjectForm(ModelForm):
         self.fields['trello_link'].widget.attrs.update({'class': 'form-control'})
         self.fields['notes'].widget.attrs.update({'class': 'form-control'})
         self.fields['description'].widget.attrs.update({'class': 'form-control'})
-        #self.fields['users'].widget.attrs.update({'class': 'form-select'})
+        # self.fields['users'].widget.attrs.update({'class': 'form-select'})
+        # self.fields['groups'].widget.attrs.update({'class': 'form-select'})
+
         self.fields['available_users'] = forms.ModelMultipleChoiceField(
             queryset=AppUser.objects.all(),
             widget=forms.Select(attrs={'class': 'form-control'}),
@@ -32,7 +34,6 @@ class ProjectForm(ModelForm):
             widget=forms.Select(attrs={'class': 'form-control'}),
             required=False
         )
-        #self.fields['groups'].widget.attrs.update({'class': 'form-select'})
 
 class ServerForm(ModelForm):
     class Meta:

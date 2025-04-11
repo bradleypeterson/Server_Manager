@@ -1,4 +1,5 @@
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import View
 from django.contrib import messages
@@ -22,13 +23,17 @@ class AddProjectView(View):
             project.updated_by = request.user  # Set created_by
             project.save()  # Now save the instance
 
-            selected_users = form.cleaned_data['available_users']
-            selected_groups = form.cleaned_data['available_groups']
+            selected_users = request.POST.getlist('users')
+            selected_groups = request.POST.getlist('groups')
 
-            selected_groups = Group.objects.filter(group_id__in=selected_groups)
+            print(selected_groups)
+            selected_users = AppUser.objects.filter(id__in=selected_users)
+            selected_groups = Group.objects.filter(id__in=selected_groups)
 
-            project.users.set(selected_users)
-            project.groups.set(selected_groups)
+            for group in selected_groups:
+                project.groups.add(group)
+            for user in selected_users:
+                project.users.add(user)
 
             project.save()  # Now save the instance
 
