@@ -43,6 +43,8 @@ class RegisterView(View):
 
 class LoginView(View):
     def get(self, request):
+        if request.user.is_authenticated:
+            return redirect('/home/')
         form = LoginForm(request.POST)
         return render(request, 'login.html', {'form': form})
     def post(self, request):
