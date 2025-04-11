@@ -121,7 +121,7 @@ CSRF_TRUSTED_ORIGINS = ["https://cameronmckay.xyz"]
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Shiprock'
 
 USE_I18N = True
 
