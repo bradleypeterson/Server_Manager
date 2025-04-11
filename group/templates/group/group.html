@@ -93,10 +93,17 @@
 </form>
 
 <script>
+    {% if edit %}
+        document.getElementById("header").innerText = "Edit Group"
+        document.getElementById("submit").innerText = "Save Changes"
+        document.getElementById("cancel").innerText = "Return to Homepage"
+    {% endif %}
+
+
     function handleItemClick(event, listType, listName) {
-        var clickedOption = event.target;
-        var availableList = document.getElementById('available_' + listName);
-        var selectedList = document.getElementById(listName);
+        const clickedOption = event.target;
+        const availableList = document.getElementById('available_' + listName);
+        const selectedList = document.getElementById(listName);
 
         if (listType === 'available') {
             selectedList.appendChild(clickedOption);
@@ -108,8 +115,8 @@
     }
 
     function updateItemsInput(listName) {
-        var selectedItems = document.getElementById(listName).options;
-        var selectedItemIds = [];
+        const selectedItems = document.getElementById(listName).options;
+        const selectedItemIds = [];
 
         for (var i = 0; i < selectedItems.length; i++) {
             selectedItemIds.push(selectedItems[i].value);
@@ -118,28 +125,18 @@
         document.getElementById(listName).name = listName;
     }
 
-    document.getElementById('available_users').addEventListener('click', function(event) {
-        if (event.target.tagName === 'OPTION') {
-            handleItemClick(event, 'available', 'users');
-        }
-    });
+    ['users', 'projects'].forEach(function (listName) {
+        document.getElementById('available_' + listName).addEventListener('click', function (event) {
+            if (event.target.tagName === 'OPTION') {
+                handleItemClick(event, 'available', listName);
+            }
+        });
 
-    document.getElementById('users').addEventListener('click', function(event) {
-        if (event.target.tagName === 'OPTION') {
-            handleItemClick(event, 'selected', 'users');
-        }
-    });
-
-    document.getElementById('available_projects').addEventListener('click', function(event) {
-        if (event.target.tagName === 'OPTION') {
-            handleItemClick(event, 'available', 'projects');
-        }
-    });
-
-    document.getElementById('projects').addEventListener('click', function(event) {
-        if (event.target.tagName === 'OPTION') {
-            handleItemClick(event, 'selected', 'projects');
-        }
+        document.getElementById(listName).addEventListener('click', function (event) {
+            if (event.target.tagName === 'OPTION') {
+                handleItemClick(event, 'selected', listName);
+            }
+        });
     });
 
     document.querySelector("form").addEventListener("submit", function() {

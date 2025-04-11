@@ -17,6 +17,8 @@ from django.contrib import messages
 from django.urls import reverse
 from .models import AppUser
 from project.models import Server, Project
+from group.models import Group
+from group.forms import GroupForm
 from django.db.models import Q
 from group.models import Group
 
@@ -148,6 +150,25 @@ def viewServer(request, server_id):
         form = ServerForm(instance=server)
 
     return render(request, "addServer.html", {"form": form, "edit": True})
+
+@login_required
+def viewGroup(request, group_id):
+    group = get_object_or_404(Group, group_id=group_id)
+
+    if request.method == "POST":
+        form = GroupForm(request.POST, instance=group)
+        if form.is_valid():
+            group = form.save(commit=False)
+            group.updated_by = request.user
+            group.save()
+            messages.success(request, "Group updated successfully!")
+            return redirect('home')
+        else:
+            messages.error(request, "Update failed. Please correct the errors below.")
+    else:
+        form = GroupForm(instance=group)
+
+    return render(request, "group/group.html", {"form": form, "edit": True})
 
 @csrf_exempt
 def ping_server(request):
