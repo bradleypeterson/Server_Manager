@@ -1,10 +1,11 @@
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import View
 from django.contrib import messages
 
 from project.forms import ProjectForm
 from project.forms import ServerForm
+from project.models import Project, Server
 from user.models import AppUser
 from group.models import Group
 
@@ -54,3 +55,24 @@ class AddServerView(View):
         else:
             messages.error(request, "Form submission failed. Please correct the errors below.")
             return render(request, "addServer.html", {'form': form})
+
+@login_required
+def delete_project(request, project_id):
+    project = get_object_or_404(Project, id=project_id)
+    project.delete()
+    messages.success(request, "Project deleted successfully!")
+    return redirect('home')
+
+@login_required
+def delete_server(request, server_id):
+    server = get_object_or_404(Server, id=server_id)
+    server.delete()
+    messages.success(request, "Server deleted successfully!")
+    return redirect('home')
+
+@login_required
+def delete_group(request, group_id):
+    group = get_object_or_404(Group, group_id=group_id)
+    group.delete()
+    messages.success(request, "Group deleted successfully!")
+    return redirect('home')

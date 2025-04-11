@@ -187,9 +187,12 @@
                 <p><strong>Created By:</strong> <span id="projectCreatedBy"></span></p>
                 <p><strong>Updated By:</strong> <span id="projectUpdatedBy"></span></p>
             </div>
-            <div class="modal-footer">
-                <a id="editProjectButton" href="#" class="btn btn-primary">Edit</a>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <div class="modal-footer d-flex justify-content-between">
+                <a id="deleteProjectButton" href="#" class="btn btn-danger">Delete</a>
+                <div>
+                    <a id="editProjectButton" href="#" class="btn btn-primary me-2">Edit</a>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
             </div>
         </div>
     </div>
@@ -219,13 +222,12 @@
                 <p><strong>Created By:</strong> <span id="serverCreatedBy"></span></p>
                 <p><strong>Updated By:</strong> <span id="serverUpdatedBy"></span></p>
             </div>
-            <div class="modal-footer">
-
-                <div class="d-flex w-50" style="margin-left: 25px">
+            <div class="modal-footer d-flex justify-content-between">
+                <a id="deleteServerButton" href="#" class="btn btn-danger">Delete</a>
+                <div class="d-flex w-50">
                     <button id="pingButton" type="button" class="btn btn-primary w-50" style="margin-right: 25px" onclick="ping()">Ping</button>
                     <span id="ping_result" class="p-1 w-50"></span>
                 </div>
-
                 <a id="editServerButton" href="#" class="btn btn-primary">Edit</a>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
@@ -249,9 +251,35 @@
                 <p><strong>Users:</strong> <span id="groupUsers"></span></p>
                 <p><strong>Projects:</strong> <span id="groupProjects"></span></p>
             </div>
+            <div class="modal-footer d-flex justify-content-between">
+                <a id="deleteGroupButton" href="#" class="btn btn-danger">Delete</a>
+                <div>
+                    <a id="editGroupButton" href="#" class="btn btn-primary me-2">Edit</a>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Delete Confirmation Modal -->
+<div class="modal fade" id="deleteConfirmModal" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="margin-top: 10%; max-width: 600px;" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteConfirmModalLabel">Confirm Deletion</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" style="padding: 30px 20px;">
+                <p style="font-size: 18px; text-align: center;">
+                    Are you sure you want to delete the <span id="deleteItemType"></span> <strong><span id="deleteItemName"></span></strong>?
+                </p>
+            </div>
             <div class="modal-footer">
-                <a id="editGroupButton" href="#" class="btn btn-primary">Edit</a>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <a href="#" id="confirmDeleteButton" class="btn btn-danger">Delete</a>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="$('#deleteConfirmModal').modal('hide');">Cancel</button>
             </div>
         </div>
     </div>
@@ -274,6 +302,12 @@
         let updatedBy = button.data('updated-by');
         let dateUpdated = button.data('date-updated');
         let dateCreated = button.data('date-created');
+        let deleteUrl = "/delete-project/" + id + "/";
+
+        $('#deleteProjectButton').off('click').on('click', function (e) {
+            e.preventDefault();
+            showDeleteModal("project", projectName, deleteUrl);
+        });
 
         document.getElementById('projectName').innerText = projectName;
         document.getElementById('projectDescription').innerText = description;
@@ -287,6 +321,7 @@
         document.getElementById('projectDateUpdated').innerText = dateUpdated
         document.getElementById('projectDateCreated').innerText = dateCreated
         document.getElementById('editProjectButton').href = "/project/"+id;
+        document.getElementById('deleteProjectButton').href = "/delete-project/"+id+"/";
     });
 
 
@@ -307,9 +342,15 @@
         let updatedBy = button.data('updated-by');
         let dateUpdated = button.data('date-updated');
         let dateCreated = button.data('date-created');
-
         let pingButton = document.getElementById("pingButton");
         let ping_result = document.getElementById("ping_result");
+        let deleteUrl = "/delete-server/" + id + "/";
+
+        $('#deleteServerButton').off('click').on('click', function (e) {
+            e.preventDefault();
+            showDeleteModal("server", serverName, deleteUrl);
+        });
+
         ping_result.textContent = "";
 
         pingButton.onclick = null;
@@ -331,6 +372,7 @@
         document.getElementById('serverUpdatedBy').innerText = updatedBy
         document.getElementById('serverDateUpdated').innerText = dateUpdated
         document.getElementById('serverDateCreated').innerText = dateCreated
+        document.getElementById('deleteServerButton').href = "/delete-server/"+id+"/";
     });
 
     $('#groupModal').on('show.bs.modal', (event) => {
@@ -340,12 +382,19 @@
         let users = button.data('group-users');
         let projects = button.data('group-projects');
         let id = button.data('group-id');
+        let deleteUrl = "/delete-group/" + id + "/";
+
+        $('#deleteGroupButton').off('click').on('click', function (e) {
+            e.preventDefault();
+            showDeleteModal("group", groupName, deleteUrl);
+        });
 
         document.getElementById('groupName').innerText = groupName;
         document.getElementById('groupDescription').innerText = description;
         document.getElementById('groupUsers').innerText = users;
         document.getElementById('groupProjects').innerText = projects;
         document.getElementById('editGroupButton').href = "/group/"+id;
+        document.getElementById('deleteGroupButton').href = "/delete-group/"+id+"/";
     });
 
 
@@ -403,5 +452,34 @@
             element.disabled = false;
         }, 350);
     }
+
+    function showDeleteModal(itemType, itemName, deleteUrl) {
+        document.getElementById('deleteItemType').textContent = itemType;
+        document.getElementById('deleteItemName').textContent = itemName;
+        document.getElementById('confirmDeleteButton').href = deleteUrl;
+
+        $('#deleteConfirmModal').modal('show');
+    }
+
+    document.getElementById('deleteProjectButton').addEventListener('click', function(e) {
+        e.preventDefault();
+        document.getElementById('deleteItemType').textContent = 'project';
+        document.getElementById('confirmDeleteButton').href = this.getAttribute('href');
+        $('#deleteConfirmModal').modal('show');
+    });
+
+    document.getElementById('deleteServerButton').addEventListener('click', function(e) {
+        e.preventDefault();
+        document.getElementById('deleteItemType').textContent = 'server';
+        document.getElementById('confirmDeleteButton').href = this.getAttribute('href');
+        $('#deleteConfirmModal').modal('show');
+    });
+
+    document.getElementById('deleteGroupButton').addEventListener('click', function(e) {
+        e.preventDefault();
+        document.getElementById('deleteItemType').textContent = 'group';
+        document.getElementById('confirmDeleteButton').href = this.getAttribute('href');
+        $('#deleteConfirmModal').modal('show');
+    });
 </script>
 {% endblock %}

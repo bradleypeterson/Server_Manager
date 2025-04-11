@@ -36,4 +36,7 @@ urlpatterns = [
     path('group/', group_views.CreateGroupView.as_view(), name="group"),
     path('group/list/', group_views.groupList, name='group_list'),
     path('pingServer/', user_views.ping_server, name="pingServer"),
+    path('delete-project/<int:project_id>/', project_views.delete_project, name='delete_project'),
+    path('delete-server/<int:server_id>/', project_views.delete_server, name='delete_server'),
+    path('delete-group/<int:group_id>/', project_views.delete_group, name='delete_group')
 ]
