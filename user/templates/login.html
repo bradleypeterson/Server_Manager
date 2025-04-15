@@ -4,6 +4,16 @@
     <meta charset="UTF-8">
     <title>Server Manager</title>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script>
+        function showPassword() {
+            let password_field = document.getElementById("password_id");
+            if (password_field.type === "password") {
+                password_field.type = "text";
+            } else {
+                password_field.type = "password";
+            }
+        }
+    </script>
 </head>
 {% extends "base.html" %}
 {% block body %}
@@ -11,8 +21,8 @@
 <br>
 <form class="login-form" action="./" method="POST">
     {% csrf_token %}
-            <div class="text-center login-form__content ">
-                <h3 class="course-header">Instructor Login</h3>
+            <div class=" login-form__content ">
+                <h3 class="course-header text-center">Instructor Login</h3>
                 <hr class="card">
                 <div class="login-form__header">Login to your account</div>
                 <div class="row justify-content-center">
@@ -21,6 +31,14 @@
                 <br>
                 <div class="row justify-content-center">
                     {{ form.password }}
+                </div>
+                <div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" onclick="showPassword()" id="Password_Check" autocomplete="off">
+                        <label class="form-check-label" for="Password_Check">
+                            Show password
+                        </label>
+                    </div>
                 </div>
                 <br>
                 <button class="login-form__button" type="submit">Login</button>

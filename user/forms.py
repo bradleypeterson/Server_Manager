@@ -13,12 +13,12 @@ class RegistrationForm(UserCreationForm):
     password1 = forms.CharField(
         help_text='Enter Password',
         required=True,
-        widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Password', 'style': 'width: 300px;'}),
+        widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Password', 'style': 'width: 300px;', 'id': 'password1_id'}),
     )
     password2 = forms.CharField(
         help_text='Confirm Password',
         required=True,
-        widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Confirm Password', 'style': 'width: 300px;'}),
+        widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Confirm Password', 'style': 'width: 300px;', 'id': 'password2_id'}),
     )
 
     class Meta:
@@ -29,7 +29,7 @@ class LoginForm(AuthenticationForm):
     username = forms.CharField(
         widget=forms.TextInput(attrs={'placeholder': 'Username', 'style': 'width: 300px;', 'class': 'form-control'}))
     password = forms.CharField(
-        widget=forms.PasswordInput(attrs={'placeholder': 'Password', 'style': 'width: 300px;', 'class': 'form-control'}))
+        widget=forms.PasswordInput(attrs={'placeholder': 'Password', 'style': 'width: 300px;', 'class': 'form-control', 'id': 'password_id'}))
 
     def clean_username(self):
         username = self.cleaned_data['username'].lower()
@@ -45,12 +45,12 @@ class ResetPasswordForm(PasswordResetForm):
         help_text='Enter Password',
         required=True,
         widget=forms.PasswordInput(
-            attrs={'class': 'form-control', 'placeholder': 'Password', 'style': 'width: 300px;'}),
+            attrs={'class': 'form-control', 'placeholder': 'Password', 'style': 'width: 300px;', 'id': 'password1_id'}),
     )
 
     password2 = forms.CharField(
         help_text='Confirm Password',
         required=True,
         widget=forms.PasswordInput(
-            attrs={'class': 'form-control', 'placeholder': 'Confirm Password', 'style': 'width: 300px;'}),
+            attrs={'class': 'form-control', 'placeholder': 'Confirm Password', 'style': 'width: 300px;', 'id': 'password2_id'}),
     )
