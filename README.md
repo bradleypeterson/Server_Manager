@@ -2,7 +2,7 @@
 # Project Overview
 A project that enables instructors and students at Weber State to track and manage Projects and Servers via web application.
 ### Admin
-Instructors can create courses, create groups within courses, and generate student credentials. Instructors have full CRUD operations over these objects. 
+Admin can create projects, servers, users and groups. Admin have full CRUD operations over these objects. 
 Instructors can provide the generated credentials to students within groups to login. Instructors are able to view any projects that are created from any student within a group. 
 
 ### Faculty
