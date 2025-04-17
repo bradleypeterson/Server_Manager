@@ -175,7 +175,7 @@ def viewServer(request, server_id):
 
 @login_required
 def viewGroup(request, group_id):
-    group = get_object_or_404(Group, group_id=group_id)
+    group = get_object_or_404(Group, id=group_id)
 
     if request.method == "POST":
         form = GroupForm(request.POST, instance=group)

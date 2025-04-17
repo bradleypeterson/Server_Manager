@@ -149,7 +149,7 @@
             {% for group in groups %}
             <div class="col-md-2">
                 <a href="#" class="text-decoration-none text-dark" data-toggle="modal" data-target="#groupModal"
-                   data-group-id="{{ group.group_id }}"
+                   data-group-id="{{ group.id }}"
                    data-group-name="{{ group.group_name }}"
                    data-group-users="{% for user in group.users.all %}{{ user.username }}{% if not forloop.last %}, {% endif %}{% endfor %}"
                    data-group-projects="{% if group.project_groups.all %}{% for project in group.project_groups.all %}{{ project.name }}{% if not forloop.last %}, {% endif %}{% endfor %}{% else %}No projects assigned{% endif %}"
