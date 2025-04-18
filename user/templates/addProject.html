@@ -100,13 +100,21 @@
 
                     <div class="mb-3">
                         <label for="users" class="form-label">Selected Users</label>
-                        <select id="users" name="users" class="form-control" size="8" multiple></select>
+                        <select id="users" name="users" class="form-control" size="8" multiple>
+                            {% for user in form.selected_users.field.queryset %}
+                                <option value="{{ user.id }}">{{ user.username }}</option>
+                            {% endfor %}
+                        </select>
                     </div>
 
 
                     <div class="mb-3">
                         <label for="groups" class="form-label">Selected Groups</label>
-                        <select id="groups" name="groups" class="form-control" size="8" multiple></select>
+                        <select id="groups" name="groups" class="form-control" size="8" multiple>
+                            {% for group in form.selected_groups.field.queryset %}
+                                <option value="{{ group.id }}">{{ group.group_name }}</option>
+                            {% endfor %}
+                        </select>
                     </div>
 
                 </div>
@@ -144,18 +152,6 @@
             availableList.appendChild(clickedOption);
         }
 
-        updateItemsInput(listName);
-    }
-
-    function updateItemsInput(listName) {
-        const selectedItems = document.getElementById(listName).options;
-        const selectedItemIds = [];
-
-        for (let i = 0; i < selectedItems.length; i++) {
-            selectedItemIds.push(selectedItems[i].value);
-        }
-
-        document.getElementById(listName).name = listName;
     }
 
     ['users', 'groups'].forEach(function (listName) {
@@ -170,11 +166,6 @@
                 handleItemClick(event, 'selected', listName);
             }
         });
-    });
-
-    document.querySelector("form").addEventListener("submit", function () {
-        updateItemsInput('users');
-        updateItemsInput('groups');
     });
 </script>
 {% endblock %}

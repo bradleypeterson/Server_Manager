@@ -24,16 +24,54 @@ class ProjectForm(ModelForm):
         # self.fields['users'].widget.attrs.update({'class': 'form-select'})
         # self.fields['groups'].widget.attrs.update({'class': 'form-select'})
 
-        self.fields['available_users'] = forms.ModelMultipleChoiceField(
-            queryset=AppUser.objects.all(),
-            widget=forms.Select(attrs={'class': 'form-control'}),
-            required=False
-        )
-        self.fields['available_groups'] = forms.ModelMultipleChoiceField(
-            queryset=Group.objects.all(),
-            widget=forms.Select(attrs={'class': 'form-control'}),
-            required=False
-        )
+        if self.instance.pk is None:
+            self.fields['available_users'] = forms.ModelMultipleChoiceField(
+                queryset=AppUser.objects.all(),
+                widget=forms.Select(attrs={'class': 'form-control'}),
+                required=False
+            )
+            self.fields['available_groups'] = forms.ModelMultipleChoiceField(
+                queryset=Group.objects.all(),
+                widget=forms.Select(attrs={'class': 'form-control'}),
+                required=False
+            )
+            self.fields['selected_users'] = forms.ModelMultipleChoiceField(
+                queryset=AppUser.objects.none(),
+                widget=forms.Select(attrs={'class': 'form-control'}),
+                required=False
+            )
+            self.fields['selected_groups'] = forms.ModelMultipleChoiceField(
+                queryset=Group.objects.none(),
+                widget=forms.Select(attrs={'class': 'form-control'}),
+                required=False
+            )
+        else:
+            project = Project.objects.get(pk=self.instance.pk)
+
+            user_pks = project.users.values_list('id', flat=True)
+            group_pks = project.groups.values_list('id', flat=True)
+
+            self.fields['selected_users'] = forms.ModelMultipleChoiceField(
+                queryset=AppUser.objects.filter(id__in=user_pks),
+                widget=forms.Select(attrs={'class': 'form-control'}),
+                required=False
+            )
+            self.fields['selected_groups'] = forms.ModelMultipleChoiceField(
+                queryset=Group.objects.filter(id__in=group_pks),
+                widget=forms.Select(attrs={'class': 'form-control'}),
+                required=False
+            )
+            self.fields['available_users'] = forms.ModelMultipleChoiceField(
+                queryset=AppUser.objects.exclude(id__in=user_pks),
+                widget=forms.Select(attrs={'class': 'form-control'}),
+                required=False
+            )
+            self.fields['available_groups'] = forms.ModelMultipleChoiceField(
+                queryset=Group.objects.exclude(id__in=group_pks),
+                widget=forms.Select(attrs={'class': 'form-control'}),
+                required=False
+            )
+
 
 class ServerForm(ModelForm):
     class Meta:
