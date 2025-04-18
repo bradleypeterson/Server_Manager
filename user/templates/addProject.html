@@ -2,7 +2,7 @@
 
 {% block body %}
 {% include 'navbar.html' %}
-<form action="./" method="POST">
+<form action="./" method="POST" id="myForm">
     <div class="container mt-5 mb-5">
         <div class="p-4 shadow-sm login-form__content add-project-form">
             <h1 class="mb-3 text-center course-header" id="header">New Project</h1>
@@ -167,5 +167,25 @@
             }
         });
     });
+
+
+    const myForm = document.getElementById("myForm");
+    myForm.addEventListener("formdata", function (e) {
+        let formData = e.formData;
+
+        const selectedGroupList = Array.from(document.getElementById("groups").children);
+        const selectedUserList = Array.from(document.getElementById("users").children);
+
+        formData.delete("groups")
+        formData.delete("users")
+
+        for (let g of selectedGroupList) {
+            formData.append("groups", g.value)
+        }
+        for (let u of selectedUserList) {
+            formData.append("users", u.value)
+        }
+    });
+
 </script>
 {% endblock %}
