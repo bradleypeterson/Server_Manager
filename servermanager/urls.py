@@ -22,6 +22,7 @@ import group.views as group_views
 import project.views as project_views
 
 app_name = 'servermanager'
+# Add new urls below
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('home/', user_views.home, name="home"),

@@ -33,6 +33,7 @@
                         <a class="nav-link" href="{% url 'group' %}">Add Group</a>
                     {% endif %}
                 </li>
+                    <!-- Adds Admin path if user is Admin -->
                 {% if user.is_superuser == True %}
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'admin:index' %}">Admin</a>

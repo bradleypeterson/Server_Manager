@@ -93,13 +93,14 @@
 </form>
 
 <script>
+        <!-- Handles the Edit button in form modal -->
     {% if edit %}
         document.getElementById("header").innerText = "Edit Group"
         document.getElementById("submit").innerText = "Save Changes"
         document.getElementById("cancel").innerText = "Return to Homepage"
     {% endif %}
 
-
+    <!-- Handles the Dual List in form modal -->
     function handleItemClick(event, listType, listName) {
         const clickedOption = event.target;
         const availableList = document.getElementById('available_' + listName);

@@ -98,12 +98,14 @@
 </form>
 
 <script>
+    <!-- Handles the Edit button in form modal -->
 {% if edit %}
     document.getElementById("header").innerText = "Edit Server"
     document.getElementById("submit").innerText = "Save Changes"
     document.getElementById("cancel").innerText = "Return to Homepage"
 {% endif %}
 
+    <!-- Handles the Ping button in Server form modal -->
 function ping(button) {
     console.log("Ping button clicked!");
 

@@ -3,7 +3,7 @@ from .models import Group
 from user.models import AppUser
 from project.models import Project
 
-
+#Fields for Group Form
 class GroupForm(forms.ModelForm):
     class Meta:
         model = Group

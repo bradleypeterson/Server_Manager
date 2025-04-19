@@ -6,6 +6,7 @@ class OperatingSystem(models.Model):
         return self.name
 
 # Create your models here.
+#Project Model in SQLite
 class Project(models.Model):
     # Fields for the project
     date_created = models.DateTimeField(auto_now_add=True)
@@ -27,6 +28,7 @@ class Project(models.Model):
     def __str__(self):
         return self.name
 
+#Server Model in SQLite
 class Server(models.Model):
     # Date fields
     date_created = models.DateTimeField(auto_now_add=True)

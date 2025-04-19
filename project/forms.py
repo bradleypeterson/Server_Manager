@@ -5,7 +5,7 @@ from project.models import Server
 from user.models import AppUser
 from group.models import Group
 
-
+#Project Form Fields
 class ProjectForm(ModelForm):
     class Meta:
         model = Project
@@ -72,7 +72,7 @@ class ProjectForm(ModelForm):
                 required=False
             )
 
-
+#Server Form fields
 class ServerForm(ModelForm):
     class Meta:
         model = Server

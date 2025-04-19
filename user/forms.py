@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, PasswordResetForm
 from user.models import AppUser
 
-
+# Register form fields here
 class RegistrationForm(UserCreationForm):
     first_name = forms.CharField(
         widget=forms.TextInput(attrs={'placeholder': 'First Name', 'style': 'width: 300px;', 'class': 'form-control'}))
@@ -25,6 +25,7 @@ class RegistrationForm(UserCreationForm):
         model = AppUser
         fields = ("username",)
 
+# Login Form fields here
 class LoginForm(AuthenticationForm):
     username = forms.CharField(
         widget=forms.TextInput(attrs={'placeholder': 'Username', 'style': 'width: 300px;', 'class': 'form-control'}))
@@ -40,6 +41,7 @@ class LoginForm(AuthenticationForm):
         model = AppUser
         fields = ("username",)
 
+# Reset Form fields here
 class ResetPasswordForm(PasswordResetForm):
     password1 = forms.CharField(
         help_text='Enter Password',

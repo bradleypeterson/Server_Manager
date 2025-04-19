@@ -31,6 +31,7 @@ ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '0.0.0.0', 'cameronmckay.xyz']
 
 # Application definition
 
+# Add new apps below
 INSTALLED_APPS = [
     'user',
     'website',

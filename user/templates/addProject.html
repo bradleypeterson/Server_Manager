@@ -2,6 +2,7 @@
 
 {% block body %}
 {% include 'navbar.html' %}
+<!-- Add Project File which contains form styling for Project Creation -->
 <form action="./" method="POST" id="myForm">
     <div class="container mt-5 mb-5">
         <div class="p-4 shadow-sm login-form__content add-project-form">
@@ -134,13 +135,14 @@
 </form>
 
 <script>
-
+    <!-- Handles the Edit button in form modal -->
     {% if edit %}
         document.getElementById("header").innerText = "Edit Project"
         document.getElementById("submit").innerText = "Save Changes"
         document.getElementById("cancel").innerText = "Return to Homepage"
     {% endif %}
 
+    <!-- Handles Dual List in forms -->
     function handleItemClick(event, listType, listName) {
         const clickedOption = event.target;
         const availableList = document.getElementById('available_' + listName);
