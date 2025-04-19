@@ -38,8 +38,3 @@ class CreateGroupView(View):
             messages.success(request, "Group added successfully!")
             return redirect('home')
         return render(request, 'group/group.html', {'form': form})
-
-def groupList(request):
-    groups = Group.objects.all()
-
-    return render(request, 'group/groupList.html', {'groups': groups})
