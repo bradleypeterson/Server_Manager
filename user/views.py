@@ -182,22 +182,26 @@ def viewGroup(request, group_id):
         if form.is_valid():
             group = form.save(commit=False)
             group.updated_by = request.user
+            group.save()
 
-            selected_user_ids = request.POST.getlist('users')
-            selected_users = AppUser.objects.filter(id__in=selected_user_ids)
-            group.users.set(selected_users)
+            selected_users = request.POST.getlist('users')
+            selected_projects = request.POST.getlist('projects')
 
-            selected_project_ids = request.POST.getlist('projects')
-            selected_projects = Project.objects.filter(id__in=selected_project_ids)
-            unselected_projects = Project.objects.exclude(id__in=selected_project_ids)
+            unselected_users = AppUser.objects.exclude(id__in=selected_users)
+            unselected_projects = Project.objects.exclude(id__in=selected_projects)
+
+            selected_users = AppUser.objects.filter(id__in=selected_users)
+            selected_projects = Project.objects.filter(id__in=selected_projects)
+
             for project in selected_projects:
                 project.groups.add(group)
-                project.save()
+            for user in selected_users:
+                group.users.add(user)
+
             for project in unselected_projects:
                 project.groups.remove(group)
-                project.save()
-
-            form.save_m2m()
+            for user in unselected_users:
+                group.users.remove(user)
 
             group.save()
 

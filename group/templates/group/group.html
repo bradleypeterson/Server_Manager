@@ -2,7 +2,7 @@
 
 {% block body %}
 {% include 'navbar.html' %}
-<form method="POST">
+<form method="POST" id="groupForm">
     <div class="container mt-5 mb-5">
         <div class="p-4 shadow-sm login-form__content add-project-form">
             <h1 class="mb-3 text-center course-header" id="header">New Group</h1>
@@ -43,7 +43,7 @@
                     <!-- Available Users -->
                     <div class="mb-3">
                         <label for="available_users" class="form-label">Available Users</label>
-                        <select id="available_users" name="available_users" class="form-control" size="10" multiple>
+                        <select id="available_users" class="form-control" size="10" multiple>
                             {% for user in form.available_users.field.queryset %}
                                 <option value="{{ user.id }}">{{ user.username }}</option>
                             {% endfor %}
@@ -52,7 +52,7 @@
                     <!-- Available Projects -->
                     <div class="mb-3">
                         <label for="available_projects" class="form-label">Available Projects</label>
-                        <select id="available_projects" name="available_projects" class="form-control" size="10" multiple>
+                        <select id="available_projects" class="form-control" size="10" multiple>
                             {% for project in form.available_projects.field.queryset %}
                                 <option value="{{ project.id }}">{{ project.name }}</option>
                             {% endfor %}
@@ -72,12 +72,18 @@
                     <div class="mb-3">
                         <label for="users" class="form-label">Selected Users</label>
                         <select id="users" name="users" class="form-control" size="10" multiple>
+                            {% for user in form.selected_users.field.queryset %}
+                                <option value="{{ user.id }}">{{ user.username }}</option>
+                            {% endfor %}
                         </select>
                     </div>
 
                     <div class="mb-3">
                         <label for="projects" class="form-label">Selected Projects</label>
                         <select id="projects" name="projects" class="form-control" size="10" multiple>
+                            {% for project in form.selected_projects.field.queryset %}
+                                <option value="{{ project.id }}">{{ project.name }}</option>
+                            {% endfor %}
                         </select>
                     </div>
 
@@ -108,23 +114,12 @@
 
         if (listType === 'available') {
             selectedList.appendChild(clickedOption);
-        } else if (listType === 'selected') {
+        } else {
             availableList.appendChild(clickedOption);
         }
 
-        updateItemsInput(listName);
     }
 
-    function updateItemsInput(listName) {
-        const selectedItems = document.getElementById(listName).options;
-        const selectedItemIds = [];
-
-        for (var i = 0; i < selectedItems.length; i++) {
-            selectedItemIds.push(selectedItems[i].value);
-        }
-
-        document.getElementById(listName).name = listName;
-    }
 
     ['users', 'projects'].forEach(function (listName) {
         document.getElementById('available_' + listName).addEventListener('click', function (event) {
@@ -140,9 +135,21 @@
         });
     });
 
-    document.querySelector("form").addEventListener("submit", function() {
-        updateItemsInput('users');
-        updateItemsInput('projects');
+    const groupForm = document.getElementById('groupForm');
+    groupForm.addEventListener("formdata", function (e) {
+        let formData = e.formData;
+        const selectedProjectList = Array.from(document.getElementById("projects").children);
+        const selectedUserList = Array.from(document.getElementById("users").children);
+
+        formData.delete("projects")
+        formData.delete("users")
+
+        for (let p of selectedProjectList) {
+            formData.append("projects", p.value)
+        }
+        for (let u of selectedUserList) {
+            formData.append("users", u.value)
+        }
     });
 </script>
 

@@ -44,14 +44,6 @@
                         {{ form.stack }}
                     </div>
 
-                    {% if edit %}
-                    <div class="mb-3">
-                        <label for="last_audit" class="form-label">Last Audit</label>
-                        {{ form.last_audit }}
-                    </div>
-                    {% endif %}
-
-
                     <div class="mb-3">
                         <label for="repo_link" class="form-label">Repo Link</label>
                         {{ form.repo_link }}
@@ -77,6 +69,12 @@
                         </select>
                     </div>
 
+                    {% if edit %}
+                    <div class="mb-3">
+                        <label for="last_audit" class="form-label">Last Audit</label>
+                        {{ form.last_audit }}
+                    </div>
+                    {% endif %}
                 </div>
 
                 <!-- Right Column -->

@@ -151,7 +151,7 @@
                 <a href="#" class="text-decoration-none text-dark" data-toggle="modal" data-target="#groupModal"
                    data-group-id="{{ group.id }}"
                    data-group-name="{{ group.group_name }}"
-                   data-group-users="{% for user in group.users.all %}{{ user.username }}{% if not forloop.last %}, {% endif %}{% endfor %}"
+                   data-group-users="{% if group.users.all %}{% for user in group.users.all %}{{ user.username }}{% if not forloop.last %}, {% endif %}{% endfor %}{% else %}No users assigned{% endif %}"
                    data-group-projects="{% if group.project_groups.all %}{% for project in group.project_groups.all %}{{ project.name }}{% if not forloop.last %}, {% endif %}{% endfor %}{% else %}No projects assigned{% endif %}"
                    data-group-description="{{ group.description }}">
                     <div class="card-homepage p-3 mb-4 rounded">
