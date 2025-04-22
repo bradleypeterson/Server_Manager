@@ -92,6 +92,9 @@ If the above 2 fail, you can try deleting the db.sqlite3 file and repeating step
 - Custom Data Fields for Servers 
 - Code testing
 - More granular permissions (grant read/update separately)
+- More auditing fields (Audit history and notes)
+- Server tracking
+- Backups
 ### Bugs:</br>
 ???
 
